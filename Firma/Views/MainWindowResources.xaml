@@ -28,6 +28,9 @@
     <DataTemplate DataType="{x:Type vmAll:WszystkieRabatyViewModel}">
         <vwAll:WszystkieRabatyView />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vmAll:WszystkieMagazynViewModel}">
+        <vwAll:WszystkieMagazynView />
+    </DataTemplate>
 
 
     <DataTemplate DataType="{x:Type vmAll:WszystkieSamochodyViewModel}">
@@ -51,7 +54,7 @@
     <DataTemplate DataType="{x:Type vmAll:WszystkieUslugiViewModel}">
         <vwAll:WszystkieUslugiView />
     </DataTemplate>
-    
+
 
     <DataTemplate DataType="{x:Type vm:NowyTowarViewModel}">
         <vw:NowyTowarView />

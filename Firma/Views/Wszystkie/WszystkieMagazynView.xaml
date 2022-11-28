@@ -9,5 +9,14 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <Grid />
+    <Grid Background="White">
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=Towar}" Header="Towar" />
+                <DataGridTextColumn Binding="{Binding Path=Ilosc}" Header="Ilosc" />
+                <DataGridTextColumn Binding="{Binding Path=OstatnieZamowienie}" Header="Ostatnie zamowienie" />
+                <DataGridTextColumn Binding="{Binding Path=Wartosc}" Header="Wartosc" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
 </Abstrack:WszystkieViewBase>
