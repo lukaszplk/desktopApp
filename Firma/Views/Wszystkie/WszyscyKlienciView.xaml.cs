@@ -19,7 +19,7 @@ namespace Firma.Views.Wszystkie
     /// <summary>
     /// Logika interakcji dla klasy WszyscyKlienciView.xaml
     /// </summary>
-    public partial class WszyscyKlienciView : UserControl
+    public partial class WszyscyKlienciView : WszystkieViewBase
     {
         public WszyscyKlienciView()
         {

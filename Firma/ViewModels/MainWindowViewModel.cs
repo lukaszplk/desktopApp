@@ -152,7 +152,7 @@ namespace Firma.ViewModels
                 //new CommandViewModel("Samochod", new BaseCommand(() => createView(new NowySamochodViewModel()))),
                 //new CommandViewModel("Samochody", new BaseCommand(showAllSamochody)),
                 //new CommandViewModel("Klient", new BaseCommand(() => createView(new NowyKlientViewModel()))),
-                //new CommandViewModel("Klienci", new BaseCommand(showAllKlienci))
+                new CommandViewModel("Klienci", new BaseCommand(showAllKlienci)),
                 new CommandViewModel("dodaj adres", new BaseCommand(() => createView(new NowyAdresViewModel()))),
                 new CommandViewModel("dodaj auto", new BaseCommand(() => createView(new NowySamochodViewModel()))),
                 new CommandViewModel("dodaj stanowisko", new BaseCommand(() => createView(new NoweStanowiskoViewModel()))),
