@@ -14,143 +14,15 @@
     </UserControl.Resources>
 
     <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Expander Header="Filtry" IsExpanded="False">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-
-                        <ColumnDefinition Width="30" />
-                        <ColumnDefinition Width="150" />
-                        <ColumnDefinition Width="100" />
-                        <ColumnDefinition Width="30" />
-                        <ColumnDefinition Width="150" />
-                        <ColumnDefinition Width="100" />
-                        <ColumnDefinition Width="30" />
-                        <ColumnDefinition Width="150" />
-                        <ColumnDefinition Width="100" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        Content="Nazwa" />
-                    <TextBox
-                        Grid.Row="0"
-                        Grid.Column="2"
-                        Style="{StaticResource TextBoxStandardowy}" />
-                    <Label
-                        Grid.Row="0"
-                        Grid.Column="4"
-                        Content="Id" />
-                    <TextBox
-                        Grid.Row="0"
-                        Grid.Column="5"
-                        Style="{StaticResource TextBoxStandardowy}" />
-                    <Label
-                        Grid.Row="0"
-                        Grid.Column="7"
-                        Content="Nazwa katalogowa" />
-                    <TextBox
-                        Grid.Row="0"
-                        Grid.Column="8"
-                        Style="{StaticResource TextBoxStandardowy}" />
-                    <Label
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Content="Data sprzedazy" />
-                    <TextBox
-                        Grid.Row="1"
-                        Grid.Column="2"
-                        Style="{StaticResource TextBoxStandardowy}" />
-                    <Label
-                        Grid.Row="1"
-                        Grid.Column="4"
-                        Content="Cena od" />
-                    <TextBox
-                        Grid.Row="1"
-                        Grid.Column="5"
-                        Style="{StaticResource TextBoxStandardowy}" />
-                    <Label
-                        Grid.Row="1"
-                        Grid.Column="7"
-                        Content="Cena do" />
-                    <TextBox
-                        Grid.Row="1"
-                        Grid.Column="8"
-                        Style="{StaticResource TextBoxStandardowy}" />
-                    <Label
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        Content="Sklep" />
-                    <TextBox
-                        Grid.Row="2"
-                        Grid.Column="2"
-                        Style="{StaticResource TextBoxStandardowy}" />
-                    <Label
-                        Grid.Row="2"
-                        Grid.Column="4"
-                        Content="Kierownik sklepu" />
-                    <TextBox
-                        Grid.Row="2"
-                        Grid.Column="5"
-                        Style="{StaticResource TextBoxStandardowy}" />
-                    <Label
-                        Grid.Row="2"
-                        Grid.Column="7"
-                        Content="Ilosc" />
-                    <TextBox
-                        Grid.Row="2"
-                        Grid.Column="8"
-                        Style="{StaticResource TextBoxStandardowy}" />
-                </Grid>
-
-
-            </Grid>
-        </Expander>
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="30" />
-                <RowDefinition Height="30" />
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="160" />
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label
-                    Grid.Column="0"
-                    Content="Wszystkie faktury"
-                    Style="{StaticResource LabelStandardowy}" />
-
-            </Grid>
-            <DataGrid Grid.Row="1" AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridComboBoxColumn Width="*" Header="Nazwa towaru" />
-                    <DataGridTextColumn Width="*" Header="Cena" />
-                    <DataGridCheckBoxColumn Width="*" Header="Ilosc" />
-                    <DataGridTextColumn Width="*" Header="Netto" />
-                    <DataGridTextColumn Width="*" Header="Brutto" />
-                    <DataGridTextColumn Width="*" Header="Jednostka" />
-                    <DataGridTextColumn Width="*" Header="Data sprzedazy" />
-                    <DataGridTextColumn Width="*" Header="Uwagi" />
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=Numer}" Header="Numer faktury" />
+                <DataGridTextColumn Binding="{Binding Path=TerminPlatnosci}" Header="Termin platnosci" />
+                <DataGridTextColumn Binding="{Binding Path=Klient}" Header="Klient" />
+                <DataGridTextColumn Binding="{Binding Path=Pracownik}" Header="Kto wystawil" />
+                <DataGridTextColumn Binding="{Binding Path=Kwota}" Header="Kwota" />
+                <DataGridTextColumn Binding="{Binding Path=SposobPlatnosci}" Header="Sposob platnosci" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

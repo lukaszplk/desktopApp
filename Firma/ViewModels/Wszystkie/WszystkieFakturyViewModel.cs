@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Firma.Models.Entities;
+using Firma.Models.EntitiesForView;
 using Firma.ViewModels.Abstract;
 
 namespace Firma.ViewModels.Wszystkie
 {
-    public class WszystkieFakturyViewModel : collectionViewModel<Faktura>
+    public class WszystkieFakturyViewModel : collectionViewModel<FakturaForAllView>
     {
         #region Konstruktor
         public WszystkieFakturyViewModel()
@@ -19,11 +20,19 @@ namespace Firma.ViewModels.Wszystkie
 
         public override void Load()
         {
-            List = new ObservableCollection<Faktura>
+            List = new ObservableCollection<FakturaForAllView>
                 (
                     from item in fakturaEntities.Faktura
                     where item.czyAktywna == true
-                    select item
+                    select new FakturaForAllView
+                    {
+                        Numer = item.numer,
+                        TerminPlatnosci = item.terminPlatnosci,
+                        Klient = item.Klient1.imie + " " + item.Klient1.nazwisko,
+                        Pracownik = item.Pracownik1.imie + " " + item.Pracownik1.nazwisko,
+                        Kwota = item.kwotaFaktury,
+                        SposobPlatnosci = item.SposobPlatnosci1.nazwa
+                    }
 
                 );
         }
