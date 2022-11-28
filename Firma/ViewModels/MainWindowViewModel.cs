@@ -153,6 +153,7 @@ namespace Firma.ViewModels
                 //new CommandViewModel("Samochody", new BaseCommand(showAllSamochody)),
                 //new CommandViewModel("Klient", new BaseCommand(() => createView(new NowyKlientViewModel()))),
                 new CommandViewModel("Klienci", new BaseCommand(showAllKlienci)),
+                new CommandViewModel("Pracownicy", new BaseCommand(showAllPracownicy)),
                 //new CommandViewModel("dodaj adres", new BaseCommand(() => createView(new NowyAdresViewModel()))),
                 //new CommandViewModel("dodaj auto", new BaseCommand(() => createView(new NowySamochodViewModel()))),
                 //new CommandViewModel("dodaj stanowisko", new BaseCommand(() => createView(new NoweStanowiskoViewModel()))),
@@ -237,6 +238,20 @@ namespace Firma.ViewModels
                 this.Workspaces.Add(workspace);
             }
             
+            this.setActiveWorkspace(workspace);
+
+        }
+        private void showAllPracownicy()
+        {
+
+            WszyscyPracownicyViewModel workspace = this.Workspaces.FirstOrDefault(vm => vm is WszyscyPracownicyViewModel) as WszyscyPracownicyViewModel;
+
+            if (workspace == null)
+            {
+                workspace = new WszyscyPracownicyViewModel();
+                this.Workspaces.Add(workspace);
+            }
+
             this.setActiveWorkspace(workspace);
 
         }
