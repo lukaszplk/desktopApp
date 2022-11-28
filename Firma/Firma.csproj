@@ -1,0 +1,237 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Models\Entities\ProjectModels.edmx" />
+    <None Remove="Views\add.png" />
+    <None Remove="Views\build.png" />
+    <None Remove="Views\checklist.png" />
+    <None Remove="Views\Content\Icons\close.png" />
+    <None Remove="Views\Content\Icons\faktura-minus.png" />
+    <None Remove="Views\Content\Icons\faktura-plus.png" />
+    <None Remove="Views\Content\Icons\faktury.png" />
+    <None Remove="Views\Content\Icons\klienci.png" />
+    <None Remove="Views\Content\Icons\klient-minus.png" />
+    <None Remove="Views\Content\Icons\klient-plus.png" />
+    <None Remove="Views\Content\Icons\minus.png" />
+    <None Remove="Views\Content\Icons\plus.png" />
+    <None Remove="Views\Content\Icons\Q.png" />
+    <None Remove="Views\Content\Icons\samochod-minus.png" />
+    <None Remove="Views\Content\Icons\samochod-plus.png" />
+    <None Remove="Views\Content\Icons\samochody.png" />
+    <None Remove="Views\Content\Icons\towar-minus.png" />
+    <None Remove="Views\Content\Icons\towar-plus.png" />
+    <None Remove="Views\Content\Icons\towary.png" />
+    <None Remove="Views\done.png" />
+    <None Remove="Views\Jeden\Content\Icons\close.png" />
+    <None Remove="Views\Jeden\Content\Icons\faktura-minus.png" />
+    <None Remove="Views\Jeden\Content\Icons\faktura-plus.png" />
+    <None Remove="Views\Jeden\Content\Icons\faktury.png" />
+    <None Remove="Views\Jeden\Content\Icons\klienci.png" />
+    <None Remove="Views\Jeden\Content\Icons\klient-minus.png" />
+    <None Remove="Views\Jeden\Content\Icons\klient-plus.png" />
+    <None Remove="Views\Jeden\Content\Icons\minus.png" />
+    <None Remove="Views\Jeden\Content\Icons\plus.png" />
+    <None Remove="Views\Jeden\Content\Icons\Q.png" />
+    <None Remove="Views\Jeden\Content\Icons\samochod-minus.png" />
+    <None Remove="Views\Jeden\Content\Icons\samochod-plus.png" />
+    <None Remove="Views\Jeden\Content\Icons\samochody.png" />
+    <None Remove="Views\Jeden\Content\Icons\towar-minus.png" />
+    <None Remove="Views\Jeden\Content\Icons\towar-plus.png" />
+    <None Remove="Views\Jeden\Content\Icons\towary.png" />
+    <None Remove="Views\leaderboard.png" />
+    <None Remove="Views\outline_lightbulb_black_24dp.png" />
+    <None Remove="Views\Wszystkie\Content\Icons\close.png" />
+    <None Remove="Views\Wszystkie\Content\Icons\faktura-minus.png" />
+    <None Remove="Views\Wszystkie\Content\Icons\faktura-plus.png" />
+    <None Remove="Views\Wszystkie\Content\Icons\faktury.png" />
+    <None Remove="Views\Wszystkie\Content\Icons\klienci.png" />
+    <None Remove="Views\Wszystkie\Content\Icons\klient-minus.png" />
+    <None Remove="Views\Wszystkie\Content\Icons\klient-plus.png" />
+    <None Remove="Views\Wszystkie\Content\Icons\minus.png" />
+    <None Remove="Views\Wszystkie\Content\Icons\plus.png" />
+    <None Remove="Views\Wszystkie\Content\Icons\Q.png" />
+    <None Remove="Views\Wszystkie\Content\Icons\samochod-minus.png" />
+    <None Remove="Views\Wszystkie\Content\Icons\samochod-plus.png" />
+    <None Remove="Views\Wszystkie\Content\Icons\samochody.png" />
+    <None Remove="Views\Wszystkie\Content\Icons\towar-minus.png" />
+    <None Remove="Views\Wszystkie\Content\Icons\towar-plus.png" />
+    <None Remove="Views\Wszystkie\Content\Icons\towary.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EntityDeploy Include="Models\Entities\ProjectModels.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ProjectModels.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Views\Content\Icons\close.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Content\Icons\faktura-minus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Content\Icons\faktura-plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Content\Icons\faktury.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Content\Icons\klienci.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Content\Icons\klient-minus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Content\Icons\klient-plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Content\Icons\minus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Content\Icons\plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Content\Icons\Q.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Content\Icons\samochod-minus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Content\Icons\samochod-plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Content\Icons\samochody.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Content\Icons\towar-minus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Content\Icons\towar-plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Content\Icons\towary.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Jeden\Content\Icons\close.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Jeden\Content\Icons\faktura-minus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Jeden\Content\Icons\faktura-plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Jeden\Content\Icons\faktury.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Jeden\Content\Icons\klienci.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Jeden\Content\Icons\klient-minus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Jeden\Content\Icons\klient-plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Jeden\Content\Icons\minus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Jeden\Content\Icons\plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Jeden\Content\Icons\Q.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Jeden\Content\Icons\samochod-minus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Jeden\Content\Icons\samochod-plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Jeden\Content\Icons\samochody.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Jeden\Content\Icons\towar-minus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Jeden\Content\Icons\towar-plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Jeden\Content\Icons\towary.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Wszystkie\Content\Icons\close.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Wszystkie\Content\Icons\faktura-minus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Wszystkie\Content\Icons\faktura-plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Wszystkie\Content\Icons\faktury.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Wszystkie\Content\Icons\klienci.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Wszystkie\Content\Icons\klient-minus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Wszystkie\Content\Icons\klient-plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Wszystkie\Content\Icons\minus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Wszystkie\Content\Icons\plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Wszystkie\Content\Icons\Q.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Wszystkie\Content\Icons\samochod-minus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Wszystkie\Content\Icons\samochod-plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Wszystkie\Content\Icons\samochody.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Wszystkie\Content\Icons\towar-minus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Wszystkie\Content\Icons\towar-plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Wszystkie\Content\Icons\towary.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Security" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Models\Entities\ProjectModels.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ProjectModels.edmx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

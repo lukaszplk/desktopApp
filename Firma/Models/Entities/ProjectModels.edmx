@@ -1,0 +1,1354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="projektModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Adres">
+          <Key>
+            <PropertyRef Name="idAdresu" />
+          </Key>
+          <Property Name="idAdresu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ulica" Type="varchar" MaxLength="50" />
+          <Property Name="dom" Type="varchar" MaxLength="50" />
+          <Property Name="mieszkanie" Type="varchar" MaxLength="50" />
+          <Property Name="kodPocztowy" Type="varchar" MaxLength="50" />
+          <Property Name="miasto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="czyAktywny" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Faktura">
+          <Key>
+            <PropertyRef Name="idFaktury" />
+          </Key>
+          <Property Name="idFaktury" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numer" Type="int" />
+          <Property Name="dataWystawienia" Type="datetime" />
+          <Property Name="terminPlatnosci" Type="datetime" Nullable="false" />
+          <Property Name="klient" Type="int" />
+          <Property Name="pracownik" Type="int" />
+          <Property Name="sposobPlatnosci" Type="int" />
+          <Property Name="kwotaFaktury" Type="int" Nullable="false" />
+          <Property Name="czyZatwierdzona" Type="bit" Nullable="false" />
+          <Property Name="czyAktywna" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Firma_zew">
+          <Key>
+            <PropertyRef Name="idFirmy" />
+          </Key>
+          <Property Name="idFirmy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazwa" Type="varchar" MaxLength="50" />
+          <Property Name="iloscPracownikow" Type="int" />
+          <Property Name="iloscNaszychUslug" Type="int" Nullable="false" />
+          <Property Name="dlugoscWspolpracyMiesiace" Type="int" Nullable="false" />
+          <Property Name="czyAktywny" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Klient">
+          <Key>
+            <PropertyRef Name="idKlienta" />
+          </Key>
+          <Property Name="idKlienta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imie" Type="varchar" MaxLength="50" />
+          <Property Name="nazwisko" Type="varchar" MaxLength="50" />
+          <Property Name="adres" Type="int" />
+          <Property Name="firma_zew" Type="int" />
+          <Property Name="rabat" Type="int" />
+          <Property Name="ktoUdzielilRabatu" Type="int" />
+          <Property Name="czyAktywny" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'projekt.dbo.Magazyn' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Magazyn">
+          <Key>
+            <PropertyRef Name="czyAktywne" />
+          </Key>
+          <Property Name="towar" Type="int" />
+          <Property Name="ilosc" Type="int" />
+          <Property Name="ostatnieZamowienie" Type="int" />
+          <Property Name="wartoscTowaru" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="czyAktywne" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pojazd">
+          <Key>
+            <PropertyRef Name="idPojazdu" />
+          </Key>
+          <Property Name="idPojazdu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="marka" Type="varchar" MaxLength="50" />
+          <Property Name="kolor" Type="varchar" MaxLength="50" />
+          <Property Name="rok" Type="int" />
+          <Property Name="przebieg" Type="bigint" />
+          <Property Name="poprzedniPrzeglad" Type="datetime" Nullable="false" />
+          <Property Name="planowanyPrzeglad" Type="datetime" Nullable="false" />
+          <Property Name="czyAktywny" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pracownik">
+          <Key>
+            <PropertyRef Name="idPracownika" />
+          </Key>
+          <Property Name="idPracownika" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imie" Type="varchar" MaxLength="50" />
+          <Property Name="nazwisko" Type="varchar" MaxLength="50" />
+          <Property Name="adres" Type="int" Nullable="false" />
+          <Property Name="stanowisko" Type="int" Nullable="false" />
+          <Property Name="dataZatrudnienia" Type="datetime" Nullable="false" />
+          <Property Name="pojazd" Type="int" />
+          <Property Name="czyKierowca" Type="bit" Nullable="false" />
+          <Property Name="czyAktywny" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rabat">
+          <Key>
+            <PropertyRef Name="idRabatu" />
+          </Key>
+          <Property Name="idRabatu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazwaRabatu" Type="varchar" MaxLength="50" />
+          <Property Name="dataUtworzenia" Type="datetime" Nullable="false" />
+          <Property Name="ktoUtworzyl" Type="int" Nullable="false" />
+          <Property Name="zaCoNalezny" Type="varchar" MaxLength="250" />
+          <Property Name="poziomRabatu" Type="int" Nullable="false" />
+          <Property Name="czyAktywny" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SposobPlatnosci">
+          <Key>
+            <PropertyRef Name="idSposobuPlatnosci" />
+          </Key>
+          <Property Name="idSposobuPlatnosci" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazwa" Type="varchar" MaxLength="50" />
+          <Property Name="opis" Type="varchar" MaxLength="250" />
+          <Property Name="czyAktywny" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stanowisko">
+          <Key>
+            <PropertyRef Name="idStanowiska" />
+          </Key>
+          <Property Name="idStanowiska" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazwaStanowiska" Type="varchar" MaxLength="50" />
+          <Property Name="dataUtworzenia" Type="datetime" Nullable="false" />
+          <Property Name="zakresObowiazkow" Type="varchar" MaxLength="250" />
+          <Property Name="wymaganeDoswiadczenieLata" Type="int" />
+          <Property Name="czyAktywny" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Towar">
+          <Key>
+            <PropertyRef Name="idTowaru" />
+          </Key>
+          <Property Name="idTowaru" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kod" Type="varchar" MaxLength="50" />
+          <Property Name="nazwa" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VatZakupu" Type="int" />
+          <Property Name="VatSprzedazy" Type="int" />
+          <Property Name="cena" Type="int" Nullable="false" />
+          <Property Name="marza" Type="int" />
+          <Property Name="czyAktywny" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Urlop">
+          <Key>
+            <PropertyRef Name="idUrlopu" />
+          </Key>
+          <Property Name="idUrlopu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pracownik" Type="int" Nullable="false" />
+          <Property Name="zatwierdzajacy" Type="int" Nullable="false" />
+          <Property Name="dataRozpoczecia" Type="datetime" Nullable="false" />
+          <Property Name="dataZakonczenia" Type="datetime" />
+          <Property Name="uzasadnienie" Type="varchar" MaxLength="250" />
+          <Property Name="czyZatwierdzony" Type="bit" Nullable="false" />
+          <Property Name="czyPlatny" Type="bit" Nullable="false" />
+          <Property Name="czyAktywny" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usluga">
+          <Key>
+            <PropertyRef Name="idUslugi" />
+          </Key>
+          <Property Name="idUslugi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazwaUslugi" Type="varchar" MaxLength="50" />
+          <Property Name="koszt" Type="int" Nullable="false" />
+          <Property Name="potrzebnyCzasDni" Type="varchar" MaxLength="50" />
+          <Property Name="czyAktywna" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zamowienia">
+          <Key>
+            <PropertyRef Name="idZamowienia" />
+          </Key>
+          <Property Name="idZamowienia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="towar" Type="int" />
+          <Property Name="pracownik" Type="int" Nullable="false" />
+          <Property Name="dataZamowienia" Type="datetime" Nullable="false" />
+          <Property Name="wartoscZamowienia" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="czyAktywne" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zlecenia">
+          <Key>
+            <PropertyRef Name="idZlecenia" />
+          </Key>
+          <Property Name="idZlecenia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pracownik" Type="int" Nullable="false" />
+          <Property Name="usluga" Type="int" Nullable="false" />
+          <Property Name="adres" Type="int" />
+          <Property Name="faktura" Type="int" />
+          <Property Name="dataZlecenia" Type="datetime" Nullable="false" />
+          <Property Name="czyAktywne" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_adres">
+          <End Role="Adres" Type="Self.Adres" Multiplicity="1" />
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adres">
+              <PropertyRef Name="idAdresu" />
+            </Principal>
+            <Dependent Role="Pracownik">
+              <PropertyRef Name="adres" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adres1">
+          <End Role="Adres" Type="Self.Adres" Multiplicity="0..1" />
+          <End Role="Klient" Type="Self.Klient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adres">
+              <PropertyRef Name="idAdresu" />
+            </Principal>
+            <Dependent Role="Klient">
+              <PropertyRef Name="adres" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adres2">
+          <End Role="Adres" Type="Self.Adres" Multiplicity="0..1" />
+          <End Role="Zlecenia" Type="Self.Zlecenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adres">
+              <PropertyRef Name="idAdresu" />
+            </Principal>
+            <Dependent Role="Zlecenia">
+              <PropertyRef Name="adres" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_faktura">
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="0..1" />
+          <End Role="Zlecenia" Type="Self.Zlecenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktura">
+              <PropertyRef Name="idFaktury" />
+            </Principal>
+            <Dependent Role="Zlecenia">
+              <PropertyRef Name="faktura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_firma">
+          <End Role="Firma_zew" Type="Self.Firma_zew" Multiplicity="0..1" />
+          <End Role="Klient" Type="Self.Klient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firma_zew">
+              <PropertyRef Name="idFirmy" />
+            </Principal>
+            <Dependent Role="Klient">
+              <PropertyRef Name="firma_zew" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_klient">
+          <End Role="Klient" Type="Self.Klient" Multiplicity="0..1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klient">
+              <PropertyRef Name="idKlienta" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="klient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ktoUdzielilRabatu">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="0..1" />
+          <End Role="Klient" Type="Self.Klient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="idPracownika" />
+            </Principal>
+            <Dependent Role="Klient">
+              <PropertyRef Name="ktoUdzielilRabatu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_platnosc">
+          <End Role="SposobPlatnosci" Type="Self.SposobPlatnosci" Multiplicity="0..1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SposobPlatnosci">
+              <PropertyRef Name="idSposobuPlatnosci" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="sposobPlatnosci" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pojazd">
+          <End Role="Pojazd" Type="Self.Pojazd" Multiplicity="0..1" />
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pojazd">
+              <PropertyRef Name="idPojazdu" />
+            </Principal>
+            <Dependent Role="Pracownik">
+              <PropertyRef Name="pojazd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pracownik">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="0..1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="idPracownika" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="pracownik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pracownik1">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="idPracownika" />
+            </Principal>
+            <Dependent Role="Zamowienia">
+              <PropertyRef Name="pracownik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pracownik2">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="Zlecenia" Type="Self.Zlecenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="idPracownika" />
+            </Principal>
+            <Dependent Role="Zlecenia">
+              <PropertyRef Name="pracownik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pracownik3">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="Urlop" Type="Self.Urlop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="idPracownika" />
+            </Principal>
+            <Dependent Role="Urlop">
+              <PropertyRef Name="pracownik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rabat">
+          <End Role="Rabat" Type="Self.Rabat" Multiplicity="0..1" />
+          <End Role="Klient" Type="Self.Klient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rabat">
+              <PropertyRef Name="idRabatu" />
+            </Principal>
+            <Dependent Role="Klient">
+              <PropertyRef Name="rabat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stanowisko">
+          <End Role="Stanowisko" Type="Self.Stanowisko" Multiplicity="1" />
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stanowisko">
+              <PropertyRef Name="idStanowiska" />
+            </Principal>
+            <Dependent Role="Pracownik">
+              <PropertyRef Name="stanowisko" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_towar1">
+          <End Role="Towar" Type="Self.Towar" Multiplicity="0..1" />
+          <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towar">
+              <PropertyRef Name="idTowaru" />
+            </Principal>
+            <Dependent Role="Zamowienia">
+              <PropertyRef Name="towar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_towar2">
+          <End Role="Towar" Type="Self.Towar" Multiplicity="0..1" />
+          <End Role="Magazyn" Type="Self.Magazyn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towar">
+              <PropertyRef Name="idTowaru" />
+            </Principal>
+            <Dependent Role="Magazyn">
+              <PropertyRef Name="towar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tworca">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="Rabat" Type="Self.Rabat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="idPracownika" />
+            </Principal>
+            <Dependent Role="Rabat">
+              <PropertyRef Name="ktoUtworzyl" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usluga">
+          <End Role="Usluga" Type="Self.Usluga" Multiplicity="1" />
+          <End Role="Zlecenia" Type="Self.Zlecenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usluga">
+              <PropertyRef Name="idUslugi" />
+            </Principal>
+            <Dependent Role="Zlecenia">
+              <PropertyRef Name="usluga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_zamowienie">
+          <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="0..1" />
+          <End Role="Magazyn" Type="Self.Magazyn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zamowienia">
+              <PropertyRef Name="idZamowienia" />
+            </Principal>
+            <Dependent Role="Magazyn">
+              <PropertyRef Name="ostatnieZamowienie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_zatwierdzajacy">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="Urlop" Type="Self.Urlop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="idPracownika" />
+            </Principal>
+            <Dependent Role="Urlop">
+              <PropertyRef Name="zatwierdzajacy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="projektModelStoreContainer">
+          <EntitySet Name="Adres" EntityType="Self.Adres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Faktura" EntityType="Self.Faktura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Firma_zew" EntityType="Self.Firma_zew" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Klient" EntityType="Self.Klient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pojazd" EntityType="Self.Pojazd" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pracownik" EntityType="Self.Pracownik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rabat" EntityType="Self.Rabat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SposobPlatnosci" EntityType="Self.SposobPlatnosci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stanowisko" EntityType="Self.Stanowisko" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Towar" EntityType="Self.Towar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Urlop" EntityType="Self.Urlop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usluga" EntityType="Self.Usluga" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zamowienia" EntityType="Self.Zamowienia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zlecenia" EntityType="Self.Zlecenia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Magazyn" EntityType="Self.Magazyn" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Magazyn].[towar] AS [towar], 
+[Magazyn].[ilosc] AS [ilosc], 
+[Magazyn].[ostatnieZamowienie] AS [ostatnieZamowienie], 
+[Magazyn].[wartoscTowaru] AS [wartoscTowaru], 
+[Magazyn].[czyAktywne] AS [czyAktywne]
+FROM [dbo].[Magazyn] AS [Magazyn]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_adres" Association="Self.FK_adres">
+            <End Role="Adres" EntitySet="Adres" />
+            <End Role="Pracownik" EntitySet="Pracownik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adres1" Association="Self.FK_adres1">
+            <End Role="Adres" EntitySet="Adres" />
+            <End Role="Klient" EntitySet="Klient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adres2" Association="Self.FK_adres2">
+            <End Role="Adres" EntitySet="Adres" />
+            <End Role="Zlecenia" EntitySet="Zlecenia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_faktura" Association="Self.FK_faktura">
+            <End Role="Faktura" EntitySet="Faktura" />
+            <End Role="Zlecenia" EntitySet="Zlecenia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_firma" Association="Self.FK_firma">
+            <End Role="Firma_zew" EntitySet="Firma_zew" />
+            <End Role="Klient" EntitySet="Klient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_klient" Association="Self.FK_klient">
+            <End Role="Klient" EntitySet="Klient" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ktoUdzielilRabatu" Association="Self.FK_ktoUdzielilRabatu">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="Klient" EntitySet="Klient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_platnosc" Association="Self.FK_platnosc">
+            <End Role="SposobPlatnosci" EntitySet="SposobPlatnosci" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pojazd" Association="Self.FK_pojazd">
+            <End Role="Pojazd" EntitySet="Pojazd" />
+            <End Role="Pracownik" EntitySet="Pracownik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pracownik" Association="Self.FK_pracownik">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pracownik1" Association="Self.FK_pracownik1">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="Zamowienia" EntitySet="Zamowienia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pracownik2" Association="Self.FK_pracownik2">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="Zlecenia" EntitySet="Zlecenia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pracownik3" Association="Self.FK_pracownik3">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="Urlop" EntitySet="Urlop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rabat" Association="Self.FK_rabat">
+            <End Role="Rabat" EntitySet="Rabat" />
+            <End Role="Klient" EntitySet="Klient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stanowisko" Association="Self.FK_stanowisko">
+            <End Role="Stanowisko" EntitySet="Stanowisko" />
+            <End Role="Pracownik" EntitySet="Pracownik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_towar1" Association="Self.FK_towar1">
+            <End Role="Towar" EntitySet="Towar" />
+            <End Role="Zamowienia" EntitySet="Zamowienia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_towar2" Association="Self.FK_towar2">
+            <End Role="Towar" EntitySet="Towar" />
+            <End Role="Magazyn" EntitySet="Magazyn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tworca" Association="Self.FK_tworca">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="Rabat" EntitySet="Rabat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usluga" Association="Self.FK_usluga">
+            <End Role="Usluga" EntitySet="Usluga" />
+            <End Role="Zlecenia" EntitySet="Zlecenia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_zamowienie" Association="Self.FK_zamowienie">
+            <End Role="Zamowienia" EntitySet="Zamowienia" />
+            <End Role="Magazyn" EntitySet="Magazyn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_zatwierdzajacy" Association="Self.FK_zatwierdzajacy">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="Urlop" EntitySet="Urlop" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="projektModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Adres">
+          <Key>
+            <PropertyRef Name="idAdresu" />
+          </Key>
+          <Property Name="idAdresu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ulica" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mieszkanie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kodPocztowy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="miasto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="czyAktywny" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pracownik" Relationship="Self.FK_adres" FromRole="Adres" ToRole="Pracownik" />
+          <NavigationProperty Name="Klient" Relationship="Self.FK_adres1" FromRole="Adres" ToRole="Klient" />
+          <NavigationProperty Name="Zlecenia" Relationship="Self.FK_adres2" FromRole="Adres" ToRole="Zlecenia" />
+        </EntityType>
+        <EntityType Name="Faktura">
+          <Key>
+            <PropertyRef Name="idFaktury" />
+          </Key>
+          <Property Name="idFaktury" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numer" Type="Int32" />
+          <Property Name="dataWystawienia" Type="DateTime" />
+          <Property Name="terminPlatnosci" Type="DateTime" Nullable="false" />
+          <Property Name="klient" Type="Int32" />
+          <Property Name="pracownik" Type="Int32" />
+          <Property Name="sposobPlatnosci" Type="Int32" />
+          <Property Name="kwotaFaktury" Type="Int32" Nullable="false" />
+          <Property Name="czyZatwierdzona" Type="Boolean" Nullable="false" />
+          <Property Name="czyAktywna" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Zlecenia" Relationship="Self.FK_faktura" FromRole="Faktura" ToRole="Zlecenia" />
+          <NavigationProperty Name="Klient1" Relationship="Self.FK_klient" FromRole="Faktura" ToRole="Klient" />
+          <NavigationProperty Name="SposobPlatnosci1" Relationship="Self.FK_platnosc" FromRole="Faktura" ToRole="SposobPlatnosci" />
+          <NavigationProperty Name="Pracownik1" Relationship="Self.FK_pracownik" FromRole="Faktura" ToRole="Pracownik" />
+        </EntityType>
+        <EntityType Name="Firma_zew">
+          <Key>
+            <PropertyRef Name="idFirmy" />
+          </Key>
+          <Property Name="idFirmy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="iloscPracownikow" Type="Int32" />
+          <Property Name="iloscNaszychUslug" Type="Int32" Nullable="false" />
+          <Property Name="dlugoscWspolpracyMiesiace" Type="Int32" Nullable="false" />
+          <Property Name="czyAktywny" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Klient" Relationship="Self.FK_firma" FromRole="Firma_zew" ToRole="Klient" />
+        </EntityType>
+        <EntityType Name="Klient">
+          <Key>
+            <PropertyRef Name="idKlienta" />
+          </Key>
+          <Property Name="idKlienta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="adres" Type="Int32" />
+          <Property Name="firma_zew" Type="Int32" />
+          <Property Name="rabat" Type="Int32" />
+          <Property Name="ktoUdzielilRabatu" Type="Int32" />
+          <Property Name="czyAktywny" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Adres1" Relationship="Self.FK_adres1" FromRole="Klient" ToRole="Adres" />
+          <NavigationProperty Name="Faktura" Relationship="Self.FK_klient" FromRole="Klient" ToRole="Faktura" />
+          <NavigationProperty Name="Firma_zew1" Relationship="Self.FK_firma" FromRole="Klient" ToRole="Firma_zew" />
+          <NavigationProperty Name="Pracownik" Relationship="Self.FK_ktoUdzielilRabatu" FromRole="Klient" ToRole="Pracownik" />
+          <NavigationProperty Name="Rabat1" Relationship="Self.FK_rabat" FromRole="Klient" ToRole="Rabat" />
+        </EntityType>
+        <EntityType Name="Pojazd">
+          <Key>
+            <PropertyRef Name="idPojazdu" />
+          </Key>
+          <Property Name="idPojazdu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="marka" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kolor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rok" Type="Int32" />
+          <Property Name="przebieg" Type="Int64" />
+          <Property Name="poprzedniPrzeglad" Type="DateTime" Nullable="false" />
+          <Property Name="planowanyPrzeglad" Type="DateTime" Nullable="false" />
+          <Property Name="czyAktywny" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pracownik" Relationship="Self.FK_pojazd" FromRole="Pojazd" ToRole="Pracownik" />
+        </EntityType>
+        <EntityType Name="Pracownik">
+          <Key>
+            <PropertyRef Name="idPracownika" />
+          </Key>
+          <Property Name="idPracownika" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="adres" Type="Int32" Nullable="false" />
+          <Property Name="stanowisko" Type="Int32" Nullable="false" />
+          <Property Name="dataZatrudnienia" Type="DateTime" Nullable="false" />
+          <Property Name="pojazd" Type="Int32" />
+          <Property Name="czyKierowca" Type="Boolean" Nullable="false" />
+          <Property Name="czyAktywny" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Adres1" Relationship="Self.FK_adres" FromRole="Pracownik" ToRole="Adres" />
+          <NavigationProperty Name="Faktura" Relationship="Self.FK_pracownik" FromRole="Pracownik" ToRole="Faktura" />
+          <NavigationProperty Name="Klient" Relationship="Self.FK_ktoUdzielilRabatu" FromRole="Pracownik" ToRole="Klient" />
+          <NavigationProperty Name="Pojazd1" Relationship="Self.FK_pojazd" FromRole="Pracownik" ToRole="Pojazd" />
+          <NavigationProperty Name="Zamowienia" Relationship="Self.FK_pracownik1" FromRole="Pracownik" ToRole="Zamowienia" />
+          <NavigationProperty Name="Zlecenia" Relationship="Self.FK_pracownik2" FromRole="Pracownik" ToRole="Zlecenia" />
+          <NavigationProperty Name="Urlop" Relationship="Self.FK_pracownik3" FromRole="Pracownik" ToRole="Urlop" />
+          <NavigationProperty Name="Stanowisko1" Relationship="Self.FK_stanowisko" FromRole="Pracownik" ToRole="Stanowisko" />
+          <NavigationProperty Name="Rabat" Relationship="Self.FK_tworca" FromRole="Pracownik" ToRole="Rabat" />
+          <NavigationProperty Name="Urlop1" Relationship="Self.FK_zatwierdzajacy" FromRole="Pracownik" ToRole="Urlop" />
+        </EntityType>
+        <EntityType Name="Rabat">
+          <Key>
+            <PropertyRef Name="idRabatu" />
+          </Key>
+          <Property Name="idRabatu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwaRabatu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dataUtworzenia" Type="DateTime" Nullable="false" />
+          <Property Name="ktoUtworzyl" Type="Int32" Nullable="false" />
+          <Property Name="zaCoNalezny" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="poziomRabatu" Type="Int32" Nullable="false" />
+          <Property Name="czyAktywny" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Klient" Relationship="Self.FK_rabat" FromRole="Rabat" ToRole="Klient" />
+          <NavigationProperty Name="Pracownik" Relationship="Self.FK_tworca" FromRole="Rabat" ToRole="Pracownik" />
+        </EntityType>
+        <EntityType Name="SposobPlatnosci">
+          <Key>
+            <PropertyRef Name="idSposobuPlatnosci" />
+          </Key>
+          <Property Name="idSposobuPlatnosci" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="opis" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="czyAktywny" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Faktura" Relationship="Self.FK_platnosc" FromRole="SposobPlatnosci" ToRole="Faktura" />
+        </EntityType>
+        <EntityType Name="Stanowisko">
+          <Key>
+            <PropertyRef Name="idStanowiska" />
+          </Key>
+          <Property Name="idStanowiska" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwaStanowiska" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dataUtworzenia" Type="DateTime" Nullable="false" />
+          <Property Name="zakresObowiazkow" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="wymaganeDoswiadczenieLata" Type="Int32" />
+          <Property Name="czyAktywny" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pracownik" Relationship="Self.FK_stanowisko" FromRole="Stanowisko" ToRole="Pracownik" />
+        </EntityType>
+        <EntityType Name="Towar">
+          <Key>
+            <PropertyRef Name="idTowaru" />
+          </Key>
+          <Property Name="idTowaru" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VatZakupu" Type="Int32" />
+          <Property Name="VatSprzedazy" Type="Int32" />
+          <Property Name="cena" Type="Int32" Nullable="false" />
+          <Property Name="marza" Type="Int32" />
+          <Property Name="czyAktywny" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Zamowienia" Relationship="Self.FK_towar1" FromRole="Towar" ToRole="Zamowienia" />
+          <NavigationProperty Name="Magazyn" Relationship="Self.FK_towar2" FromRole="Towar" ToRole="Magazyn" />
+        </EntityType>
+        <EntityType Name="Urlop">
+          <Key>
+            <PropertyRef Name="idUrlopu" />
+          </Key>
+          <Property Name="idUrlopu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pracownik" Type="Int32" Nullable="false" />
+          <Property Name="zatwierdzajacy" Type="Int32" Nullable="false" />
+          <Property Name="dataRozpoczecia" Type="DateTime" Nullable="false" />
+          <Property Name="dataZakonczenia" Type="DateTime" />
+          <Property Name="uzasadnienie" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="czyZatwierdzony" Type="Boolean" Nullable="false" />
+          <Property Name="czyPlatny" Type="Boolean" Nullable="false" />
+          <Property Name="czyAktywny" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pracownik1" Relationship="Self.FK_pracownik3" FromRole="Urlop" ToRole="Pracownik" />
+          <NavigationProperty Name="Pracownik2" Relationship="Self.FK_zatwierdzajacy" FromRole="Urlop" ToRole="Pracownik" />
+        </EntityType>
+        <EntityType Name="Usluga">
+          <Key>
+            <PropertyRef Name="idUslugi" />
+          </Key>
+          <Property Name="idUslugi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwaUslugi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="koszt" Type="Int32" Nullable="false" />
+          <Property Name="potrzebnyCzasDni" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="czyAktywna" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Zlecenia" Relationship="Self.FK_usluga" FromRole="Usluga" ToRole="Zlecenia" />
+        </EntityType>
+        <EntityType Name="Zamowienia">
+          <Key>
+            <PropertyRef Name="idZamowienia" />
+          </Key>
+          <Property Name="idZamowienia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="towar" Type="Int32" />
+          <Property Name="pracownik" Type="Int32" Nullable="false" />
+          <Property Name="dataZamowienia" Type="DateTime" Nullable="false" />
+          <Property Name="wartoscZamowienia" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="czyAktywne" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pracownik1" Relationship="Self.FK_pracownik1" FromRole="Zamowienia" ToRole="Pracownik" />
+          <NavigationProperty Name="Towar1" Relationship="Self.FK_towar1" FromRole="Zamowienia" ToRole="Towar" />
+          <NavigationProperty Name="Magazyn" Relationship="Self.FK_zamowienie" FromRole="Zamowienia" ToRole="Magazyn" />
+        </EntityType>
+        <EntityType Name="Zlecenia">
+          <Key>
+            <PropertyRef Name="idZlecenia" />
+          </Key>
+          <Property Name="idZlecenia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pracownik" Type="Int32" Nullable="false" />
+          <Property Name="usluga" Type="Int32" Nullable="false" />
+          <Property Name="adres" Type="Int32" />
+          <Property Name="faktura" Type="Int32" />
+          <Property Name="dataZlecenia" Type="DateTime" Nullable="false" />
+          <Property Name="czyAktywne" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Adres1" Relationship="Self.FK_adres2" FromRole="Zlecenia" ToRole="Adres" />
+          <NavigationProperty Name="Faktura1" Relationship="Self.FK_faktura" FromRole="Zlecenia" ToRole="Faktura" />
+          <NavigationProperty Name="Pracownik1" Relationship="Self.FK_pracownik2" FromRole="Zlecenia" ToRole="Pracownik" />
+          <NavigationProperty Name="Usluga1" Relationship="Self.FK_usluga" FromRole="Zlecenia" ToRole="Usluga" />
+        </EntityType>
+        <EntityType Name="Magazyn">
+          <Key>
+            <PropertyRef Name="czyAktywne" />
+          </Key>
+          <Property Name="towar" Type="Int32" />
+          <Property Name="ilosc" Type="Int32" />
+          <Property Name="ostatnieZamowienie" Type="Int32" />
+          <Property Name="wartoscTowaru" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="czyAktywne" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Towar1" Relationship="Self.FK_towar2" FromRole="Magazyn" ToRole="Towar" />
+          <NavigationProperty Name="Zamowienia" Relationship="Self.FK_zamowienie" FromRole="Magazyn" ToRole="Zamowienia" />
+        </EntityType>
+        <Association Name="FK_adres">
+          <End Role="Adres" Type="Self.Adres" Multiplicity="1" />
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adres">
+              <PropertyRef Name="idAdresu" />
+            </Principal>
+            <Dependent Role="Pracownik">
+              <PropertyRef Name="adres" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adres1">
+          <End Role="Adres" Type="Self.Adres" Multiplicity="0..1" />
+          <End Role="Klient" Type="Self.Klient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adres">
+              <PropertyRef Name="idAdresu" />
+            </Principal>
+            <Dependent Role="Klient">
+              <PropertyRef Name="adres" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adres2">
+          <End Role="Adres" Type="Self.Adres" Multiplicity="0..1" />
+          <End Role="Zlecenia" Type="Self.Zlecenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adres">
+              <PropertyRef Name="idAdresu" />
+            </Principal>
+            <Dependent Role="Zlecenia">
+              <PropertyRef Name="adres" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_faktura">
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="0..1" />
+          <End Role="Zlecenia" Type="Self.Zlecenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktura">
+              <PropertyRef Name="idFaktury" />
+            </Principal>
+            <Dependent Role="Zlecenia">
+              <PropertyRef Name="faktura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_klient">
+          <End Role="Klient" Type="Self.Klient" Multiplicity="0..1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klient">
+              <PropertyRef Name="idKlienta" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="klient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_platnosc">
+          <End Role="SposobPlatnosci" Type="Self.SposobPlatnosci" Multiplicity="0..1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SposobPlatnosci">
+              <PropertyRef Name="idSposobuPlatnosci" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="sposobPlatnosci" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pracownik">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="0..1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="idPracownika" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="pracownik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_firma">
+          <End Role="Firma_zew" Type="Self.Firma_zew" Multiplicity="0..1" />
+          <End Role="Klient" Type="Self.Klient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firma_zew">
+              <PropertyRef Name="idFirmy" />
+            </Principal>
+            <Dependent Role="Klient">
+              <PropertyRef Name="firma_zew" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ktoUdzielilRabatu">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="0..1" />
+          <End Role="Klient" Type="Self.Klient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="idPracownika" />
+            </Principal>
+            <Dependent Role="Klient">
+              <PropertyRef Name="ktoUdzielilRabatu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rabat">
+          <End Role="Rabat" Type="Self.Rabat" Multiplicity="0..1" />
+          <End Role="Klient" Type="Self.Klient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rabat">
+              <PropertyRef Name="idRabatu" />
+            </Principal>
+            <Dependent Role="Klient">
+              <PropertyRef Name="rabat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pojazd">
+          <End Role="Pojazd" Type="Self.Pojazd" Multiplicity="0..1" />
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pojazd">
+              <PropertyRef Name="idPojazdu" />
+            </Principal>
+            <Dependent Role="Pracownik">
+              <PropertyRef Name="pojazd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pracownik1">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="idPracownika" />
+            </Principal>
+            <Dependent Role="Zamowienia">
+              <PropertyRef Name="pracownik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pracownik2">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="Zlecenia" Type="Self.Zlecenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="idPracownika" />
+            </Principal>
+            <Dependent Role="Zlecenia">
+              <PropertyRef Name="pracownik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pracownik3">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="Urlop" Type="Self.Urlop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="idPracownika" />
+            </Principal>
+            <Dependent Role="Urlop">
+              <PropertyRef Name="pracownik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stanowisko">
+          <End Role="Stanowisko" Type="Self.Stanowisko" Multiplicity="1" />
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stanowisko">
+              <PropertyRef Name="idStanowiska" />
+            </Principal>
+            <Dependent Role="Pracownik">
+              <PropertyRef Name="stanowisko" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tworca">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="Rabat" Type="Self.Rabat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="idPracownika" />
+            </Principal>
+            <Dependent Role="Rabat">
+              <PropertyRef Name="ktoUtworzyl" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_zatwierdzajacy">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="Urlop" Type="Self.Urlop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="idPracownika" />
+            </Principal>
+            <Dependent Role="Urlop">
+              <PropertyRef Name="zatwierdzajacy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_towar1">
+          <End Role="Towar" Type="Self.Towar" Multiplicity="0..1" />
+          <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towar">
+              <PropertyRef Name="idTowaru" />
+            </Principal>
+            <Dependent Role="Zamowienia">
+              <PropertyRef Name="towar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_towar2">
+          <End Role="Towar" Type="Self.Towar" Multiplicity="0..1" />
+          <End Role="Magazyn" Type="Self.Magazyn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towar">
+              <PropertyRef Name="idTowaru" />
+            </Principal>
+            <Dependent Role="Magazyn">
+              <PropertyRef Name="towar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usluga">
+          <End Role="Usluga" Type="Self.Usluga" Multiplicity="1" />
+          <End Role="Zlecenia" Type="Self.Zlecenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usluga">
+              <PropertyRef Name="idUslugi" />
+            </Principal>
+            <Dependent Role="Zlecenia">
+              <PropertyRef Name="usluga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_zamowienie">
+          <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="0..1" />
+          <End Role="Magazyn" Type="Self.Magazyn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zamowienia">
+              <PropertyRef Name="idZamowienia" />
+            </Principal>
+            <Dependent Role="Magazyn">
+              <PropertyRef Name="ostatnieZamowienie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="projektEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Adres" EntityType="Self.Adres" />
+          <EntitySet Name="Faktura" EntityType="Self.Faktura" />
+          <EntitySet Name="Firma_zew" EntityType="Self.Firma_zew" />
+          <EntitySet Name="Klient" EntityType="Self.Klient" />
+          <EntitySet Name="Pojazd" EntityType="Self.Pojazd" />
+          <EntitySet Name="Pracownik" EntityType="Self.Pracownik" />
+          <EntitySet Name="Rabat" EntityType="Self.Rabat" />
+          <EntitySet Name="SposobPlatnosci" EntityType="Self.SposobPlatnosci" />
+          <EntitySet Name="Stanowisko" EntityType="Self.Stanowisko" />
+          <EntitySet Name="Towar" EntityType="Self.Towar" />
+          <EntitySet Name="Urlop" EntityType="Self.Urlop" />
+          <EntitySet Name="Usluga" EntityType="Self.Usluga" />
+          <EntitySet Name="Zamowienia" EntityType="Self.Zamowienia" />
+          <EntitySet Name="Zlecenia" EntityType="Self.Zlecenia" />
+          <EntitySet Name="Magazyn" EntityType="Self.Magazyn" />
+          <AssociationSet Name="FK_adres" Association="Self.FK_adres">
+            <End Role="Adres" EntitySet="Adres" />
+            <End Role="Pracownik" EntitySet="Pracownik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adres1" Association="Self.FK_adres1">
+            <End Role="Adres" EntitySet="Adres" />
+            <End Role="Klient" EntitySet="Klient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adres2" Association="Self.FK_adres2">
+            <End Role="Adres" EntitySet="Adres" />
+            <End Role="Zlecenia" EntitySet="Zlecenia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_faktura" Association="Self.FK_faktura">
+            <End Role="Faktura" EntitySet="Faktura" />
+            <End Role="Zlecenia" EntitySet="Zlecenia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_klient" Association="Self.FK_klient">
+            <End Role="Klient" EntitySet="Klient" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_platnosc" Association="Self.FK_platnosc">
+            <End Role="SposobPlatnosci" EntitySet="SposobPlatnosci" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pracownik" Association="Self.FK_pracownik">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_firma" Association="Self.FK_firma">
+            <End Role="Firma_zew" EntitySet="Firma_zew" />
+            <End Role="Klient" EntitySet="Klient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ktoUdzielilRabatu" Association="Self.FK_ktoUdzielilRabatu">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="Klient" EntitySet="Klient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rabat" Association="Self.FK_rabat">
+            <End Role="Rabat" EntitySet="Rabat" />
+            <End Role="Klient" EntitySet="Klient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pojazd" Association="Self.FK_pojazd">
+            <End Role="Pojazd" EntitySet="Pojazd" />
+            <End Role="Pracownik" EntitySet="Pracownik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pracownik1" Association="Self.FK_pracownik1">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="Zamowienia" EntitySet="Zamowienia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pracownik2" Association="Self.FK_pracownik2">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="Zlecenia" EntitySet="Zlecenia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pracownik3" Association="Self.FK_pracownik3">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="Urlop" EntitySet="Urlop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stanowisko" Association="Self.FK_stanowisko">
+            <End Role="Stanowisko" EntitySet="Stanowisko" />
+            <End Role="Pracownik" EntitySet="Pracownik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tworca" Association="Self.FK_tworca">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="Rabat" EntitySet="Rabat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_zatwierdzajacy" Association="Self.FK_zatwierdzajacy">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="Urlop" EntitySet="Urlop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_towar1" Association="Self.FK_towar1">
+            <End Role="Towar" EntitySet="Towar" />
+            <End Role="Zamowienia" EntitySet="Zamowienia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_towar2" Association="Self.FK_towar2">
+            <End Role="Towar" EntitySet="Towar" />
+            <End Role="Magazyn" EntitySet="Magazyn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usluga" Association="Self.FK_usluga">
+            <End Role="Usluga" EntitySet="Usluga" />
+            <End Role="Zlecenia" EntitySet="Zlecenia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_zamowienie" Association="Self.FK_zamowienie">
+            <End Role="Zamowienia" EntitySet="Zamowienia" />
+            <End Role="Magazyn" EntitySet="Magazyn" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="projektModelStoreContainer" CdmEntityContainer="projektEntities">
+          <EntitySetMapping Name="Adres">
+            <EntityTypeMapping TypeName="projektModel.Adres">
+              <MappingFragment StoreEntitySet="Adres">
+                <ScalarProperty Name="idAdresu" ColumnName="idAdresu" />
+                <ScalarProperty Name="ulica" ColumnName="ulica" />
+                <ScalarProperty Name="dom" ColumnName="dom" />
+                <ScalarProperty Name="mieszkanie" ColumnName="mieszkanie" />
+                <ScalarProperty Name="kodPocztowy" ColumnName="kodPocztowy" />
+                <ScalarProperty Name="miasto" ColumnName="miasto" />
+                <ScalarProperty Name="czyAktywny" ColumnName="czyAktywny" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Faktura">
+            <EntityTypeMapping TypeName="projektModel.Faktura">
+              <MappingFragment StoreEntitySet="Faktura">
+                <ScalarProperty Name="idFaktury" ColumnName="idFaktury" />
+                <ScalarProperty Name="numer" ColumnName="numer" />
+                <ScalarProperty Name="dataWystawienia" ColumnName="dataWystawienia" />
+                <ScalarProperty Name="terminPlatnosci" ColumnName="terminPlatnosci" />
+                <ScalarProperty Name="klient" ColumnName="klient" />
+                <ScalarProperty Name="pracownik" ColumnName="pracownik" />
+                <ScalarProperty Name="sposobPlatnosci" ColumnName="sposobPlatnosci" />
+                <ScalarProperty Name="kwotaFaktury" ColumnName="kwotaFaktury" />
+                <ScalarProperty Name="czyZatwierdzona" ColumnName="czyZatwierdzona" />
+                <ScalarProperty Name="czyAktywna" ColumnName="czyAktywna" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Firma_zew">
+            <EntityTypeMapping TypeName="projektModel.Firma_zew">
+              <MappingFragment StoreEntitySet="Firma_zew">
+                <ScalarProperty Name="idFirmy" ColumnName="idFirmy" />
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+                <ScalarProperty Name="iloscPracownikow" ColumnName="iloscPracownikow" />
+                <ScalarProperty Name="iloscNaszychUslug" ColumnName="iloscNaszychUslug" />
+                <ScalarProperty Name="dlugoscWspolpracyMiesiace" ColumnName="dlugoscWspolpracyMiesiace" />
+                <ScalarProperty Name="czyAktywny" ColumnName="czyAktywny" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Klient">
+            <EntityTypeMapping TypeName="projektModel.Klient">
+              <MappingFragment StoreEntitySet="Klient">
+                <ScalarProperty Name="idKlienta" ColumnName="idKlienta" />
+                <ScalarProperty Name="imie" ColumnName="imie" />
+                <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+                <ScalarProperty Name="firma_zew" ColumnName="firma_zew" />
+                <ScalarProperty Name="rabat" ColumnName="rabat" />
+                <ScalarProperty Name="ktoUdzielilRabatu" ColumnName="ktoUdzielilRabatu" />
+                <ScalarProperty Name="czyAktywny" ColumnName="czyAktywny" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pojazd">
+            <EntityTypeMapping TypeName="projektModel.Pojazd">
+              <MappingFragment StoreEntitySet="Pojazd">
+                <ScalarProperty Name="idPojazdu" ColumnName="idPojazdu" />
+                <ScalarProperty Name="marka" ColumnName="marka" />
+                <ScalarProperty Name="kolor" ColumnName="kolor" />
+                <ScalarProperty Name="rok" ColumnName="rok" />
+                <ScalarProperty Name="przebieg" ColumnName="przebieg" />
+                <ScalarProperty Name="poprzedniPrzeglad" ColumnName="poprzedniPrzeglad" />
+                <ScalarProperty Name="planowanyPrzeglad" ColumnName="planowanyPrzeglad" />
+                <ScalarProperty Name="czyAktywny" ColumnName="czyAktywny" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pracownik">
+            <EntityTypeMapping TypeName="projektModel.Pracownik">
+              <MappingFragment StoreEntitySet="Pracownik">
+                <ScalarProperty Name="idPracownika" ColumnName="idPracownika" />
+                <ScalarProperty Name="imie" ColumnName="imie" />
+                <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+                <ScalarProperty Name="stanowisko" ColumnName="stanowisko" />
+                <ScalarProperty Name="dataZatrudnienia" ColumnName="dataZatrudnienia" />
+                <ScalarProperty Name="pojazd" ColumnName="pojazd" />
+                <ScalarProperty Name="czyKierowca" ColumnName="czyKierowca" />
+                <ScalarProperty Name="czyAktywny" ColumnName="czyAktywny" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rabat">
+            <EntityTypeMapping TypeName="projektModel.Rabat">
+              <MappingFragment StoreEntitySet="Rabat">
+                <ScalarProperty Name="idRabatu" ColumnName="idRabatu" />
+                <ScalarProperty Name="nazwaRabatu" ColumnName="nazwaRabatu" />
+                <ScalarProperty Name="dataUtworzenia" ColumnName="dataUtworzenia" />
+                <ScalarProperty Name="ktoUtworzyl" ColumnName="ktoUtworzyl" />
+                <ScalarProperty Name="zaCoNalezny" ColumnName="zaCoNalezny" />
+                <ScalarProperty Name="poziomRabatu" ColumnName="poziomRabatu" />
+                <ScalarProperty Name="czyAktywny" ColumnName="czyAktywny" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SposobPlatnosci">
+            <EntityTypeMapping TypeName="projektModel.SposobPlatnosci">
+              <MappingFragment StoreEntitySet="SposobPlatnosci">
+                <ScalarProperty Name="idSposobuPlatnosci" ColumnName="idSposobuPlatnosci" />
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+                <ScalarProperty Name="opis" ColumnName="opis" />
+                <ScalarProperty Name="czyAktywny" ColumnName="czyAktywny" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stanowisko">
+            <EntityTypeMapping TypeName="projektModel.Stanowisko">
+              <MappingFragment StoreEntitySet="Stanowisko">
+                <ScalarProperty Name="idStanowiska" ColumnName="idStanowiska" />
+                <ScalarProperty Name="nazwaStanowiska" ColumnName="nazwaStanowiska" />
+                <ScalarProperty Name="dataUtworzenia" ColumnName="dataUtworzenia" />
+                <ScalarProperty Name="zakresObowiazkow" ColumnName="zakresObowiazkow" />
+                <ScalarProperty Name="wymaganeDoswiadczenieLata" ColumnName="wymaganeDoswiadczenieLata" />
+                <ScalarProperty Name="czyAktywny" ColumnName="czyAktywny" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Towar">
+            <EntityTypeMapping TypeName="projektModel.Towar">
+              <MappingFragment StoreEntitySet="Towar">
+                <ScalarProperty Name="idTowaru" ColumnName="idTowaru" />
+                <ScalarProperty Name="kod" ColumnName="kod" />
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+                <ScalarProperty Name="VatZakupu" ColumnName="VatZakupu" />
+                <ScalarProperty Name="VatSprzedazy" ColumnName="VatSprzedazy" />
+                <ScalarProperty Name="cena" ColumnName="cena" />
+                <ScalarProperty Name="marza" ColumnName="marza" />
+                <ScalarProperty Name="czyAktywny" ColumnName="czyAktywny" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Urlop">
+            <EntityTypeMapping TypeName="projektModel.Urlop">
+              <MappingFragment StoreEntitySet="Urlop">
+                <ScalarProperty Name="idUrlopu" ColumnName="idUrlopu" />
+                <ScalarProperty Name="pracownik" ColumnName="pracownik" />
+                <ScalarProperty Name="zatwierdzajacy" ColumnName="zatwierdzajacy" />
+                <ScalarProperty Name="dataRozpoczecia" ColumnName="dataRozpoczecia" />
+                <ScalarProperty Name="dataZakonczenia" ColumnName="dataZakonczenia" />
+                <ScalarProperty Name="uzasadnienie" ColumnName="uzasadnienie" />
+                <ScalarProperty Name="czyZatwierdzony" ColumnName="czyZatwierdzony" />
+                <ScalarProperty Name="czyPlatny" ColumnName="czyPlatny" />
+                <ScalarProperty Name="czyAktywny" ColumnName="czyAktywny" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usluga">
+            <EntityTypeMapping TypeName="projektModel.Usluga">
+              <MappingFragment StoreEntitySet="Usluga">
+                <ScalarProperty Name="idUslugi" ColumnName="idUslugi" />
+                <ScalarProperty Name="nazwaUslugi" ColumnName="nazwaUslugi" />
+                <ScalarProperty Name="koszt" ColumnName="koszt" />
+                <ScalarProperty Name="potrzebnyCzasDni" ColumnName="potrzebnyCzasDni" />
+                <ScalarProperty Name="czyAktywna" ColumnName="czyAktywna" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zamowienia">
+            <EntityTypeMapping TypeName="projektModel.Zamowienia">
+              <MappingFragment StoreEntitySet="Zamowienia">
+                <ScalarProperty Name="idZamowienia" ColumnName="idZamowienia" />
+                <ScalarProperty Name="towar" ColumnName="towar" />
+                <ScalarProperty Name="pracownik" ColumnName="pracownik" />
+                <ScalarProperty Name="dataZamowienia" ColumnName="dataZamowienia" />
+                <ScalarProperty Name="wartoscZamowienia" ColumnName="wartoscZamowienia" />
+                <ScalarProperty Name="czyAktywne" ColumnName="czyAktywne" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zlecenia">
+            <EntityTypeMapping TypeName="projektModel.Zlecenia">
+              <MappingFragment StoreEntitySet="Zlecenia">
+                <ScalarProperty Name="idZlecenia" ColumnName="idZlecenia" />
+                <ScalarProperty Name="pracownik" ColumnName="pracownik" />
+                <ScalarProperty Name="usluga" ColumnName="usluga" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+                <ScalarProperty Name="faktura" ColumnName="faktura" />
+                <ScalarProperty Name="dataZlecenia" ColumnName="dataZlecenia" />
+                <ScalarProperty Name="czyAktywne" ColumnName="czyAktywne" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Magazyn">
+            <EntityTypeMapping TypeName="projektModel.Magazyn">
+              <MappingFragment StoreEntitySet="Magazyn">
+                <ScalarProperty Name="towar" ColumnName="towar" />
+                <ScalarProperty Name="ilosc" ColumnName="ilosc" />
+                <ScalarProperty Name="ostatnieZamowienie" ColumnName="ostatnieZamowienie" />
+                <ScalarProperty Name="wartoscTowaru" ColumnName="wartoscTowaru" />
+                <ScalarProperty Name="czyAktywne" ColumnName="czyAktywne" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

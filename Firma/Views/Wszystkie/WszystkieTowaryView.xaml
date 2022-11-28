@@ -1,0 +1,113 @@
+﻿<Abstract:WszystkieViewBase
+    xmlns:Abstract="clr-namespace:Firma.Views.Abstract"
+    x:Class="Firma.Views.Wszystkie.WszystkieTowaryView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Firma.Views.Wszystkie"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <Grid Background="White">
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=idTowaru}" Header="id" />
+                <DataGridTextColumn Binding="{Binding Path=kod}" Header="kod" />
+                <DataGridTextColumn Binding="{Binding Path=nazwa}" Header="nazwa" />
+                <DataGridTextColumn Binding="{Binding Path=VatSprzedazy}" Header="VATsprzedazy" />
+                <DataGridTextColumn Binding="{Binding Path=VatZakupu}" Header="VATzakupu" />
+                <DataGridTextColumn Binding="{Binding Path=cena}" Header="cena" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+
+    <!--<UserControl.Resources>
+        <ResourceDictionary Source="StyleZakladekResources.xaml" />
+    </UserControl.Resources>-->
+
+    <!--<Grid Background="White">-->
+    <!--<Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>-->
+    <!--<Expander IsExpanded="False" Header="Filtry">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Nazwa" Grid.Row="0" Grid.Column="1" />
+                    <TextBox Grid.Row="0" Grid.Column="2"  Style="{StaticResource TextBoxStandardowy}" />
+                    <Label Content="Id" Grid.Row="0" Grid.Column="4" />
+                    <TextBox Grid.Row="0" Grid.Column="5"  Style="{StaticResource TextBoxStandardowy}" />
+                    <Label Content="Nazwa katalogowa" Grid.Row="0" Grid.Column="7" />
+                    <TextBox Grid.Row="0" Grid.Column="8"  Style="{StaticResource TextBoxStandardowy}" />
+                    <Label Content="Data sprzedazy" Grid.Row="1" Grid.Column="1" />
+                    <TextBox Grid.Row="1" Grid.Column="2"  Style="{StaticResource TextBoxStandardowy}" />
+                    <Label Content="Cena od" Grid.Row="1" Grid.Column="4" />
+                    <TextBox Grid.Row="1" Grid.Column="5"  Style="{StaticResource TextBoxStandardowy}" />
+                    <Label Content="Cena do" Grid.Row="1" Grid.Column="7" />
+                    <TextBox Grid.Row="1" Grid.Column="8"  Style="{StaticResource TextBoxStandardowy}" />
+                    <Label Content="Sklep" Grid.Row="2" Grid.Column="1" />
+                    <TextBox Grid.Row="2" Grid.Column="2"  Style="{StaticResource TextBoxStandardowy}" />
+                    <Label Content="Kierownik sklepu" Grid.Row="2" Grid.Column="4" />
+                    <TextBox Grid.Row="2" Grid.Column="5"  Style="{StaticResource TextBoxStandardowy}" />
+                    <Label Content="Ilosc" Grid.Row="2" Grid.Column="7" />
+                    <TextBox Grid.Row="2" Grid.Column="8"  Style="{StaticResource TextBoxStandardowy}" />
+                </Grid>
+
+
+            </Grid>
+        </Expander>-->
+    <!--<Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Wszystkie towary" Grid.Column="0" Style="{StaticResource LabelStandardowy}"/>
+
+            </Grid>
+            <DataGrid Grid.Row="1"  AutoGenerateColumns="False" >
+                <DataGrid.Columns>
+                    <DataGridComboBoxColumn Header="Nazwa towaru" Width="*"/>
+                    <DataGridTextColumn Header="Cena" Width="*" />
+                    <DataGridCheckBoxColumn Header="Ilosc" Width="*" />
+                    <DataGridTextColumn Header="Netto" Width="*" />
+                    <DataGridTextColumn Header="Brutto" Width="*" />
+                    <DataGridTextColumn Header="Jednostka" Width="*" />
+                    <DataGridTextColumn Header="Data sprzedazy" Width="*" />
+                    <DataGridTextColumn Header="Uwagi" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>-->
+</Abstract:WszystkieViewBase>

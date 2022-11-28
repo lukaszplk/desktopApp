@@ -1,0 +1,248 @@
+﻿<Window
+    x:Class="Firma.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Firma"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Hurtownia sprzetu budowlanego"
+    Width="800"
+    Height="450"
+    WindowState="Maximized"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <ResourceDictionary Source="MainWindowResources.xaml" />
+    </Window.Resources>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0" Grid.Column="0">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel HorizontalAlignment="Stretch" />
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <MenuItem Header="_Plik" />
+            <MenuItem Header="_Magazyn">
+                <MenuItem Header="Towary">
+                    <MenuItem Command="{Binding TowaryCommand}" Header="Wszystkie" />
+                    <MenuItem Command="{Binding NowyTowarCommand}" Header="Dodawanie" />
+                    <!--<MenuItem Command="{Binding UsunTowarCommand}" Header="Usuwanie" />-->
+                </MenuItem>
+                <MenuItem Header="Przyjecie zewnetrzne (PZ)" />
+                <MenuItem Header="Wydanie zewnetrzne (WZ)" />
+
+            </MenuItem>
+            <MenuItem Header="_Pracownicy">
+                <MenuItem Header="Pracownicy">
+                    <MenuItem Header="Wszyscy" />
+                    <MenuItem Header="Dodawanie" />
+                    <MenuItem Header="Usuwanie" />
+
+                </MenuItem>
+
+            </MenuItem>
+            <MenuItem Header="_Flota">
+                <MenuItem Command="{Binding SamochodyCommand}" Header="Wszystkie samochody" />
+                <MenuItem Command="{Binding SamochodCommand}" Header="Dodaj samochod" />
+                <!--<MenuItem Command="{Binding UsunSamochodCommand}" Header="Usun samochod" />-->
+
+            </MenuItem>
+
+            <MenuItem Header="_Ksiegowosc">
+                <MenuItem Header="Faktury">
+                    <MenuItem Command="{Binding FakturyCommand}" Header="Wszystkie" />
+                    <MenuItem Command="{Binding NowaFakturaCommand}" Header="Dodawanie" />
+                    <!--<MenuItem Command="{Binding UsunFakturaCommand}" Header="Usuwanie" />-->
+                </MenuItem>
+                <MenuItem Header="Pracownicy ksiegowosci" />
+
+            </MenuItem>
+
+            <MenuItem Header="Program" />
+            <MenuItem HorizontalAlignment="Right" Header="Pomoc">
+                <MenuItem Header="About" />
+            </MenuItem>
+
+        </Menu>
+
+        <ToolBar Grid.Row="1" Grid.Column="0">
+            <ToggleButton
+                Width="32"
+                Height="32"
+                Margin="2"
+                Command="{Binding NowyTowarCommand}">
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="Content/Icons/towar-plus.png" />
+                </ToggleButton.Background>
+            </ToggleButton>
+            <ToggleButton
+                Width="32"
+                Height="32"
+                Margin="2">
+                <!--  Command="{Binding UsunTowarCommand}">  -->
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="Content/Icons/towar-minus.png" />
+                </ToggleButton.Background>
+            </ToggleButton>
+            <ToggleButton
+                Width="32"
+                Height="32"
+                Margin="2"
+                Command="{Binding TowaryCommand}">
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="Content/Icons/towary.png" />
+                </ToggleButton.Background>
+            </ToggleButton>
+
+
+            <Separator />
+            <ToggleButton
+                Width="32"
+                Height="32"
+                Margin="2"
+                Command="{Binding NowaFakturaCommand}">
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="Content/Icons/faktura-plus.png" />
+                </ToggleButton.Background>
+            </ToggleButton>
+            <ToggleButton
+                Width="32"
+                Height="32"
+                Margin="2">
+                <!--  Command="{Binding UsunFakturaCommand}">  -->
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="Content/Icons/faktura-minus.png" />
+                </ToggleButton.Background>
+            </ToggleButton>
+            <ToggleButton
+                Width="32"
+                Height="32"
+                Margin="2"
+                Command="{Binding FakturyCommand}">
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="Content/Icons/faktury.png" />
+                </ToggleButton.Background>
+            </ToggleButton>
+
+            <Separator />
+            <ToggleButton
+                Width="32"
+                Height="32"
+                Margin="2"
+                Command="{Binding KlientCommand}">
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="Content/Icons/klient-plus.png" />
+                </ToggleButton.Background>
+            </ToggleButton>
+            <ToggleButton
+                Width="32"
+                Height="32"
+                Margin="2">
+                <!--  Command="{Binding UsunKlientCommand}">  -->
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="Content/Icons/klient-minus.png" />
+                </ToggleButton.Background>
+            </ToggleButton>
+            <ToggleButton
+                Width="32"
+                Height="32"
+                Margin="2"
+                Command="{Binding KlienciCommand}">
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="Content/Icons/klienci.png" />
+                </ToggleButton.Background>
+            </ToggleButton>
+            <Separator />
+            <ToggleButton
+                Width="32"
+                Height="32"
+                Margin="2"
+                Command="{Binding SamochodCommand}">
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="Content/Icons/samochod-plus.png" />
+                </ToggleButton.Background>
+            </ToggleButton>
+            <ToggleButton
+                Width="32"
+                Height="32"
+                Margin="2">
+                <!--  Command="{Binding UsunSamochodCommand}">  -->
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="Content/Icons/samochod-minus.png" />
+                </ToggleButton.Background>
+            </ToggleButton>
+
+            <ToggleButton
+                Width="32"
+                Height="32"
+                Margin="2"
+                Command="{Binding SamochodyCommand}">
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="Content/Icons/samochody.png" />
+                </ToggleButton.Background>
+            </ToggleButton>
+            <Separator />
+            <ToggleButton
+                Width="30"
+                Height="30"
+                Command="{Binding CloseAllCommand}">
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="Content/Icons/close.png" />
+                </ToggleButton.Background>
+            </ToggleButton>
+            <ToggleButton
+                Width="30"
+                Height="30"
+                Background="LightBlue" />
+            <ToggleButton
+                Width="30"
+                Height="30"
+                Background="LightBlue" />
+        </ToolBar>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0">
+                <HeaderedContentControl
+                    Background="#FF5B94F1"
+                    Content="{Binding Path=Commands}"
+                    ContentTemplate="{StaticResource CommandsTemplate}"
+                    Header="Operacje"
+                    Style="{StaticResource MainHCCStyle}" />
+
+            </Border>
+            <Border Grid.Column="1">
+                <HeaderedContentControl
+                    Background="Aqua"
+                    Content="{Binding Path=Workspaces}"
+                    ContentTemplate="{StaticResource WorkspacesTemplate}"
+                    Header="Przestrzeń robocza"
+                    Style="{StaticResource MainHCCStyle}" />
+
+            </Border>
+
+        </Grid>
+
+        <StatusBar Grid.Row="3">
+            <StatusBarItem>
+                <TextBlock>Stopka</TextBlock>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right">
+                <TextBlock>WSB-NLU</TextBlock>
+            </StatusBarItem>
+        </StatusBar>
+
+    </Grid>
+</Window>
