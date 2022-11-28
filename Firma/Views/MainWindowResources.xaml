@@ -19,10 +19,10 @@
     <DataTemplate DataType="{x:Type vmAll:WszystkieUrlopyViewModel}">
         <vwAll:WszystkieUrlopyView />
     </DataTemplate>
-    <!--<DataTemplate DataType="{x:Type vmAll:WszystkieZleceniaViewModel}">
+    <DataTemplate DataType="{x:Type vmAll:WszystkieZleceniaViewModel}">
         <vwAll:WszystkieZleceniaView />
     </DataTemplate>
-    <DataTemplate DataType="{x:Type vmAll:WszystkieZamowieniaViewModel}">
+    <!--<DataTemplate DataType="{x:Type vmAll:WszystkieZamowieniaViewModel}">
         <vwAll:WszystkieZamowieniaView />
     </DataTemplate>-->
     <DataTemplate DataType="{x:Type vmAll:WszystkieRabatyViewModel}">

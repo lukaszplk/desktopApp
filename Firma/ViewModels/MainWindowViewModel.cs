@@ -170,7 +170,9 @@ namespace Firma.ViewModels
                 new CommandViewModel("Stanowiska", new BaseCommand(showAllStanowiska)),
                 new CommandViewModel("Firmy", new BaseCommand(showAllFirmy)),
                 new CommandViewModel("Sposoby platnosci", new BaseCommand(showAllSposobyPlatnosci)),
-                new CommandViewModel("Uslugi", new BaseCommand(showAllUslugi))
+                new CommandViewModel("Uslugi", new BaseCommand(showAllUslugi)),
+                new CommandViewModel("Zlecenia", new BaseCommand(showAllZlecenia))
+                new CommandViewModel("Zamowienia", new BaseCommand(showAllZamowienia))
             };
         }
         #endregion
@@ -252,6 +254,34 @@ namespace Firma.ViewModels
             if (workspace == null)
             {
                 workspace = new WszystkieRabatyViewModel();
+                this.Workspaces.Add(workspace);
+            }
+
+            this.setActiveWorkspace(workspace);
+
+        }
+        private void showAllZlecenia()
+        {
+
+            WszystkieZleceniaViewModel workspace = this.Workspaces.FirstOrDefault(vm => vm is WszystkieZleceniaViewModel) as WszystkieZleceniaViewModel;
+
+            if (workspace == null)
+            {
+                workspace = new WszystkieZleceniaViewModel();
+                this.Workspaces.Add(workspace);
+            }
+
+            this.setActiveWorkspace(workspace);
+
+        }
+        private void showAllZamowienia()
+        {
+
+            WszystkieZamowieniaViewModel workspace = this.Workspaces.FirstOrDefault(vm => vm is WszystkieZamowieniaViewModel) as WszystkieZamowieniaViewModel;
+
+            if (workspace == null)
+            {
+                workspace = new WszystkieZamowieniaViewModel();
                 this.Workspaces.Add(workspace);
             }
 
