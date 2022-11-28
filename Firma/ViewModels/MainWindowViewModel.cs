@@ -171,7 +171,7 @@ namespace Firma.ViewModels
                 new CommandViewModel("Firmy", new BaseCommand(showAllFirmy)),
                 new CommandViewModel("Sposoby platnosci", new BaseCommand(showAllSposobyPlatnosci)),
                 new CommandViewModel("Uslugi", new BaseCommand(showAllUslugi)),
-                new CommandViewModel("Zlecenia", new BaseCommand(showAllZlecenia))
+                new CommandViewModel("Zlecenia", new BaseCommand(showAllZlecenia)),
                 new CommandViewModel("Zamowienia", new BaseCommand(showAllZamowienia))
             };
         }
