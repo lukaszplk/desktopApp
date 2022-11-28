@@ -154,6 +154,7 @@ namespace Firma.ViewModels
                 //new CommandViewModel("Klient", new BaseCommand(() => createView(new NowyKlientViewModel()))),
                 new CommandViewModel("Klienci", new BaseCommand(showAllKlienci)),
                 new CommandViewModel("Pracownicy", new BaseCommand(showAllPracownicy)),
+                new CommandViewModel("Urlopy", new BaseCommand(showAllUrlopy)),
                 //new CommandViewModel("dodaj adres", new BaseCommand(() => createView(new NowyAdresViewModel()))),
                 //new CommandViewModel("dodaj auto", new BaseCommand(() => createView(new NowySamochodViewModel()))),
                 //new CommandViewModel("dodaj stanowisko", new BaseCommand(() => createView(new NoweStanowiskoViewModel()))),
@@ -249,6 +250,20 @@ namespace Firma.ViewModels
             if (workspace == null)
             {
                 workspace = new WszyscyPracownicyViewModel();
+                this.Workspaces.Add(workspace);
+            }
+
+            this.setActiveWorkspace(workspace);
+
+        }
+        private void showAllUrlopy()
+        {
+
+            WszystkieUrlopyViewModel workspace = this.Workspaces.FirstOrDefault(vm => vm is WszystkieUrlopyViewModel) as WszystkieUrlopyViewModel;
+
+            if (workspace == null)
+            {
+                workspace = new WszystkieUrlopyViewModel();
                 this.Workspaces.Add(workspace);
             }
 

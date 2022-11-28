@@ -51,6 +51,9 @@
     <DataTemplate DataType="{x:Type vmAll:WszystkieUslugiViewModel}">
         <vwAll:WszystkieUslugiView />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vmAll:WszystkieUrlopyViewModel}">
+        <vwAll:WszystkieUrlopyView />
+    </DataTemplate>
 
     <DataTemplate DataType="{x:Type vm:NowyTowarViewModel}">
         <vw:NowyTowarView />
