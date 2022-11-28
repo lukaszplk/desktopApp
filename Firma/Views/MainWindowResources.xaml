@@ -16,18 +16,18 @@
     <DataTemplate DataType="{x:Type vmAll:WszyscyPracownicyViewModel}">
         <vwAll:WszyscyPracownicyView />
     </DataTemplate>
-    <!--<DataTemplate DataType="{x:Type vmAll:WszystkieUrlopyViewModel}">
+    <DataTemplate DataType="{x:Type vmAll:WszystkieUrlopyViewModel}">
         <vwAll:WszystkieUrlopyView />
     </DataTemplate>
-    <DataTemplate DataType="{x:Type vmAll:WszystkieZleceniaViewModel}">
+    <!--<DataTemplate DataType="{x:Type vmAll:WszystkieZleceniaViewModel}">
         <vwAll:WszystkieZleceniaView />
     </DataTemplate>
     <DataTemplate DataType="{x:Type vmAll:WszystkieZamowieniaViewModel}">
         <vwAll:WszystkieZamowieniaView />
-    </DataTemplate>
+    </DataTemplate>-->
     <DataTemplate DataType="{x:Type vmAll:WszystkieRabatyViewModel}">
         <vwAll:WszystkieRabatyView />
-    </DataTemplate>-->
+    </DataTemplate>
 
 
     <DataTemplate DataType="{x:Type vmAll:WszystkieSamochodyViewModel}">
@@ -51,9 +51,7 @@
     <DataTemplate DataType="{x:Type vmAll:WszystkieUslugiViewModel}">
         <vwAll:WszystkieUslugiView />
     </DataTemplate>
-    <DataTemplate DataType="{x:Type vmAll:WszystkieUrlopyViewModel}">
-        <vwAll:WszystkieUrlopyView />
-    </DataTemplate>
+    
 
     <DataTemplate DataType="{x:Type vm:NowyTowarViewModel}">
         <vw:NowyTowarView />

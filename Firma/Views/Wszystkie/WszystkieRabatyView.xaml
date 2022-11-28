@@ -7,7 +7,15 @@
              xmlns:Abstract="clr-namespace:Firma.Views.Abstract"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+    <Grid Background="White">
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=Nazwa}" Header="Nazwa" />
+                <DataGridTextColumn Binding="{Binding Path=DataUtworzenia}" Header="Data utworzenia" />
+                <DataGridTextColumn Binding="{Binding Path=Kto}" Header="Kto utworzył" />
+                <DataGridTextColumn Binding="{Binding Path=Opis}" Header="Opis" />
+                <DataGridTextColumn Binding="{Binding Path=Poziom}" Header="%" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Abstract:WszystkieViewBase>
