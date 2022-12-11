@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Firma.Views.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace Firma.Views.Wszystkie
     /// <summary>
     /// Logika interakcji dla klasy WszystkieFakturyView.xaml
     /// </summary>
-    public partial class WszystkieFakturyView : UserControl
+    public partial class WszystkieFakturyView : WszystkieViewBase
     {
         public WszystkieFakturyView()
         {
