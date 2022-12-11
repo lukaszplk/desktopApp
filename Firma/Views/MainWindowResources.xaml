@@ -62,7 +62,9 @@
     <DataTemplate DataType="{x:Type vm:NowaFakturaViewModel}">
         <vw:NowaFakturaView />
     </DataTemplate>
-
+    <DataTemplate DataType="{x:Type vm:NowyPracownikViewModel}">
+        <vw:NowyPracownikView />
+    </DataTemplate>
     <DataTemplate DataType="{x:Type vm:NowySamochodViewModel}">
         <vw:NowySamochodView />
     </DataTemplate>

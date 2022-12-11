@@ -84,38 +84,6 @@ namespace Firma.ViewModels
             }
         }
 
-        //public ICommand UsunKlientCommand
-        //{
-        //    get
-        //    {
-        //        return new BaseCommand(() => createView(new UsuwanieKlientaViewModel()));
-        //    }
-        //}
-
-        //public ICommand UsunTowarCommand
-        //{
-        //    get
-        //    {
-        //        return new BaseCommand(() => createView(new UsuwanieTowaruViewModel()));
-        //    }
-        //}
-
-        //public ICommand UsunSamochodCommand
-        //{
-        //    get
-        //    {
-        //        return new BaseCommand(() => createView(new UsuwanieSamochodyViewModel()));
-        //    }
-        //}
-
-        //public ICommand UsunFakturaCommand
-        //{
-        //    get
-        //    {
-        //        return new BaseCommand(() => createView(new UsuwanieFakturyViewModel()));
-        //    }
-        //}
-
         public ICommand CloseAllCommand
         {
             get
@@ -145,25 +113,24 @@ namespace Firma.ViewModels
         {
             return new List<CommandViewModel>
             {
-                //new CommandViewModel("Towar", new BaseCommand(() => createView(new NowyTowarViewModel()))),
-                //new CommandViewModel("Towary", new BaseCommand(showAllTowar)), 
-                //new CommandViewModel("Faktura", new BaseCommand(() => createView(new NowaFakturaViewModel()))),
+                new CommandViewModel("Towar", new BaseCommand(() => createView(new NowyTowarViewModel()))),
+                new CommandViewModel("Nowy pracownik", new BaseCommand(() => createView(new NowyPracownikViewModel()))),
+                new CommandViewModel("Faktura", new BaseCommand(() => createView(new NowaFakturaViewModel()))),
+                new CommandViewModel("Samochod", new BaseCommand(() => createView(new NowySamochodViewModel()))),
+                new CommandViewModel("Klient", new BaseCommand(() => createView(new NowyKlientViewModel()))),
+                new CommandViewModel("dodaj adres", new BaseCommand(() => createView(new NowyAdresViewModel()))),
+                new CommandViewModel("dodaj auto", new BaseCommand(() => createView(new NowySamochodViewModel()))),
+                new CommandViewModel("dodaj stanowisko", new BaseCommand(() => createView(new NoweStanowiskoViewModel()))),
+                new CommandViewModel("dodaj firme", new BaseCommand(() => createView(new NowaFirmaViewModel()))),
+                new CommandViewModel("dodaj towar", new BaseCommand(() => createView(new NowyTowarViewModel()))),
+                new CommandViewModel("dodaj platnosc", new BaseCommand(() => createView(new NowySposobPlatnosciViewModel()))),
+                new CommandViewModel("dodaj usluge", new BaseCommand(() => createView(new NowaUslugaViewModel()))),
                 new CommandViewModel("Faktury", new BaseCommand(showAllFaktury)),
-                //new CommandViewModel("Samochod", new BaseCommand(() => createView(new NowySamochodViewModel()))),
-                //new CommandViewModel("Samochody", new BaseCommand(showAllSamochody)),
-                //new CommandViewModel("Klient", new BaseCommand(() => createView(new NowyKlientViewModel()))),
                 new CommandViewModel("Klienci", new BaseCommand(showAllKlienci)),
                 new CommandViewModel("Pracownicy", new BaseCommand(showAllPracownicy)),
                 new CommandViewModel("Urlopy", new BaseCommand(showAllUrlopy)),
                 new CommandViewModel("Rabaty", new BaseCommand(showAllRabaty)),
-                new CommandViewModel("Magazyn", new BaseCommand(showAllMagazyn)),
-                //new CommandViewModel("dodaj adres", new BaseCommand(() => createView(new NowyAdresViewModel()))),
-                //new CommandViewModel("dodaj auto", new BaseCommand(() => createView(new NowySamochodViewModel()))),
-                //new CommandViewModel("dodaj stanowisko", new BaseCommand(() => createView(new NoweStanowiskoViewModel()))),
-                //new CommandViewModel("dodaj firme", new BaseCommand(() => createView(new NowaFirmaViewModel()))),
-                //new CommandViewModel("dodaj towar", new BaseCommand(() => createView(new NowyTowarViewModel()))),
-                //new CommandViewModel("dodaj platnosc", new BaseCommand(() => createView(new NowySposobPlatnosciViewModel()))),
-                //new CommandViewModel("dodaj usluge", new BaseCommand(() => createView(new NowaUslugaViewModel()))),
+                new CommandViewModel("Magazyn", new BaseCommand(showAllMagazyn)),  
                 new CommandViewModel("Towary", new BaseCommand(showAllTowar)),
                 new CommandViewModel("Adresy", new BaseCommand(showAllAdresy)),
                 new CommandViewModel("Pojazdy", new BaseCommand(showAllSamochody)),
@@ -423,29 +390,6 @@ namespace Firma.ViewModels
             this.setActiveWorkspace(workspace);
 
         }
-
-        //private void showAll<T>()
-        //{
-        //    WorkspaceViewModel workspace = this.Workspaces.FirstOrDefault(vm => vm is T);
-        //    if (workspace == null)
-        //    {
-        //        T workspace = new T();
-        //        this.Workspaces.Add(workspace);
-        //    }
-        //    this.setActiveWorkspace(workspace);
-        //}
-
-
-        //private void showAll(Type type)
-        //{
-        //    WorkspaceViewModel workspace = this.Workspaces.FirstOrDefault(vm => vm is type);
-        //    if (workspace == null)
-        //    {
-        //        workspace = new type();
-        //        this.Workspaces.Add(workspace);
-        //    }
-        //    this.setActiveWorkspace(workspace);
-        //}
 
         private void closeAll()
         {

@@ -1,13 +1,103 @@
-﻿<Abstract:JedenViewBase x:Class="Firma.Views.Jeden.NowyPracownikView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Firma.Views.Jeden"
-             xmlns:Abstract="clr-namespace:Firma.Views.Abstract"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+﻿<Abstract:JedenViewBase
+    x:Class="Firma.Views.Jeden.NowyPracownikView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Abstract="clr-namespace:Firma.Views.Abstract"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Firma.Views.Jeden"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="../StyleZakladekResources.xaml" />
+    </UserControl.Resources>
+
+    <Grid Background="white">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Content="Imie"
+            Style="{StaticResource LabelStandardowy}" />
+        <TextBox
+            Grid.Row="0"
+            Grid.Column="1"
+            Text="{Binding Path=imie, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            Content="Nawisko"
+            Style="{StaticResource LabelStandardowy}" />
+        <TextBox
+            Grid.Row="1"
+            Grid.Column="1"
+            Text="{Binding Path=nazwisko, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Label
+            Grid.Row="2"
+            Grid.Column="0"
+            Content="Adres"
+            Style="{StaticResource LabelStandardowy}" />
+        <ComboBox
+            Grid.Row="2"
+            Grid.Column="1"
+            DisplayMemberPath="idAdresu"
+            ItemsSource="{Binding listaAdresow}"
+            SelectedValue="{Binding adres}"
+            SelectedValuePath="idAdresu" />
+
+        <Label
+            Grid.Row="4"
+            Grid.Column="0"
+            Content="Stanowisko"
+            Style="{StaticResource LabelStandardowy}" />
+        <ComboBox
+            Grid.Row="4"
+            Grid.Column="1"
+            DisplayMemberPath="nazwaStanowiska"
+            ItemsSource="{Binding listaStanowisk}"
+            SelectedValue="{Binding stanowisko}"
+            SelectedValuePath="idStanowiska" />
+
+        <Label
+            Grid.Row="5"
+            Grid.Column="0"
+            Content="Data zatrudnienia"
+            Style="{StaticResource LabelStandardowy}" />
+        <DatePicker
+            Grid.Row="5"
+            Grid.Column="1"
+            SelectedDate="{Binding Path=dataZatrudnienia, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Label
+            Grid.Row="6"
+            Grid.Column="0"
+            Content="Pojazd"
+            Style="{StaticResource LabelStandardowy}" />
+        <ComboBox
+            Grid.Row="6"
+            Grid.Column="1"
+            DisplayMemberPath="marka"
+            ItemsSource="{Binding listaPojazdow}"
+            SelectedValue="{Binding pojazd}"
+            SelectedValuePath="idPojazdu" />
     </Grid>
 </Abstract:JedenViewBase>
