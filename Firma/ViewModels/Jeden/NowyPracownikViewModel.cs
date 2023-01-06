@@ -28,6 +28,7 @@ namespace Firma.ViewModels.Jeden
             listaPojazdow = (from pojazd in Db.Pojazd
                             where pojazd.czyAktywny == true
                             select pojazd).ToList();
+            listaPojazdow.Add(new Pojazd() { idPojazdu = -1, marka = "Brak" });
             dataZatrudnienia = DateTime.Now;
         }
         #endregion
@@ -115,10 +116,17 @@ namespace Firma.ViewModels.Jeden
             }
             set
             {
-                if (value != Item.pojazd)
+                if (value != Item.pojazd && value>=0)
                 {
                     Item.pojazd = value;
+                    Item.czyKierowca = true;
                     base.OnPropertyChanged(() => pojazd);
+
+                }
+                else
+                {
+                    Item.pojazd = null;
+                    Item.czyKierowca = false;
                 }
             }
         }

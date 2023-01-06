@@ -35,40 +35,61 @@
             Grid.Column="0"
             Content="Pracownik"
             Style="{StaticResource LabelStandardowy}" />
-        <TextBox
+        <ComboBox
             Grid.Row="0"
             Grid.Column="1"
-            Text="{Binding Path=numer, UpdateSourceTrigger=PropertyChanged}" />
+            DisplayMemberPath="nazwisko"
+            ItemsSource="{Binding listaPracownikow}"
+            SelectedValue="{Binding pracownik}"
+            SelectedValuePath="idPracownika" />
 
         <Label
             Grid.Row="1"
             Grid.Column="0"
             Content="Usluga"
             Style="{StaticResource LabelStandardowy}" />
-        <TextBox
-            Grid.Row="0"
+        <ComboBox
+            Grid.Row="1"
             Grid.Column="1"
-            Text="{Binding Path=numer, UpdateSourceTrigger=PropertyChanged}" />
+            DisplayMemberPath="nazwaUslugi"
+            ItemsSource="{Binding listaUslug}"
+            SelectedValue="{Binding usluga}"
+            SelectedValuePath="idUslugi" />
 
         <Label
             Grid.Row="2"
             Grid.Column="0"
             Content="Adres"
             Style="{StaticResource LabelStandardowy}" />
-        <TextBox
+        <ComboBox
             Grid.Row="2"
             Grid.Column="1"
-            Text="{Binding Path=numer, UpdateSourceTrigger=PropertyChanged}" />
+            DisplayMemberPath="miasto"
+            ItemsSource="{Binding listaAdresow}"
+            SelectedValue="{Binding adres}"
+            SelectedValuePath="idAdresu" />
         <Label
             Grid.Row="3"
             Grid.Column="0"
             Content="Faktura"
             Style="{StaticResource LabelStandardowy}" />
-        <TextBox
+        <ComboBox
             Grid.Row="3"
             Grid.Column="1"
-            Text="{Binding Path=numer, UpdateSourceTrigger=PropertyChanged}" />
-
+            DisplayMemberPath="numer"
+            ItemsSource="{Binding listaFaktur}"
+            SelectedValue="{Binding faktura}"
+            SelectedValuePath="idFaktury" />
+        <Label
+            Grid.Row="4"
+            Grid.Column="0"
+            Content="Data zlecenia"
+            Style="{StaticResource LabelStandardowy}" />
+        <DatePicker
+            Grid.Row="4"
+            Grid.Column="1"
+            Margin="2,2,2,2"
+            SelectedDate="{Binding Path=dataZlecenia, UpdateSourceTrigger=PropertyChanged}" />
 
 
     </Grid>

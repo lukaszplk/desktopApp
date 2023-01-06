@@ -37,7 +37,7 @@
         <TextBox
             Grid.Row="0"
             Grid.Column="1"
-            Text="{Binding Path=ulica, UpdateSourceTrigger=PropertyChanged}" />
+            Text="{Binding Path=imie, UpdateSourceTrigger=PropertyChanged}" />
 
         <Label
             Grid.Row="1"
@@ -47,46 +47,58 @@
         <TextBox
             Grid.Row="1"
             Grid.Column="1"
-            Text="{Binding Path=dom, UpdateSourceTrigger=PropertyChanged}" />
+            Text="{Binding Path=nazwisko, UpdateSourceTrigger=PropertyChanged}" />
 
         <Label
             Grid.Row="2"
             Grid.Column="0"
             Content="Adres"
             Style="{StaticResource LabelStandardowy}" />
-        <TextBox
+        <ComboBox
             Grid.Row="2"
             Grid.Column="1"
-            Text="{Binding Path=mieszkanie, UpdateSourceTrigger=PropertyChanged}" />
+            DisplayMemberPath="miasto"
+            ItemsSource="{Binding listaAdresow}"
+            SelectedValue="{Binding adres}"
+            SelectedValuePath="idAdresu" />
 
         <Label
             Grid.Row="3"
             Grid.Column="0"
             Content="Firma"
             Style="{StaticResource LabelStandardowy}" />
-        <TextBox
+        <ComboBox
             Grid.Row="3"
             Grid.Column="1"
-            Text="{Binding Path=kodPocztowy, UpdateSourceTrigger=PropertyChanged}" />
+            DisplayMemberPath="nazwa"
+            ItemsSource="{Binding listaFirm}"
+            SelectedValue="{Binding firma_zew}"
+            SelectedValuePath="idFirmy" />
 
         <Label
             Grid.Row="4"
             Grid.Column="0"
             Content="Rabat"
             Style="{StaticResource LabelStandardowy}" />
-        <TextBox
+        <ComboBox
             Grid.Row="4"
             Grid.Column="1"
-            Text="{Binding Path=miasto, UpdateSourceTrigger=PropertyChanged}" />
+            DisplayMemberPath="nazwaRabatu"
+            ItemsSource="{Binding listaRabatow}"
+            SelectedValue="{Binding rabat}"
+            SelectedValuePath="idRabatu" />
 
         <Label
             Grid.Row="5"
             Grid.Column="0"
             Content="Kto udzielil"
             Style="{StaticResource LabelStandardowy}" />
-        <TextBox
+        <ComboBox
             Grid.Row="5"
             Grid.Column="1"
-            Text="{Binding Path=miasto, UpdateSourceTrigger=PropertyChanged}" />
+            DisplayMemberPath="nazwisko"
+            ItemsSource="{Binding listaPracownikow}"
+            SelectedValue="{Binding pracownik}"
+            SelectedValuePath="idPracownika" />
     </Grid>
 </Abstract:JedenViewBase>

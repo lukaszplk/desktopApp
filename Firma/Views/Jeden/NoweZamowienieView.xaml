@@ -35,20 +35,26 @@
             Grid.Column="0"
             Content="Towar"
             Style="{StaticResource LabelStandardowy}" />
-        <TextBox
+        <ComboBox
             Grid.Row="0"
             Grid.Column="1"
-            Text="{Binding Path=numer, UpdateSourceTrigger=PropertyChanged}" />
+            DisplayMemberPath="nazwa"
+            ItemsSource="{Binding listaTowarow}"
+            SelectedValue="{Binding towar}"
+            SelectedValuePath="idTowaru" />
 
         <Label
             Grid.Row="1"
             Grid.Column="0"
             Content="Pracownik"
             Style="{StaticResource LabelStandardowy}" />
-        <TextBox
+        <ComboBox
             Grid.Row="1"
             Grid.Column="1"
-            Text="{Binding Path=numer, UpdateSourceTrigger=PropertyChanged}" />
+            DisplayMemberPath="nazwisko"
+            ItemsSource="{Binding listaPracownikow}"
+            SelectedValue="{Binding pracownik}"
+            SelectedValuePath="idPracownika" />
 
         <Label
             Grid.Row="2"
@@ -58,7 +64,7 @@
         <TextBox
             Grid.Row="2"
             Grid.Column="1"
-            Text="{Binding Path=numer, UpdateSourceTrigger=PropertyChanged}" />
+            Text="{Binding Path=wartosc, UpdateSourceTrigger=PropertyChanged}" />
 
 
 
