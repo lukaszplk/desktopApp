@@ -56,17 +56,16 @@
           <Property Name="ktoUdzielilRabatu" Type="int" />
           <Property Name="czyAktywny" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'projekt.dbo.Magazyn' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Magazyn">
           <Key>
-            <PropertyRef Name="czyAktywne" />
+            <PropertyRef Name="id" />
           </Key>
           <Property Name="towar" Type="int" />
           <Property Name="ilosc" Type="int" />
           <Property Name="ostatnieZamowienie" Type="int" />
           <Property Name="wartoscTowaru" Type="decimal" Precision="10" Scale="2" />
           <Property Name="czyAktywne" Type="bit" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Pojazd">
           <Key>
@@ -444,6 +443,7 @@ warning 6002: The table/view 'projekt.dbo.Magazyn' does not have a primary key d
           <EntitySet Name="Faktura" EntityType="Self.Faktura" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Firma_zew" EntityType="Self.Firma_zew" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Klient" EntityType="Self.Klient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Magazyn" EntityType="Self.Magazyn" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pojazd" EntityType="Self.Pojazd" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pracownik" EntityType="Self.Pracownik" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rabat" EntityType="Self.Rabat" Schema="dbo" store:Type="Tables" />
@@ -454,15 +454,6 @@ warning 6002: The table/view 'projekt.dbo.Magazyn' does not have a primary key d
           <EntitySet Name="Usluga" EntityType="Self.Usluga" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Zamowienia" EntityType="Self.Zamowienia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Zlecenia" EntityType="Self.Zlecenia" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Magazyn" EntityType="Self.Magazyn" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[Magazyn].[towar] AS [towar], 
-[Magazyn].[ilosc] AS [ilosc], 
-[Magazyn].[ostatnieZamowienie] AS [ostatnieZamowienie], 
-[Magazyn].[wartoscTowaru] AS [wartoscTowaru], 
-[Magazyn].[czyAktywne] AS [czyAktywne]
-FROM [dbo].[Magazyn] AS [Magazyn]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_adres" Association="Self.FK_adres">
             <End Role="Adres" EntitySet="Adres" />
             <End Role="Pracownik" EntitySet="Pracownik" />
@@ -617,6 +608,19 @@ FROM [dbo].[Magazyn] AS [Magazyn]</DefiningQuery>
           <NavigationProperty Name="Pracownik" Relationship="Self.FK_ktoUdzielilRabatu" FromRole="Klient" ToRole="Pracownik" />
           <NavigationProperty Name="Rabat1" Relationship="Self.FK_rabat" FromRole="Klient" ToRole="Rabat" />
         </EntityType>
+        <EntityType Name="Magazyn">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="towar" Type="Int32" />
+          <Property Name="ilosc" Type="Int32" />
+          <Property Name="ostatnieZamowienie" Type="Int32" />
+          <Property Name="wartoscTowaru" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="czyAktywne" Type="Boolean" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Towar1" Relationship="Self.FK_towar2" FromRole="Magazyn" ToRole="Towar" />
+          <NavigationProperty Name="Zamowienia" Relationship="Self.FK_zamowienie" FromRole="Magazyn" ToRole="Zamowienia" />
+        </EntityType>
         <EntityType Name="Pojazd">
           <Key>
             <PropertyRef Name="idPojazdu" />
@@ -703,8 +707,8 @@ FROM [dbo].[Magazyn] AS [Magazyn]</DefiningQuery>
           <Property Name="cena" Type="Int32" Nullable="false" />
           <Property Name="marza" Type="Int32" />
           <Property Name="czyAktywny" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Zamowienia" Relationship="Self.FK_towar1" FromRole="Towar" ToRole="Zamowienia" />
           <NavigationProperty Name="Magazyn" Relationship="Self.FK_towar2" FromRole="Towar" ToRole="Magazyn" />
+          <NavigationProperty Name="Zamowienia" Relationship="Self.FK_towar1" FromRole="Towar" ToRole="Zamowienia" />
         </EntityType>
         <EntityType Name="Urlop">
           <Key>
@@ -743,9 +747,9 @@ FROM [dbo].[Magazyn] AS [Magazyn]</DefiningQuery>
           <Property Name="dataZamowienia" Type="DateTime" Nullable="false" />
           <Property Name="wartoscZamowienia" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="czyAktywne" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Magazyn" Relationship="Self.FK_zamowienie" FromRole="Zamowienia" ToRole="Magazyn" />
           <NavigationProperty Name="Pracownik1" Relationship="Self.FK_pracownik1" FromRole="Zamowienia" ToRole="Pracownik" />
           <NavigationProperty Name="Towar1" Relationship="Self.FK_towar1" FromRole="Zamowienia" ToRole="Towar" />
-          <NavigationProperty Name="Magazyn" Relationship="Self.FK_zamowienie" FromRole="Zamowienia" ToRole="Magazyn" />
         </EntityType>
         <EntityType Name="Zlecenia">
           <Key>
@@ -762,18 +766,6 @@ FROM [dbo].[Magazyn] AS [Magazyn]</DefiningQuery>
           <NavigationProperty Name="Faktura1" Relationship="Self.FK_faktura" FromRole="Zlecenia" ToRole="Faktura" />
           <NavigationProperty Name="Pracownik1" Relationship="Self.FK_pracownik2" FromRole="Zlecenia" ToRole="Pracownik" />
           <NavigationProperty Name="Usluga1" Relationship="Self.FK_usluga" FromRole="Zlecenia" ToRole="Usluga" />
-        </EntityType>
-        <EntityType Name="Magazyn">
-          <Key>
-            <PropertyRef Name="czyAktywne" />
-          </Key>
-          <Property Name="towar" Type="Int32" />
-          <Property Name="ilosc" Type="Int32" />
-          <Property Name="ostatnieZamowienie" Type="Int32" />
-          <Property Name="wartoscTowaru" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="czyAktywne" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Towar1" Relationship="Self.FK_towar2" FromRole="Magazyn" ToRole="Towar" />
-          <NavigationProperty Name="Zamowienia" Relationship="Self.FK_zamowienie" FromRole="Magazyn" ToRole="Zamowienia" />
         </EntityType>
         <Association Name="FK_adres">
           <End Role="Adres" Type="Self.Adres" Multiplicity="1" />
@@ -895,6 +887,30 @@ FROM [dbo].[Magazyn] AS [Magazyn]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_towar2">
+          <End Role="Towar" Type="Self.Towar" Multiplicity="0..1" />
+          <End Role="Magazyn" Type="Self.Magazyn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towar">
+              <PropertyRef Name="idTowaru" />
+            </Principal>
+            <Dependent Role="Magazyn">
+              <PropertyRef Name="towar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_zamowienie">
+          <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="0..1" />
+          <End Role="Magazyn" Type="Self.Magazyn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zamowienia">
+              <PropertyRef Name="idZamowienia" />
+            </Principal>
+            <Dependent Role="Magazyn">
+              <PropertyRef Name="ostatnieZamowienie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_pojazd">
           <End Role="Pojazd" Type="Self.Pojazd" Multiplicity="0..1" />
           <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="*" />
@@ -991,18 +1007,6 @@ FROM [dbo].[Magazyn] AS [Magazyn]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_towar2">
-          <End Role="Towar" Type="Self.Towar" Multiplicity="0..1" />
-          <End Role="Magazyn" Type="Self.Magazyn" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Towar">
-              <PropertyRef Name="idTowaru" />
-            </Principal>
-            <Dependent Role="Magazyn">
-              <PropertyRef Name="towar" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_usluga">
           <End Role="Usluga" Type="Self.Usluga" Multiplicity="1" />
           <End Role="Zlecenia" Type="Self.Zlecenia" Multiplicity="*" />
@@ -1015,23 +1019,12 @@ FROM [dbo].[Magazyn] AS [Magazyn]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_zamowienie">
-          <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="0..1" />
-          <End Role="Magazyn" Type="Self.Magazyn" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Zamowienia">
-              <PropertyRef Name="idZamowienia" />
-            </Principal>
-            <Dependent Role="Magazyn">
-              <PropertyRef Name="ostatnieZamowienie" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="projektEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Adres" EntityType="Self.Adres" />
           <EntitySet Name="Faktura" EntityType="Self.Faktura" />
           <EntitySet Name="Firma_zew" EntityType="Self.Firma_zew" />
           <EntitySet Name="Klient" EntityType="Self.Klient" />
+          <EntitySet Name="Magazyn" EntityType="Self.Magazyn" />
           <EntitySet Name="Pojazd" EntityType="Self.Pojazd" />
           <EntitySet Name="Pracownik" EntityType="Self.Pracownik" />
           <EntitySet Name="Rabat" EntityType="Self.Rabat" />
@@ -1042,7 +1035,6 @@ FROM [dbo].[Magazyn] AS [Magazyn]</DefiningQuery>
           <EntitySet Name="Usluga" EntityType="Self.Usluga" />
           <EntitySet Name="Zamowienia" EntityType="Self.Zamowienia" />
           <EntitySet Name="Zlecenia" EntityType="Self.Zlecenia" />
-          <EntitySet Name="Magazyn" EntityType="Self.Magazyn" />
           <AssociationSet Name="FK_adres" Association="Self.FK_adres">
             <End Role="Adres" EntitySet="Adres" />
             <End Role="Pracownik" EntitySet="Pracownik" />
@@ -1083,6 +1075,14 @@ FROM [dbo].[Magazyn] AS [Magazyn]</DefiningQuery>
             <End Role="Rabat" EntitySet="Rabat" />
             <End Role="Klient" EntitySet="Klient" />
           </AssociationSet>
+          <AssociationSet Name="FK_towar2" Association="Self.FK_towar2">
+            <End Role="Towar" EntitySet="Towar" />
+            <End Role="Magazyn" EntitySet="Magazyn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_zamowienie" Association="Self.FK_zamowienie">
+            <End Role="Zamowienia" EntitySet="Zamowienia" />
+            <End Role="Magazyn" EntitySet="Magazyn" />
+          </AssociationSet>
           <AssociationSet Name="FK_pojazd" Association="Self.FK_pojazd">
             <End Role="Pojazd" EntitySet="Pojazd" />
             <End Role="Pracownik" EntitySet="Pracownik" />
@@ -1115,17 +1115,9 @@ FROM [dbo].[Magazyn] AS [Magazyn]</DefiningQuery>
             <End Role="Towar" EntitySet="Towar" />
             <End Role="Zamowienia" EntitySet="Zamowienia" />
           </AssociationSet>
-          <AssociationSet Name="FK_towar2" Association="Self.FK_towar2">
-            <End Role="Towar" EntitySet="Towar" />
-            <End Role="Magazyn" EntitySet="Magazyn" />
-          </AssociationSet>
           <AssociationSet Name="FK_usluga" Association="Self.FK_usluga">
             <End Role="Usluga" EntitySet="Usluga" />
             <End Role="Zlecenia" EntitySet="Zlecenia" />
-          </AssociationSet>
-          <AssociationSet Name="FK_zamowienie" Association="Self.FK_zamowienie">
-            <End Role="Zamowienia" EntitySet="Zamowienia" />
-            <End Role="Magazyn" EntitySet="Magazyn" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -1186,6 +1178,18 @@ FROM [dbo].[Magazyn] AS [Magazyn]</DefiningQuery>
                 <ScalarProperty Name="rabat" ColumnName="rabat" />
                 <ScalarProperty Name="ktoUdzielilRabatu" ColumnName="ktoUdzielilRabatu" />
                 <ScalarProperty Name="czyAktywny" ColumnName="czyAktywny" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Magazyn">
+            <EntityTypeMapping TypeName="projektModel.Magazyn">
+              <MappingFragment StoreEntitySet="Magazyn">
+                <ScalarProperty Name="towar" ColumnName="towar" />
+                <ScalarProperty Name="ilosc" ColumnName="ilosc" />
+                <ScalarProperty Name="ostatnieZamowienie" ColumnName="ostatnieZamowienie" />
+                <ScalarProperty Name="wartoscTowaru" ColumnName="wartoscTowaru" />
+                <ScalarProperty Name="czyAktywne" ColumnName="czyAktywne" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1314,17 +1318,6 @@ FROM [dbo].[Magazyn] AS [Magazyn]</DefiningQuery>
                 <ScalarProperty Name="adres" ColumnName="adres" />
                 <ScalarProperty Name="faktura" ColumnName="faktura" />
                 <ScalarProperty Name="dataZlecenia" ColumnName="dataZlecenia" />
-                <ScalarProperty Name="czyAktywne" ColumnName="czyAktywne" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Magazyn">
-            <EntityTypeMapping TypeName="projektModel.Magazyn">
-              <MappingFragment StoreEntitySet="Magazyn">
-                <ScalarProperty Name="towar" ColumnName="towar" />
-                <ScalarProperty Name="ilosc" ColumnName="ilosc" />
-                <ScalarProperty Name="ostatnieZamowienie" ColumnName="ostatnieZamowienie" />
-                <ScalarProperty Name="wartoscTowaru" ColumnName="wartoscTowaru" />
                 <ScalarProperty Name="czyAktywne" ColumnName="czyAktywne" />
               </MappingFragment>
             </EntityTypeMapping>

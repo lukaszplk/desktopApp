@@ -4,44 +4,6 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b2ce1b3c41e44bc2bee6476c39aa2911" Name="Diagram1" ZoomLevel="125">
-        <EntityTypeShape EntityType="projektModel.Adres" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="projektModel.Faktura" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="projektModel.Firma_zew" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="projektModel.Klient" Width="1.5" PointX="7.5" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="projektModel.Pojazd" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="projektModel.Pracownik" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="projektModel.Rabat" Width="1.5" PointX="5.25" PointY="16.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="projektModel.SposobPlatnosci" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="projektModel.Stanowisko" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="projektModel.Towar" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="projektModel.Urlop" Width="1.5" PointX="5.25" PointY="20.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="projektModel.Usluga" Width="1.5" PointX="8.25" PointY="17.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="projektModel.Zamowienia" Width="1.5" PointX="8.25" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="projektModel.Zlecenia" Width="1.5" PointX="10.5" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="projektModel.Magazyn" Width="1.5" PointX="10.75" PointY="9" IsExpanded="true" />
-        <AssociationConnector Association="projektModel.FK_adres" ManuallyRouted="false" />
-        <AssociationConnector Association="projektModel.FK_adres1" ManuallyRouted="false" />
-        <AssociationConnector Association="projektModel.FK_adres2" ManuallyRouted="false" />
-        <AssociationConnector Association="projektModel.FK_faktura" ManuallyRouted="false" />
-        <AssociationConnector Association="projektModel.FK_klient" ManuallyRouted="false" />
-        <AssociationConnector Association="projektModel.FK_platnosc" ManuallyRouted="false" />
-        <AssociationConnector Association="projektModel.FK_pracownik" ManuallyRouted="false" />
-        <AssociationConnector Association="projektModel.FK_firma" ManuallyRouted="false" />
-        <AssociationConnector Association="projektModel.FK_ktoUdzielilRabatu" ManuallyRouted="false" />
-        <AssociationConnector Association="projektModel.FK_rabat" ManuallyRouted="false" />
-        <AssociationConnector Association="projektModel.FK_pojazd" ManuallyRouted="false" />
-        <AssociationConnector Association="projektModel.FK_pracownik1" ManuallyRouted="false" />
-        <AssociationConnector Association="projektModel.FK_pracownik2" ManuallyRouted="false" />
-        <AssociationConnector Association="projektModel.FK_pracownik3" ManuallyRouted="false" />
-        <AssociationConnector Association="projektModel.FK_stanowisko" ManuallyRouted="false" />
-        <AssociationConnector Association="projektModel.FK_tworca" ManuallyRouted="false" />
-        <AssociationConnector Association="projektModel.FK_zatwierdzajacy" ManuallyRouted="false" />
-        <AssociationConnector Association="projektModel.FK_towar1" ManuallyRouted="false" />
-        <AssociationConnector Association="projektModel.FK_towar2" ManuallyRouted="false" />
-        <AssociationConnector Association="projektModel.FK_usluga" ManuallyRouted="false" />
-        <AssociationConnector Association="projektModel.FK_zamowienie" ManuallyRouted="false" />
-      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

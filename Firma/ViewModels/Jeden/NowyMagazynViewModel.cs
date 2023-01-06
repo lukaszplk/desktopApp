@@ -103,10 +103,6 @@ namespace Firma.ViewModels.Jeden
         public override void Save()
         {
             Item.czyAktywne = true;
-            Item.ostatnieZamowienie = 1;
-            Item.towar = 0;
-            Item.ilosc = 1;
-            Item.wartoscTowaru = 1;
             Db.Magazyn.AddObject(Item);
             Db.SaveChanges();
         }

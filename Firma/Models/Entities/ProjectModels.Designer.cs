@@ -29,6 +29,8 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("projektModel", "FK_firma", "Firma_zew", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Firma.Models.Entities.Firma_zew), "Klient", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Firma.Models.Entities.Klient), true)]
 [assembly: EdmRelationshipAttribute("projektModel", "FK_ktoUdzielilRabatu", "Pracownik", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Firma.Models.Entities.Pracownik), "Klient", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Firma.Models.Entities.Klient), true)]
 [assembly: EdmRelationshipAttribute("projektModel", "FK_rabat", "Rabat", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Firma.Models.Entities.Rabat), "Klient", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Firma.Models.Entities.Klient), true)]
+[assembly: EdmRelationshipAttribute("projektModel", "FK_towar2", "Towar", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Firma.Models.Entities.Towar), "Magazyn", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Firma.Models.Entities.Magazyn), true)]
+[assembly: EdmRelationshipAttribute("projektModel", "FK_zamowienie", "Zamowienia", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Firma.Models.Entities.Zamowienia), "Magazyn", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Firma.Models.Entities.Magazyn), true)]
 [assembly: EdmRelationshipAttribute("projektModel", "FK_pojazd", "Pojazd", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Firma.Models.Entities.Pojazd), "Pracownik", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Firma.Models.Entities.Pracownik), true)]
 [assembly: EdmRelationshipAttribute("projektModel", "FK_pracownik1", "Pracownik", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Firma.Models.Entities.Pracownik), "Zamowienia", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Firma.Models.Entities.Zamowienia), true)]
 [assembly: EdmRelationshipAttribute("projektModel", "FK_pracownik2", "Pracownik", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Firma.Models.Entities.Pracownik), "Zlecenia", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Firma.Models.Entities.Zlecenia), true)]
@@ -37,9 +39,7 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("projektModel", "FK_tworca", "Pracownik", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Firma.Models.Entities.Pracownik), "Rabat", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Firma.Models.Entities.Rabat), true)]
 [assembly: EdmRelationshipAttribute("projektModel", "FK_zatwierdzajacy", "Pracownik", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Firma.Models.Entities.Pracownik), "Urlop", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Firma.Models.Entities.Urlop), true)]
 [assembly: EdmRelationshipAttribute("projektModel", "FK_towar1", "Towar", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Firma.Models.Entities.Towar), "Zamowienia", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Firma.Models.Entities.Zamowienia), true)]
-[assembly: EdmRelationshipAttribute("projektModel", "FK_towar2", "Towar", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Firma.Models.Entities.Towar), "Magazyn", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Firma.Models.Entities.Magazyn), true)]
 [assembly: EdmRelationshipAttribute("projektModel", "FK_usluga", "Usluga", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Firma.Models.Entities.Usluga), "Zlecenia", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Firma.Models.Entities.Zlecenia), true)]
-[assembly: EdmRelationshipAttribute("projektModel", "FK_zamowienie", "Zamowienia", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Firma.Models.Entities.Zamowienia), "Magazyn", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Firma.Models.Entities.Magazyn), true)]
 
 #endregion
 
@@ -154,6 +154,22 @@ namespace Firma.Models.Entities
             }
         }
         private ObjectSet<Klient> _Klient;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Magazyn> Magazyn
+        {
+            get
+            {
+                if ((_Magazyn == null))
+                {
+                    _Magazyn = base.CreateObjectSet<Magazyn>("Magazyn");
+                }
+                return _Magazyn;
+            }
+        }
+        private ObjectSet<Magazyn> _Magazyn;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -314,22 +330,6 @@ namespace Firma.Models.Entities
             }
         }
         private ObjectSet<Zlecenia> _Zlecenia;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Magazyn> Magazyn
-        {
-            get
-            {
-                if ((_Magazyn == null))
-                {
-                    _Magazyn = base.CreateObjectSet<Magazyn>("Magazyn");
-                }
-                return _Magazyn;
-            }
-        }
-        private ObjectSet<Magazyn> _Magazyn;
 
         #endregion
 
@@ -365,6 +365,14 @@ namespace Firma.Models.Entities
         public void AddToKlient(Klient klient)
         {
             base.AddObject("Klient", klient);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Magazyn EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToMagazyn(Magazyn magazyn)
+        {
+            base.AddObject("Magazyn", magazyn);
         }
     
         /// <summary>
@@ -445,14 +453,6 @@ namespace Firma.Models.Entities
         public void AddToZlecenia(Zlecenia zlecenia)
         {
             base.AddObject("Zlecenia", zlecenia);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Magazyn EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToMagazyn(Magazyn magazyn)
-        {
-            base.AddObject("Magazyn", magazyn);
         }
 
         #endregion
@@ -1783,10 +1783,12 @@ namespace Firma.Models.Entities
         /// Create a new Magazyn object.
         /// </summary>
         /// <param name="czyAktywne">Initial value of the czyAktywne property.</param>
-        public static Magazyn CreateMagazyn(global::System.Boolean czyAktywne)
+        /// <param name="id">Initial value of the id property.</param>
+        public static Magazyn CreateMagazyn(global::System.Boolean czyAktywne, global::System.Int32 id)
         {
             Magazyn magazyn = new Magazyn();
             magazyn.czyAktywne = czyAktywne;
+            magazyn.id = id;
             return magazyn;
         }
 
@@ -1893,7 +1895,7 @@ namespace Firma.Models.Entities
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Boolean czyAktywne
         {
@@ -1903,19 +1905,43 @@ namespace Firma.Models.Entities
             }
             set
             {
-                if (_czyAktywne != value)
-                {
-                    OnczyAktywneChanging(value);
-                    ReportPropertyChanging("czyAktywne");
-                    _czyAktywne = StructuralObject.SetValidValue(value, "czyAktywne");
-                    ReportPropertyChanged("czyAktywne");
-                    OnczyAktywneChanged();
-                }
+                OnczyAktywneChanging(value);
+                ReportPropertyChanging("czyAktywne");
+                _czyAktywne = StructuralObject.SetValidValue(value, "czyAktywne");
+                ReportPropertyChanged("czyAktywne");
+                OnczyAktywneChanged();
             }
         }
         private global::System.Boolean _czyAktywne;
         partial void OnczyAktywneChanging(global::System.Boolean value);
         partial void OnczyAktywneChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value, "id");
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
 
         #endregion
 
@@ -3657,28 +3683,6 @@ namespace Firma.Models.Entities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("projektModel", "FK_towar1", "Zamowienia")]
-        public EntityCollection<Zamowienia> Zamowienia
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Zamowienia>("projektModel.FK_towar1", "Zamowienia");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Zamowienia>("projektModel.FK_towar1", "Zamowienia", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("projektModel", "FK_towar2", "Magazyn")]
         public EntityCollection<Magazyn> Magazyn
         {
@@ -3691,6 +3695,28 @@ namespace Firma.Models.Entities
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Magazyn>("projektModel.FK_towar2", "Magazyn", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("projektModel", "FK_towar1", "Zamowienia")]
+        public EntityCollection<Zamowienia> Zamowienia
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Zamowienia>("projektModel.FK_towar1", "Zamowienia");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Zamowienia>("projektModel.FK_towar1", "Zamowienia", value);
                 }
             }
         }
@@ -4409,6 +4435,28 @@ namespace Firma.Models.Entities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("projektModel", "FK_zamowienie", "Magazyn")]
+        public EntityCollection<Magazyn> Magazyn
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Magazyn>("projektModel.FK_zamowienie", "Magazyn");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Magazyn>("projektModel.FK_zamowienie", "Magazyn", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("projektModel", "FK_pracownik1", "Pracownik")]
         public Pracownik Pracownik1
         {
@@ -4475,28 +4523,6 @@ namespace Firma.Models.Entities
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Towar>("projektModel.FK_towar1", "Towar", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("projektModel", "FK_zamowienie", "Magazyn")]
-        public EntityCollection<Magazyn> Magazyn
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Magazyn>("projektModel.FK_zamowienie", "Magazyn");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Magazyn>("projektModel.FK_zamowienie", "Magazyn", value);
                 }
             }
         }
