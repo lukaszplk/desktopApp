@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Firma.Models.EntitiesForView;
 using Firma.ViewModels.Abstract;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Firma.ViewModels.Wszystkie
 {
@@ -15,6 +16,11 @@ namespace Firma.ViewModels.Wszystkie
             :base("Wszyscy pracownicy")
         {
 
+        }
+
+        public override void Dodaj()
+        {
+            Messenger.Default.Send("Dodaj pracownika");
         }
 
         public override void Load()

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Firma.Models.Entities;
 using Firma.Models.EntitiesForView;
 using Firma.ViewModels.Abstract;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Firma.ViewModels.Wszystkie
 {
@@ -15,6 +16,11 @@ namespace Firma.ViewModels.Wszystkie
         public WszystkieMagazynViewModel()
             : base("Magazyn")
         {
+        }
+
+        public override void Dodaj()
+        {
+            Messenger.Default.Send("Dodaj magazyn");
         }
 
         public override void Load()

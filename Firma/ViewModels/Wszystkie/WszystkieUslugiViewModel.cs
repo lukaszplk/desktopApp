@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Firma.ViewModels.Abstract;
 using Firma.Models.Entities;
 using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Firma.ViewModels.Wszystkie
 {
@@ -15,6 +16,11 @@ namespace Firma.ViewModels.Wszystkie
             :base("Wszystkie Uslugi")
         {
 
+        }
+
+        public override void Dodaj()
+        {
+            Messenger.Default.Send("Dodaj usluge");
         }
 
         public override void Load()

@@ -7,6 +7,7 @@ using Firma.Models.EntitiesForView;
 using Firma.Models.Entities;
 using Firma.ViewModels.Abstract;
 using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Firma.ViewModels.Wszystkie
 {
@@ -16,6 +17,11 @@ namespace Firma.ViewModels.Wszystkie
         public WszystkieZamowieniaViewModel()
             : base("Wszystkie zamowienia")
         {
+        }
+
+        public override void Dodaj()
+        {
+            Messenger.Default.Send("Dodaj zamowienie");
         }
 
         #endregion

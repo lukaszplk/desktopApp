@@ -22,7 +22,7 @@ namespace Firma.ViewModels.Jeden
             listaAdresow = (from adres in Db.Adres
                             where adres.czyAktywny == true
                             select adres).ToList();
-            listaStanowisk= (from stanowisko in Db.Stanowisko
+            listaStanowisk = (from stanowisko in Db.Stanowisko
                             where stanowisko.czyAktywny == true
                             select stanowisko).ToList();
             listaPojazdow = (from pojazd in Db.Pojazd

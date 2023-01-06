@@ -51,6 +51,23 @@ namespace Firma.ViewModels.Abstract
         #endregion
         #region Helpers
         public abstract void Load();
+        public abstract void Dodaj();
+        
+        #endregion
+        #region Commands
+        private BaseCommand _DodajCommand;
+        public ICommand DodajCommand
+        {
+            get
+            {
+                if (_DodajCommand == null)
+                {
+                    _DodajCommand = new BaseCommand(() => Dodaj());
+                }
+                return _DodajCommand;
+            }
+        }
+
         #endregion
     }
 }

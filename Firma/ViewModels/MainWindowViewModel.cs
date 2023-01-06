@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using Firma.ViewModels.Wszystkie;
 using Firma.ViewModels.Jeden;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Firma.ViewModels
 {
@@ -111,20 +112,21 @@ namespace Firma.ViewModels
 
         private List<CommandViewModel> CreateCommands() 
         {
+            Messenger.Default.Register<string>(this, open);
             return new List<CommandViewModel>
             {
-                new CommandViewModel("Towar", new BaseCommand(() => createView(new NowyTowarViewModel()))),
-                new CommandViewModel("Nowy pracownik", new BaseCommand(() => createView(new NowyPracownikViewModel()))),
-                new CommandViewModel("Faktura", new BaseCommand(() => createView(new NowaFakturaViewModel()))),
-                new CommandViewModel("Samochod", new BaseCommand(() => createView(new NowySamochodViewModel()))),
-                new CommandViewModel("Klient", new BaseCommand(() => createView(new NowyKlientViewModel()))),
-                new CommandViewModel("dodaj adres", new BaseCommand(() => createView(new NowyAdresViewModel()))),
-                new CommandViewModel("dodaj auto", new BaseCommand(() => createView(new NowySamochodViewModel()))),
-                new CommandViewModel("dodaj stanowisko", new BaseCommand(() => createView(new NoweStanowiskoViewModel()))),
-                new CommandViewModel("dodaj firme", new BaseCommand(() => createView(new NowaFirmaViewModel()))),
-                new CommandViewModel("dodaj towar", new BaseCommand(() => createView(new NowyTowarViewModel()))),
-                new CommandViewModel("dodaj platnosc", new BaseCommand(() => createView(new NowySposobPlatnosciViewModel()))),
-                new CommandViewModel("dodaj usluge", new BaseCommand(() => createView(new NowaUslugaViewModel()))),
+                //new CommandViewModel("Towar", new BaseCommand(() => createView(new NowyTowarViewModel()))),
+                //new CommandViewModel("Nowy pracownik", new BaseCommand(() => createView(new NowyPracownikViewModel()))),
+                //new CommandViewModel("Faktura", new BaseCommand(() => createView(new NowaFakturaViewModel()))),
+                //new CommandViewModel("Samochod", new BaseCommand(() => createView(new NowySamochodViewModel()))),
+                //new CommandViewModel("Klient", new BaseCommand(() => createView(new NowyKlientViewModel()))),
+                //new CommandViewModel("dodaj adres", new BaseCommand(() => createView(new NowyAdresViewModel()))),
+                //new CommandViewModel("dodaj auto", new BaseCommand(() => createView(new NowySamochodViewModel()))),
+                //new CommandViewModel("dodaj stanowisko", new BaseCommand(() => createView(new NoweStanowiskoViewModel()))),
+                //new CommandViewModel("dodaj firme", new BaseCommand(() => createView(new NowaFirmaViewModel()))),
+                //new CommandViewModel("dodaj towar", new BaseCommand(() => createView(new NowyTowarViewModel()))),
+                //new CommandViewModel("dodaj platnosc", new BaseCommand(() => createView(new NowySposobPlatnosciViewModel()))),
+                //new CommandViewModel("dodaj usluge", new BaseCommand(() => createView(new NowaUslugaViewModel()))),
                 new CommandViewModel("Faktury", new BaseCommand(showAllFaktury)),
                 new CommandViewModel("Klienci", new BaseCommand(showAllKlienci)),
                 new CommandViewModel("Pracownicy", new BaseCommand(showAllPracownicy)),
@@ -179,7 +181,71 @@ namespace Firma.ViewModels
         #endregion
 
         #region Funkcje pomocnicze
-        
+        private void open(string name)
+        {
+
+            if(name=="Dodaj klienta")
+            {
+                createView(new NowyKlientViewModel());
+            }
+            else if (name == "Dodaj pracownika")
+            {
+                createView(new NowyPracownikViewModel());
+            }
+            else if (name == "Dodaj adres")
+            {
+                createView(new NowyAdresViewModel());
+            }
+            else if (name == "Dodaj fakture")
+            {
+                createView(new NowaFakturaViewModel());
+            }
+            else if (name == "Dodaj firme")
+            {
+                createView(new NowaFirmaViewModel());
+            }
+            else if (name == "Dodaj magazyn")
+            {
+                createView(new NowyMagazynViewModel());
+            }
+            else if (name == "Dodaj rabat")
+            {
+                createView(new NowyRabatViewModel());
+            }
+            else if (name == "Dodaj samochod")
+            {
+                createView(new NowySamochodViewModel());
+            }
+            else if (name == "Dodaj sposob platnosci")
+            {
+                createView(new NowySposobPlatnosciViewModel());
+            }
+            else if (name == "Dodaj stanowisko")
+            {
+                createView(new NoweStanowiskoViewModel());
+            }
+            else if (name == "Dodaj towar")
+            {
+                createView(new NowyTowarViewModel());
+            }
+            else if (name == "Dodaj urlop")
+            {
+                createView(new NowyUrlopViewModel());
+            }
+            else if (name == "Dodaj usluge")
+            {
+                createView(new NowaUslugaViewModel());
+            }
+            else if (name == "Dodaj zamowienie")
+            {
+                createView(new NoweZamowienieViewModel());
+            }
+            else if (name == "Dodaj zlecenie")
+            {
+                createView(new NoweZlecenieViewModel());
+            }
+
+        }
 
         private void setActiveWorkspace(WorkspaceViewModel workspace) 
         {

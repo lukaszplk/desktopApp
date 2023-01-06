@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Firma.Models.Entities;
 using Firma.Models.EntitiesForView;
 using Firma.ViewModels.Abstract;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Firma.ViewModels.Wszystkie
 {
@@ -16,6 +17,11 @@ namespace Firma.ViewModels.Wszystkie
             : base("Wszystkie urlopy")
         {
 
+        }
+
+        public override void Dodaj()
+        {
+            Messenger.Default.Send("Dodaj urlop");
         }
 
         public override void Load()

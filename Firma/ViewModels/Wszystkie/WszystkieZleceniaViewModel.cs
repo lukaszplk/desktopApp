@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Firma.Models.EntitiesForView;
 using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Firma.ViewModels.Wszystkie
 {
@@ -17,7 +18,12 @@ namespace Firma.ViewModels.Wszystkie
 
             }
 
-            public override void Load()
+        public override void Dodaj()
+        {
+            Messenger.Default.Send("Dodaj zamowienie");
+        }
+
+        public override void Load()
             {
                 List = new ObservableCollection<ZlecenieForAllView>
                     (

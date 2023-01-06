@@ -8,6 +8,7 @@ using Firma.Helpers;
 using Firma.Models.Entities;
 using System.Collections.ObjectModel;
 using Firma.ViewModels.Abstract;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Firma.ViewModels.Wszystkie
 {
@@ -19,7 +20,12 @@ namespace Firma.ViewModels.Wszystkie
             :base("Towary")
         {
         }
-        
+
+        public override void Dodaj()
+        {
+            Messenger.Default.Send("Dodaj towar");
+        }
+
         #endregion
         #region Helpers
         public override void Load()

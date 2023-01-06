@@ -21,6 +21,7 @@
                             <ToggleButton
                                 Width="auto"
                                 Height="30"
+                                Command="{Binding DodajCommand}"
                                 Content="dodaj" />
                             <ToggleButton
                                 Width="auto"
@@ -34,6 +35,11 @@
                                 Width="auto"
                                 Height="30"
                                 Content="odswiez" />
+                            <ToggleButton
+                                Width="auto"
+                                Height="30"
+                                Command="{Binding CloseCommand}"
+                                Content="zamknij" />
                         </ToolBar>
                         <StackPanel Grid.Row="1" Background="azure" />
                         <ContentPresenter Grid.Row="2" Margin="0,2,0,2" />
@@ -59,11 +65,12 @@
                             <ToggleButton
                                 Width="auto"
                                 Height="30"
-                                Content="dodaj i zamknij" 
-                                Command="{Binding SaveAndCloseCommand}"/>
+                                Command="{Binding SaveAndCloseCommand}"
+                                Content="dodaj i zamknij" />
                             <ToggleButton
                                 Width="auto"
                                 Height="30"
+                                Command="{Binding CloseCommand}"
                                 Content="anuluj" />
                         </ToolBar>
                         <ContentPresenter Grid.Row="1" Margin="0,2,0,2" />

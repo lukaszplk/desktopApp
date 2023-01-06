@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Firma.ViewModels.Jeden
 {
-    internal class NowaFirmaViewModel : JedenViewModel
+    public class NowaFirmaViewModel : JedenViewModel
     {
         public Firma_zew Item;
         public NowaFirmaViewModel() : base("Nowa firma")
