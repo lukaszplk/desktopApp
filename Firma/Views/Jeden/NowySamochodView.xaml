@@ -74,9 +74,9 @@
             Grid.Column="0"
             Content="Data ostatniego przegladu"
             Style="{StaticResource LabelStandardowy}" />
-        <TextBox
+        <DatePicker
             Grid.Row="4"
             Grid.Column="1"
-            Text="{Binding Path=poprzedniPrzeglad, UpdateSourceTrigger=PropertyChanged}" />
+            SelectedDate="{Binding Path=poprzedniPrzeglad, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </Abstract:JedenViewBase>

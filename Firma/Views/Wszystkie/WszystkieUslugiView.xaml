@@ -12,9 +12,9 @@
     <Grid Background="White">
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Path=idUslugi}" Header="id" />
-                <DataGridTextColumn Binding="{Binding Path=nazwaUslugi}" Header="nazwa" />
-                <DataGridTextColumn Binding="{Binding Path=koszt}" Header="koszt" />
+                <DataGridTextColumn Binding="{Binding Path=idUslugi}" Header="Id" />
+                <DataGridTextColumn Binding="{Binding Path=nazwaUslugi}" Header="Nazwa" />
+                <DataGridTextColumn Binding="{Binding Path=koszt}" Header="Koszt" />
                 <DataGridTextColumn Binding="{Binding Path=potrzebnyCzasDni}" Header="Dlugosc realizacji w dniach" />
             </DataGrid.Columns>
         </DataGrid>

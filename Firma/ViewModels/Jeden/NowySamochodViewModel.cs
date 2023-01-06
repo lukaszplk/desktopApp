@@ -15,6 +15,7 @@ namespace Firma.ViewModels.Jeden
             :base("Dodaj samochod")
         {
             Item = new Pojazd();
+            poprzedniPrzeglad = DateTime.Now;
         }
 
         public string marka

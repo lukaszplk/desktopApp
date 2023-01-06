@@ -14,179 +14,79 @@
         <ResourceDictionary Source="../StyleZakladekResources.xaml" />
     </UserControl.Resources>
 
-
-    <Grid Background="White">
+    <Grid Background="white">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Expander
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label
             Grid.Row="0"
-            Header="Dodawanie"
-            IsExpanded="True">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="80" />
-                    <ColumnDefinition Width="150" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="30" />
-                </Grid.RowDefinitions>
-                <Label
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Width="150"
-                    HorizontalAlignment="Right"
-                    Content="Kod produktu"
-                    Style="{StaticResource LabelStandardowy}" />
-                <TextBox
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Style="{StaticResource TextBoxStandardowy}"
-                    Text="{Binding Path=Kod, UpdateSourceTrigger=PropertyChanged}" />
-                <Label
-                    Grid.Row="0"
-                    Grid.Column="2"
-                    Content="Typ:"
-                    Style="{StaticResource LabelStandardowy}" />
-                <TextBox
-                    Grid.Row="0"
-                    Grid.Column="3"
-                    Style="{StaticResource TextBoxStandardowy}" />
+            Grid.Column="0"
+            Content="Kod"
+            Style="{StaticResource LabelStandardowy}" />
+        <TextBox
+            Grid.Row="0"
+            Grid.Column="1"
+            Text="{Binding Path=Kod, UpdateSourceTrigger=PropertyChanged}" />
 
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Content="Nazwa katalogowa"
-                    Style="{StaticResource LabelStandardowy}" />
-                <TextBox
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Grid.ColumnSpan="3"
-                    Style="{StaticResource TextBoxStandardowy}"
-                    Text="{Binding Path=Nazwa, UpdateSourceTrigger=PropertyChanged}" />
-
-                <Label
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Content="Vat sprzedazy"
-                    Style="{StaticResource LabelStandardowy}" />
-                <Grid Grid.Row="2" Grid.Column="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="80" />
-                        <ColumnDefinition Width="150" />
-                    </Grid.ColumnDefinitions>
-                    <TextBox
-                        Grid.Column="0"
-                        Style="{StaticResource TextBoxStandardowy}"
-                        Text="{Binding Path=StawkaVatSprzedazy, UpdateSourceTrigger=PropertyChanged}" />
-
-                </Grid>
-
-
-                <Label
-                    Grid.Row="3"
-                    Grid.Column="0"
-                    Content="Vat zakupu"
-                    Style="{StaticResource LabelStandardowy}" />
-                <Grid
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    Grid.ColumnSpan="3">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="100" />
-                        <ColumnDefinition Width="100" />
-                        <ColumnDefinition Width="150" />
-                    </Grid.ColumnDefinitions>
-                    <TextBox
-                        Grid.Column="0"
-                        Style="{StaticResource TextBoxStandardowy}"
-                        Text="{Binding Path=StawkaVatZakupu, UpdateSourceTrigger=PropertyChanged}" />
-
-                    <Label
-                        Grid.Column="2"
-                        Content="Ilosc"
-                        Style="{StaticResource LabelStandardowy}" />
-                    <ComboBox Grid.Column="3" Style="{StaticResource ComboBoxStandardowy}" />
-                </Grid>
-
-                <Label
-                    Grid.Row="4"
-                    Grid.Column="0"
-                    Content="Marza"
-                    Style="{StaticResource LabelStandardowy}" />
-                <Grid
-                    Grid.Row="4"
-                    Grid.Column="1"
-                    Grid.ColumnSpan="3">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100" />
-                        <ColumnDefinition Width="130" />
-                        <ColumnDefinition Width="100" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="130" />
-                        <ColumnDefinition Width="100" />
-                    </Grid.ColumnDefinitions>
-                    <TextBox
-                        Grid.Column="0"
-                        Style="{StaticResource TextBoxStandardowy}"
-                        Text="{Binding Path=Marza, UpdateSourceTrigger=PropertyChanged}" />
-                    <Label
-                        Grid.Column="1"
-                        Content="Sugerowana cena:"
-                        Style="{StaticResource LabelStandardowy}" />
-                    <TextBox
-                        Grid.Column="2"
-                        Style="{StaticResource TextBoxStandardowy}"
-                        Text="{Binding Path=Cena, UpdateSourceTrigger=PropertyChanged}" />
-                    <Label
-                        Grid.Column="4"
-                        Content="Termin sprzedaży:"
-                        Style="{StaticResource LabelStandardowy}" />
-                    <ComboBox Grid.Column="5" Style="{StaticResource ComboBoxStandardowy}" />
-                </Grid>
-
-                <Grid Grid.Row="5" Grid.ColumnSpan="4">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="100" />
-                        <ColumnDefinition Width="150" />
-                    </Grid.ColumnDefinitions>
-                    <Label
-                        Grid.Column="1"
-                        Content="Wartosc towaru:"
-                        Style="{StaticResource LabelStandardowy}" />
-                    <ComboBox Grid.Column="2" Style="{StaticResource ComboBoxNieaktywny}" />
-                </Grid>
-                <Button
-                    Grid.Row="8"
-                    Grid.Column="4"
-                    HorizontalAlignment="Center"
-                    Content="Dodaj" />
-
-            </Grid>
-        </Expander>
-        <Expander
+        <Label
             Grid.Row="1"
-            Header="Opis/Uwagi"
-            IsExpanded="True">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <TextBox Height="Auto" Style="{StaticResource TextBoxStandardowy}" />
-            </Grid>
-        </Expander>
+            Grid.Column="0"
+            Content="Nazwa"
+            Style="{StaticResource LabelStandardowy}" />
+        <TextBox
+            Grid.Row="1"
+            Grid.Column="1"
+            Text="{Binding Path=Nazwa, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Label
+            Grid.Row="2"
+            Grid.Column="0"
+            Content="Vat zakupu"
+            Style="{StaticResource LabelStandardowy}" />
+        <TextBox
+            Grid.Row="2"
+            Grid.Column="1"
+            Text="{Binding Path=StawkaVatZakupu, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Label
+            Grid.Row="3"
+            Grid.Column="0"
+            Content="Vat sprzedazy"
+            Style="{StaticResource LabelStandardowy}" />
+        <TextBox
+            Grid.Row="3"
+            Grid.Column="1"
+            Text="{Binding Path=StawkaVatSprzedazy, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Label
+            Grid.Row="4"
+            Grid.Column="0"
+            Content="Cena"
+            Style="{StaticResource LabelStandardowy}" />
+        <TextBox
+            Grid.Row="4"
+            Grid.Column="1"
+            Text="{Binding Path=Cena, UpdateSourceTrigger=PropertyChanged}" />
+        <Label
+            Grid.Row="5"
+            Grid.Column="0"
+            Content="Marza"
+            Style="{StaticResource LabelStandardowy}" />
+        <TextBox
+            Grid.Row="5"
+            Grid.Column="1"
+            Text="{Binding Path=Marza, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </Abstract:JedenViewBase>

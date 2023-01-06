@@ -77,6 +77,7 @@ namespace Firma.ViewModels.Jeden
                     Item.dlugoscWspolpracyMiesiace = value;
                     base.OnPropertyChanged(() => dlugoscWspolpracyMiesiace);
                 }
+                
             }
         }
 

@@ -86,6 +86,21 @@
     <DataTemplate DataType="{x:Type vm:NowaUslugaViewModel}">
         <vw:NowaUslugaView />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowyUrlopViewModel}">
+        <vw:NowyUrlopView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowyRabatViewModel}">
+        <vw:NowyRabatView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowyMagazynViewModel}">
+        <vw:NowyRekordMagazynView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NoweZlecenieViewModel}">
+        <vw:NoweZlecenieView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NoweZamowienieViewModel}">
+        <vw:NoweZamowienieView />
+    </DataTemplate>
 
 
     <!--  tu jest koniec łączenia View z ViewModel zakładek  -->

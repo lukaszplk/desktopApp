@@ -4,216 +4,107 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Abstract="clr-namespace:Firma.Views.Abstract"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Firma.Views.Jeden"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
+
     <UserControl.Resources>
         <ResourceDictionary Source="../StyleZakladekResources.xaml" />
     </UserControl.Resources>
 
-
-    <Grid Background="White">
-
+    <Grid Background="white">
         <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-                <ColumnDefinition Width="30" />
-                <ColumnDefinition Width="150" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="30" />
-                <ColumnDefinition Width="150" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="30" />
-                <ColumnDefinition Width="150" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Label
-                Grid.Row="0"
-                Grid.Column="1"
-                Content="Imie" />
-            <TextBox
-                Grid.Row="0"
-                Grid.Column="2"
-                Style="{StaticResource TextBoxStandardowy}" />
-            <Label
-                Grid.Row="0"
-                Grid.Column="4"
-                Content="Nazwisko" />
-            <TextBox
-                Grid.Row="0"
-                Grid.Column="5"
-                Style="{StaticResource TextBoxStandardowy}" />
-            <Label
-                Grid.Row="0"
-                Grid.Column="7"
-                Content="Wiek" />
-            <TextBox
-                Grid.Row="0"
-                Grid.Column="8"
-                Style="{StaticResource TextBoxStandardowy}" />
-            <Label
-                Grid.Row="1"
-                Grid.Column="1"
-                Content="Adres" />
-            <TextBox
-                Grid.Row="1"
-                Grid.Column="2"
-                Style="{StaticResource TextBoxStandardowy}" />
-            <Label
-                Grid.Row="1"
-                Grid.Column="4"
-                Content="Miejscowosc" />
-            <TextBox
-                Grid.Row="1"
-                Grid.Column="5"
-                Style="{StaticResource TextBoxStandardowy}" />
-            <Label
-                Grid.Row="1"
-                Grid.Column="7"
-                Content="Kod pocztowy" />
-            <TextBox
-                Grid.Row="1"
-                Grid.Column="8"
-                Style="{StaticResource TextBoxStandardowy}" />
-            <Label
-                Grid.Row="2"
-                Grid.Column="1"
-                Content="Pesel" />
-            <TextBox
-                Grid.Row="2"
-                Grid.Column="2"
-                Style="{StaticResource TextBoxStandardowy}" />
-            <Label
-                Grid.Row="2"
-                Grid.Column="4"
-                Content="ID pracownika" />
-            <TextBox
-                Grid.Row="2"
-                Grid.Column="5"
-                Style="{StaticResource TextBoxStandardowy}" />
-            <Label
-                Grid.Row="2"
-                Grid.Column="7"
-                Content="Kierowca" />
-            <CheckBox
-                Grid.Row="2"
-                Grid.Column="8"
-                Style="{StaticResource CheckBoxDuzyElegancki}" />
-        </Grid>
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Content="numer"
+            Style="{StaticResource LabelStandardowy}" />
+        <TextBox
+            Grid.Row="0"
+            Grid.Column="1"
+            Text="{Binding numer}" />
 
+        <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            Content="Klient"
+            Style="{StaticResource LabelStandardowy}" />
+        <ComboBox
+            Grid.Row="1"
+            Grid.Column="1"
+            DisplayMemberPath="nazwisko"
+            ItemsSource="{Binding listaKlientow}"
+            SelectedValue="{Binding klient}"
+            SelectedValuePath="idKlienta" />
 
-        <Expander Grid.Row="1">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-
-                    <ColumnDefinition Width="30" />
-                    <ColumnDefinition Width="150" />
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="30" />
-                    <ColumnDefinition Width="150" />
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="30" />
-                    <ColumnDefinition Width="150" />
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Content="Nazwa" />
-                <TextBox
-                    Grid.Row="0"
-                    Grid.Column="2"
-                    Style="{StaticResource TextBoxStandardowy}" />
-                <Label
-                    Grid.Row="0"
-                    Grid.Column="4"
-                    Content="Firma" />
-                <TextBox
-                    Grid.Row="0"
-                    Grid.Column="5"
-                    Style="{StaticResource TextBoxStandardowy}" />
-                <Label
-                    Grid.Row="0"
-                    Grid.Column="7"
-                    Content="Kontrahent" />
-                <TextBox
-                    Grid.Row="0"
-                    Grid.Column="8"
-                    Style="{StaticResource TextBoxStandardowy}" />
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Content="Kwota" />
-                <TextBox
-                    Grid.Row="1"
-                    Grid.Column="2"
-                    Style="{StaticResource TextBoxStandardowy}" />
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="4"
-                    Content="Produkt" />
-                <TextBox
-                    Grid.Row="1"
-                    Grid.Column="5"
-                    Style="{StaticResource TextBoxStandardowy}" />
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="7"
-                    Content="Cena" />
-                <TextBox
-                    Grid.Row="1"
-                    Grid.Column="8"
-                    Style="{StaticResource TextBoxStandardowy}" />
-                <Label
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Content="Ilosc" />
-                <TextBox
-                    Grid.Row="2"
-                    Grid.Column="2"
-                    Style="{StaticResource TextBoxStandardowy}" />
-                <Label
-                    Grid.Row="2"
-                    Grid.Column="4"
-                    Content="ID pracownika" />
-                <TextBox
-                    Grid.Row="2"
-                    Grid.Column="5"
-                    Style="{StaticResource TextBoxStandardowy}" />
-                <Label
-                    Grid.Row="2"
-                    Grid.Column="7"
-                    Content="Ubezpieczone" />
-                <CheckBox
-                    Grid.Row="2"
-                    Grid.Column="8"
-                    Style="{StaticResource CheckBoxDuzyElegancki}" />
-            </Grid>
-        </Expander>
-        <Button
+        <Label
             Grid.Row="2"
-            Margin="30"
-            HorizontalAlignment="Right">
-            Dodaj
-        </Button>
+            Grid.Column="0"
+            Content="Pracownik"
+            Style="{StaticResource LabelStandardowy}" />
+        <ComboBox
+            Grid.Row="2"
+            Grid.Column="1"
+            DisplayMemberPath="nazwisko"
+            ItemsSource="{Binding listaPracownikow}"
+            SelectedValue="{Binding pracownik}"
+            SelectedValuePath="idPracownika" />
+
+        <Label
+            Grid.Row="3"
+            Grid.Column="0"
+            Content="Sposob platnosci"
+            Style="{StaticResource LabelStandardowy}" />
+        <ComboBox
+            Grid.Row="3"
+            Grid.Column="1"
+            DisplayMemberPath="nazwa"
+            ItemsSource="{Binding listaSposobowPlatnosci}"
+            SelectedValue="{Binding sposobPlatnosci}"
+            SelectedValuePath="idSposobuPlatnosci" />
+        <Label
+            Grid.Row="4"
+            Grid.Column="0"
+            Content="Termin platnosci"
+            Style="{StaticResource LabelStandardowy}" />
+        <DatePicker
+            Grid.Row="4"
+            Grid.Column="1"
+            SelectedDate="{Binding Path=terminPlatnosci, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Label
+            Grid.Row="5"
+            Grid.Column="0"
+            Content="Kwota faktury"
+            Style="{StaticResource LabelStandardowy}" />
+        <TextBox
+            Grid.Row="5"
+            Grid.Column="1"
+            Text="{Binding kwotaFaktury}" />
+        <Label
+            Grid.Row="6"
+            Grid.Column="0"
+            Content="Czy zatwierdzona"
+            Style="{StaticResource LabelStandardowy}" />
+        <CheckBox
+            Grid.Row="6"
+            Grid.Column="1"
+            IsChecked="{Binding czyZatwierdzona}" />
     </Grid>
 </Abstract:JedenViewBase>

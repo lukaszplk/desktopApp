@@ -20,7 +20,7 @@ namespace Firma.ViewModels.Wszystkie
 
         public override void Dodaj()
         {
-            Messenger.Default.Send("Dodaj zamowienie");
+            Messenger.Default.Send("Dodaj zlecenie");
         }
 
         public override void Load()

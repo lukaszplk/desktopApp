@@ -8,4 +8,91 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    mc:Ignorable="d" />
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="../StyleZakladekResources.xaml" />
+    </UserControl.Resources>
+
+    <Grid Background="white">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Content="Pracownik"
+            Style="{StaticResource LabelStandardowy}" />
+        <ComboBox
+            Grid.Row="0"
+            Grid.Column="1"
+            DisplayMemberPath="nazwisko"
+            ItemsSource="{Binding listaPracownikow}"
+            SelectedValue="{Binding pracownik}"
+            SelectedValuePath="idPracownika" />
+
+        <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            Content="Zatwierdzajacy"
+            Style="{StaticResource LabelStandardowy}" />
+        <ComboBox
+            Grid.Row="1"
+            Grid.Column="1"
+            DisplayMemberPath="nazwisko"
+            ItemsSource="{Binding listaPracownikow}"
+            SelectedValue="{Binding zatwierdzajacy}"
+            SelectedValuePath="idPracownika" />
+
+        <Label
+            Grid.Row="2"
+            Grid.Column="0"
+            Content="Od"
+            Style="{StaticResource LabelStandardowy}" />
+        <DatePicker
+            Grid.Row="2"
+            Grid.Column="1"
+            SelectedDate="{Binding Path=Od, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Label
+            Grid.Row="3"
+            Grid.Column="0"
+            Content="Do"
+            Style="{StaticResource LabelStandardowy}" />
+        <DatePicker
+            Grid.Row="3"
+            Grid.Column="1"
+            SelectedDate="{Binding Path=Do, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Label
+            Grid.Row="4"
+            Grid.Column="0"
+            Content="Uzasadnienie"
+            Style="{StaticResource LabelStandardowy}" />
+        <TextBox
+            Grid.Row="4"
+            Grid.Column="1"
+            Text="{Binding Path=uzasadnienie, UpdateSourceTrigger=PropertyChanged}" />
+        <Label
+            Grid.Row="5"
+            Grid.Column="0"
+            Content="Czy platny"
+            Style="{StaticResource LabelStandardowy}" />
+        <CheckBox
+            Grid.Row="5"
+            Grid.Column="1"
+            IsChecked="{Binding Path=czyPlatny, UpdateSourceTrigger=PropertyChanged}" />
+    </Grid>
+</Abstract:JedenViewBase>
