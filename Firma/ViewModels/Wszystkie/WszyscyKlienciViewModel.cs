@@ -13,6 +13,7 @@ namespace Firma.ViewModels.Wszystkie
 {
     public class WszyscyKlienciViewModel : collectionViewModel<KlientForAllView>
     {
+        
         public WszyscyKlienciViewModel()
             :base("Wszyscy klienci")
         {
@@ -33,10 +34,46 @@ namespace Firma.ViewModels.Wszystkie
                     }
 
                 );
+            ListCopy = new List<KlientForAllView>(List);
         }
         public override void Dodaj()
         {
             Messenger.Default.Send("Dodaj klienta");
+        }
+
+        protected override List<string> GetSortComboBoxItems() => new List<string>() { "Imie", "Nazwisko" };
+       
+
+        protected override void Sort()
+        {
+            switch (SortField)
+            {
+                case "Nazwisko":
+                    List = new ObservableCollection<KlientForAllView>
+                        (descending?List.OrderByDescending(item => item.Nazwisko): List.OrderBy(item => item.Nazwisko));
+                    break;
+                case "Imie":
+                    List = new ObservableCollection<KlientForAllView>
+                        (descending ? List.OrderByDescending(item => item.Imie) : List.OrderBy(item => item.Imie));
+                    break;
+            }
+        }
+
+        protected override List<string> GetSearchComboBoxItems() => new List<string>() { "Imie", "Nazwisko" };
+       
+
+        protected override void Search()
+        {
+            switch (SearchField)
+            {
+                case "Nazwisko":
+                    List = new ObservableCollection<KlientForAllView>(ListCopy.Where(item => item.Nazwisko == SearchText));
+                    break;
+                case "Imie":
+                    List = new ObservableCollection<KlientForAllView>(ListCopy.Where(item => item.Imie == SearchText));
+                    break;
+            }
+            
         }
     }
 }

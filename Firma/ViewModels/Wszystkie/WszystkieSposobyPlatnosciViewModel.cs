@@ -32,6 +32,37 @@ namespace Firma.ViewModels.Wszystkie
                     select item
 
                 );
+            ListCopy = new List<SposobPlatnosci>(List);
+        }
+
+        protected override List<string> GetSortComboBoxItems() => new List<string>() { "Nazwa" };
+
+
+        protected override void Sort()
+        {
+            switch (SortField)
+            {
+                case "Nazwa":
+                    List = new ObservableCollection<SposobPlatnosci>
+                        (descending ? List.OrderByDescending(item => item.nazwa) : List.OrderBy(item => item.nazwa));
+                    break;
+
+            }
+        }
+
+        protected override List<string> GetSearchComboBoxItems() => new List<string>() { "Nazwa" };
+
+
+        protected override void Search()
+        {
+            switch (SearchField)
+            {
+                case "Nazwa":
+                    List = new ObservableCollection<SposobPlatnosci>(ListCopy.Where(item => item.nazwa == SearchText));
+                    break;
+                
+            }
+
         }
     }
 }

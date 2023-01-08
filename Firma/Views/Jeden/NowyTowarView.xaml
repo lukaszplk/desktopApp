@@ -38,7 +38,7 @@
         <TextBox
             Grid.Row="0"
             Grid.Column="1"
-            Text="{Binding Path=Kod, UpdateSourceTrigger=PropertyChanged}" />
+            Text="{Binding Path=Kod, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
 
         <Label
             Grid.Row="1"
@@ -48,7 +48,7 @@
         <TextBox
             Grid.Row="1"
             Grid.Column="1"
-            Text="{Binding Path=Nazwa, UpdateSourceTrigger=PropertyChanged}" />
+            Text="{Binding Path=Nazwa, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
 
         <Label
             Grid.Row="2"
@@ -58,7 +58,7 @@
         <TextBox
             Grid.Row="2"
             Grid.Column="1"
-            Text="{Binding Path=StawkaVatZakupu, UpdateSourceTrigger=PropertyChanged}" />
+            Text="{Binding Path=StawkaVatZakupu, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
 
         <Label
             Grid.Row="3"
@@ -68,7 +68,7 @@
         <TextBox
             Grid.Row="3"
             Grid.Column="1"
-            Text="{Binding Path=StawkaVatSprzedazy, UpdateSourceTrigger=PropertyChanged}" />
+            Text="{Binding Path=StawkaVatSprzedazy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
 
         <Label
             Grid.Row="4"
@@ -78,7 +78,7 @@
         <TextBox
             Grid.Row="4"
             Grid.Column="1"
-            Text="{Binding Path=Cena, UpdateSourceTrigger=PropertyChanged}" />
+            Text="{Binding Path=Cena, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
         <Label
             Grid.Row="5"
             Grid.Column="0"
@@ -87,6 +87,6 @@
         <TextBox
             Grid.Row="5"
             Grid.Column="1"
-            Text="{Binding Path=Marza, UpdateSourceTrigger=PropertyChanged}" />
+            Text="{Binding Path=Marza, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
     </Grid>
 </Abstract:JedenViewBase>

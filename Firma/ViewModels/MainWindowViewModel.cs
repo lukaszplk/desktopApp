@@ -12,7 +12,9 @@ using System.Windows.Data;
 using System.Windows.Input;
 using Firma.ViewModels.Wszystkie;
 using Firma.ViewModels.Jeden;
+using Firma.ViewModels.Raporty;
 using GalaSoft.MvvmLight.Messaging;
+
 
 namespace Firma.ViewModels
 {
@@ -141,7 +143,8 @@ namespace Firma.ViewModels
                 new CommandViewModel("Sposoby platnosci", new BaseCommand(showAllSposobyPlatnosci)),
                 new CommandViewModel("Uslugi", new BaseCommand(showAllUslugi)),
                 new CommandViewModel("Zlecenia", new BaseCommand(showAllZlecenia)),
-                new CommandViewModel("Zamowienia", new BaseCommand(showAllZamowienia))
+                new CommandViewModel("Zamowienia", new BaseCommand(showAllZamowienia)),
+                new CommandViewModel("Raporty", new BaseCommand(() => createView(new RaportyViewModel())))
             };
         }
         #endregion
@@ -243,6 +246,18 @@ namespace Firma.ViewModels
             else if (name == "Dodaj zlecenie")
             {
                 createView(new NoweZlecenieViewModel());
+            }
+            else if (name == "Raport sprzedazy")
+            {
+                WindowComposer.OpenNewWindow(new RaportSprzedazyViewModel());
+            }
+            else if (name == "Stan magazynowy")
+            {
+                WindowComposer.OpenNewWindow(new StanMagazynowyViewModel());
+            }
+            else if (name == "Aktywni pracownicy")
+            {
+                WindowComposer.OpenNewWindow(new AktywniPracownicyViewModel());
             }
 
         }

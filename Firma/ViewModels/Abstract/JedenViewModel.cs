@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Firma.ViewModels.Abstract
@@ -41,9 +42,19 @@ namespace Firma.ViewModels.Abstract
         
         public void SaveAndClose()
         {
-            Save();
-            base.OnRequestClose();
+            if (IsValid())
+            {
+                Save();
+                MessageBox.Show("Udalo sie zapisac");
+                base.OnRequestClose();
+            }
+            else
+            {
+                MessageBox.Show("Nie udalo sie zapisac");
+            }
+            
         }
+        protected virtual bool IsValid() => true;
         #endregion
     }
 }

@@ -39,6 +39,49 @@ namespace Firma.ViewModels.Wszystkie
                     }
 
                 );
+            ListCopy = new List<RabatyForAllView>(List);
+        }
+
+        protected override List<string> GetSortComboBoxItems() => new List<string>() { "Nazwa","Data","Tworca" };
+
+
+        protected override void Sort()
+        {
+            switch (SortField)
+            {
+                case "Nazwa":
+                    List = new ObservableCollection<RabatyForAllView>
+                        (descending ? List.OrderByDescending(item => item.Nazwa) : List.OrderBy(item => item.Nazwa));
+                    break;
+                case "Data":
+                    List = new ObservableCollection<RabatyForAllView>
+                        (descending ? List.OrderByDescending(item => item.DataUtworzenia) : List.OrderBy(item => item.DataUtworzenia));
+                    break;
+                case "Tworca":
+                    List = new ObservableCollection<RabatyForAllView>
+                        (descending ? List.OrderByDescending(item => item.Kto) : List.OrderBy(item => item.Kto));
+                    break;
+            }
+        }
+
+        protected override List<string> GetSearchComboBoxItems() => new List<string>() { "Nazwa", "Tworca", "Rabat" };
+
+
+        protected override void Search()
+        {
+            switch (SearchField)
+            {
+                case "Nazwa":
+                    List = new ObservableCollection<RabatyForAllView>(ListCopy.Where(item => item.Nazwa == SearchText));
+                    break;
+                case "Tworca":
+                    List = new ObservableCollection<RabatyForAllView>(ListCopy.Where(item => item.Kto == SearchText));
+                    break;
+                case "Rabat":
+                    List = new ObservableCollection<RabatyForAllView>(ListCopy.Where(item => item.Poziom == Int32.Parse(SearchText)));
+                    break;
+            }
+
         }
     }
 }

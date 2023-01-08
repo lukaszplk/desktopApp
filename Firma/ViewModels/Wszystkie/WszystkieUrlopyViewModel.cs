@@ -45,6 +45,52 @@ namespace Firma.ViewModels.Wszystkie
     }
 
                 );
+            
+            ListCopy = new List<UrlopForAllView>(List);
+        }
+
+        protected override List<string> GetSortComboBoxItems() => new List<string>() { "Pracownik","Data rozpoczecia", "Data zakonczenia" };
+
+
+        protected override void Sort()
+        {
+            switch (SortField)
+            {
+                case "Pracownik":
+                    List = new ObservableCollection<UrlopForAllView>
+                        (descending ? List.OrderByDescending(item => item.Pracownik) : List.OrderBy(item => item.Pracownik));
+                    break;
+                case "Data rozpoczecia":
+                    List = new ObservableCollection<UrlopForAllView>
+                        (descending ? List.OrderByDescending(item => item.DataRozpoczecia) : List.OrderBy(item => item.DataRozpoczecia));
+                    break;
+                case "Data zakonczenia":
+                    List = new ObservableCollection<UrlopForAllView>
+                        (descending ? List.OrderByDescending(item => item.DataZakonczenia) : List.OrderBy(item => item.DataZakonczenia));
+                    break;
+                
+            }
+        }
+
+        protected override List<string> GetSearchComboBoxItems() => new List<string>() { "Pracownik","Zatwierdzone" };
+
+
+        protected override void Search()
+        {
+            switch (SearchField)
+            {
+                case "Pracownik":
+                    List = new ObservableCollection<UrlopForAllView>(ListCopy.Where(item => item.Pracownik == SearchText));
+                    break;
+                case "Zatwierdzone":
+                    List = new ObservableCollection<UrlopForAllView>(ListCopy.Where(item => item.CzyZatwierdzony == true));
+                    break;
+                case "Nie zatwierdzone":
+                    List = new ObservableCollection<UrlopForAllView>(ListCopy.Where(item => item.CzyZatwierdzony ==false));
+                    break;
+
+            }
+
         }
     }
 }

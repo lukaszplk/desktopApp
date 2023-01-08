@@ -3,8 +3,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:vm="clr-namespace:Firma.ViewModels.Jeden"
     xmlns:vmAll="clr-namespace:Firma.ViewModels.Wszystkie"
+    xmlns:vmrap="clr-namespace:Firma.ViewModels.Raporty"
     xmlns:vw="clr-namespace:Firma.Views.Jeden"
-    xmlns:vwAll="clr-namespace:Firma.Views.Wszystkie">
+    xmlns:vwAll="clr-namespace:Firma.Views.Wszystkie"
+    xmlns:vwrap="clr-namespace:Firma.Views.Raporty">
 
     <!--  tu będziemy łączyć View z ViewModel zakładek  -->
     <DataTemplate DataType="{x:Type vmAll:WszystkieFakturyViewModel}">
@@ -101,10 +103,28 @@
     <DataTemplate DataType="{x:Type vm:NoweZamowienieViewModel}">
         <vw:NoweZamowienieView />
     </DataTemplate>
-
+    <DataTemplate DataType="{x:Type vmrap:RaportyViewModel}">
+        <vwrap:RaportyView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vmrap:AktywniPracownicyViewModel}">
+        <vwrap:AktywniPracownicyView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vmrap:StanMagazynowyViewModel}">
+        <vwrap:StanMagazynowyView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vmrap:RaportSprzedazyViewModel}">
+        <vwrap:RaportSprzedazyView />
+    </DataTemplate>
 
     <!--  tu jest koniec łączenia View z ViewModel zakładek  -->
 
+    <Style TargetType="TextBox">
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="true">
+                <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
         <Setter Property="HeaderTemplate">

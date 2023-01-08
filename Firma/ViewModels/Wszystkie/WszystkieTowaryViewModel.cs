@@ -37,6 +37,48 @@ namespace Firma.ViewModels.Wszystkie
                     select towar
                     
                 );
+            ListCopy = new List<Towar>(List);
+        }
+
+        protected override List<string> GetSortComboBoxItems() => new List<string>() { "Nazwa","Cena","Marza" };
+
+
+        protected override void Sort()
+        {
+            switch (SortField)
+            {
+                case "Nazwa":
+                    List = new ObservableCollection<Towar>
+                        (descending ? List.OrderByDescending(item => item.nazwa) : List.OrderBy(item => item.nazwa));
+                    break;
+                case "Cena":
+                    List = new ObservableCollection<Towar>
+                        (descending ? List.OrderByDescending(item => item.cena) : List.OrderBy(item => item.cena));
+                    break;
+                case "Marza":
+                    List = new ObservableCollection<Towar>
+                        (descending ? List.OrderByDescending(item => item.marza) : List.OrderBy(item => item.marza));
+                    break;
+                
+            }
+        }
+
+        protected override List<string> GetSearchComboBoxItems() => new List<string>() { "Nazwa","Kod" };
+
+
+        protected override void Search()
+        {
+            switch (SearchField)
+            {
+                case "Nazwa":
+                    List = new ObservableCollection<Towar>(ListCopy.Where(item => item.nazwa == SearchText));
+                    break;
+                case "Kod":
+                    List = new ObservableCollection<Towar>(ListCopy.Where(item => item.kod ==SearchText));
+                    break;
+                
+            }
+
         }
         #endregion
     }

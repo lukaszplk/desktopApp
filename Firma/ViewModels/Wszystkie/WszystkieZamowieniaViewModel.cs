@@ -42,6 +42,54 @@ namespace Firma.ViewModels.Wszystkie
                     }
 
                 );
+            ListCopy = new List<ZamowienieForAllView>(List);
+        }
+
+        protected override List<string> GetSortComboBoxItems() => new List<string>() { "Towar","Pracownik","Data","Wartosc" };
+
+
+        protected override void Sort()
+        {
+            switch (SortField)
+            {
+                case "Towar":
+                    List = new ObservableCollection<ZamowienieForAllView>
+                        (descending ? List.OrderByDescending(item => item.Towar) : List.OrderBy(item => item.Towar));
+                    break;
+                case "Pracownik":
+                    List = new ObservableCollection<ZamowienieForAllView>
+                        (descending ? List.OrderByDescending(item => item.Pracownik) : List.OrderBy(item => item.Pracownik));
+                    break;
+                case "Data":
+                    List = new ObservableCollection<ZamowienieForAllView>
+                        (descending ? List.OrderByDescending(item => item.Data) : List.OrderBy(item => item.Data));
+                    break;
+                case "Wartosc":
+                    List = new ObservableCollection<ZamowienieForAllView>
+                        (descending ? List.OrderByDescending(item => item.Wartosc) : List.OrderBy(item => item.Wartosc));
+                    break;
+                
+            }
+        }
+
+        protected override List<string> GetSearchComboBoxItems() => new List<string>() { "Id","Pracownik","Towar" };
+
+
+        protected override void Search()
+        {
+            switch (SearchField)
+            {
+                case "Id":
+                    List = new ObservableCollection<ZamowienieForAllView>(ListCopy.Where(item => item.Id == Int32.Parse(SearchText)));
+                    break;
+                case "Pracownik":
+                    List = new ObservableCollection<ZamowienieForAllView>(ListCopy.Where(item => item.Pracownik == SearchText));
+                    break;
+                case "Towar":
+                    List = new ObservableCollection<ZamowienieForAllView>(ListCopy.Where(item => item.Towar == SearchText));
+                    break;
+            }
+
         }
         #endregion
     }

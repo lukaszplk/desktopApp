@@ -1,7 +1,10 @@
 ﻿using Firma.Helpers;
 using Firma.Models.Entities;
+using Firma.Models.Validatory;
+using Firma.ViewModels.Abstract;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,30 +12,30 @@ using System.Windows.Input;
 
 namespace Firma.ViewModels.Jeden
 {
-    public class NowyTowarViewModel : WorkspaceViewModel
+    public class NowyTowarViewModel : JedenViewModel, IDataErrorInfo
     {
         #region Fields
-        public projektEntities Db { get; set; }
-        public Towar Item { get; set; }
+       
+        public Towar towar { get; set; }
         #endregion
         #region Konstruktor
-        public NowyTowarViewModel()
+        public NowyTowarViewModel():base("Towar")
         {
-            base.DisplayName = "Towar"; 
+            
             Db = new projektEntities();
-            Item = new Towar();
+            towar = new Towar();
         }
         public string Kod
         {
             get
             {
-                return Item.kod;
+                return towar.kod;
             }
             set
             {
-                if(value!=Item.kod)
+                if(value!=towar.kod)
                 {
-                    Item.kod = value;
+                    towar.kod = value;
                     base.OnPropertyChanged(() => Kod);                }
             }
         }
@@ -40,13 +43,13 @@ namespace Firma.ViewModels.Jeden
         {
             get
             {
-                return Item.nazwa;
+                return towar.nazwa;
             }
             set
             {
-                if (value != Item.nazwa)
+                if (value != towar.nazwa)
                 {
-                    Item.nazwa = value;
+                    towar.nazwa = value;
                     base.OnPropertyChanged(() => Nazwa);
                 }
             }
@@ -55,13 +58,13 @@ namespace Firma.ViewModels.Jeden
         {
             get
             {
-                return Item.VatSprzedazy;
+                return towar.VatSprzedazy;
             }
             set
             {
-                if (value != Item.VatSprzedazy)
+                if (value != towar.VatSprzedazy)
                 {
-                    Item.VatSprzedazy = value;
+                    towar.VatSprzedazy = value;
                     base.OnPropertyChanged(() => StawkaVatSprzedazy);
                 }
             }
@@ -70,13 +73,13 @@ namespace Firma.ViewModels.Jeden
         {
             get
             {
-                return Item.VatZakupu;
+                return towar.VatZakupu;
             }
             set
             {
-                if (value != Item.VatZakupu)
+                if (value != towar.VatZakupu)
                 {
-                    Item.VatZakupu = value;
+                    towar.VatZakupu = value;
                     base.OnPropertyChanged(() => StawkaVatZakupu);
                 }
             }
@@ -85,13 +88,13 @@ namespace Firma.ViewModels.Jeden
         {
             get
             {
-                return Item.marza;
+                return towar.marza;
             }
             set
             {
-                if (value != Item.marza)
+                if (value != towar.marza)
                 {
-                    Item.marza = value;
+                    towar.marza = value;
                     base.OnPropertyChanged(() => Marza);
                 }
             }
@@ -100,43 +103,49 @@ namespace Firma.ViewModels.Jeden
         {
             get
             {
-                return Item.cena;
+                return towar.cena;
             }
             set
             {
-                if (value != Item.cena)
+                if (value != towar.cena)
                 {
-                    Item.cena = value;
+                    towar.cena = value;
                     base.OnPropertyChanged(() => Cena);
+                }
+            }
+        }
+
+        public string Error => string.Empty;
+
+        public string this[string columnName]
+        {
+            get
+            {
+                switch (columnName)
+                {
+                    case nameof(Cena):
+                        return DecimalValidator.CzyWiekszyOdZera(Cena);
+                    default:
+                        return string.Empty;
                 }
             }
         }
         #endregion
         #region Commands
-        private BaseCommand _SaveAndCloseCommand;
-        public ICommand SaveAndCloseCommand
-        {
-            get
-            {
-                if(_SaveAndCloseCommand == null)
-                {
-                    _SaveAndCloseCommand = new BaseCommand(() => SaveAndClose());
-                }
-                return _SaveAndCloseCommand;
-            }
-        }
+
         #endregion
         #region Save
-        public void Save()
+        public override void Save()
         {
-            Item.czyAktywny = true;
-            Db.Towar.AddObject(Item);
+            towar.czyAktywny = true;
+            Db.Towar.AddObject(towar);
             Db.SaveChanges();
         }
-        private void SaveAndClose()
+        protected override bool IsValid()
         {
-            Save();
-            base.OnRequestClose();
+            return this[nameof(Cena)] != string.Empty
+                && this[nameof(StawkaVatSprzedazy)] != string.Empty
+                && this[nameof(StawkaVatZakupu)] != string.Empty;
         }
         #endregion
     }

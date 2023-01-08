@@ -41,18 +41,57 @@ namespace Firma.ViewModels.Abstract
                 OnPropertyChanged(() => List);
             }
         }
+        public List<string> SortComboBoxItems { get; set; }
+        public List<string> SearchComboBoxItems { get; set; }
+        public List<T> ListCopy { get; set; }
+        public bool descending { get; set; }
+        public string SortField { get; set; }
+        public string SearchField { get; set; }
+        private ICommand _SortCommand;
+        public ICommand SortCommand
+        {
+            get
+            {
+                if(_SortCommand == null)
+                {
+                    _SortCommand = new BaseCommand(() => Sort());
+                }
+                return _SortCommand;
+            }
+        }
+        private ICommand _SearchCommand;
+        public ICommand SearchCommand
+        {
+            get
+            {
+                if (_SearchCommand == null)
+                {
+                    _SearchCommand = new BaseCommand(() => Search());
+                }
+                return _SearchCommand;
+            }
+        }
+        public string SearchText { get; set; }
         #endregion
         #region Konstruktor
         public collectionViewModel(string displayName)
         {
             base.DisplayName = displayName;
             this.fakturaEntities = new projektEntities();
+            SortComboBoxItems = GetSortComboBoxItems();
+            SearchComboBoxItems = GetSearchComboBoxItems();
+            //SearchField = SearchComboBoxItems.First();
+            //SortField = SortComboBoxItems.First();
         }
         #endregion
         #region Helpers
         public abstract void Load();
         public abstract void Dodaj();
-        
+        abstract protected List<string> GetSortComboBoxItems();
+        abstract protected void Sort();
+        abstract protected List<string> GetSearchComboBoxItems();
+        abstract protected void Search();
+
         #endregion
         #region Commands
         private BaseCommand _DodajCommand;

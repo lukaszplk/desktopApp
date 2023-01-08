@@ -55,5 +55,6 @@ namespace Firma.ViewModels.Jeden
             Db.SposobPlatnosci.AddObject(Item);
             Db.SaveChanges();
         }
+        
     }
 }

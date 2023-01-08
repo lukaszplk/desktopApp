@@ -32,6 +32,42 @@ namespace Firma.ViewModels.Wszystkie
                     select adres
 
                 );
+            ListCopy = new List<Adres>(List);
+        }
+
+        protected override List<string> GetSortComboBoxItems() => new List<string>() { "Miasto", "Ulica" };
+
+
+        protected override void Sort()
+        {
+            switch (SortField)
+            {
+                case "Ulica":
+                    List = new ObservableCollection<Adres>
+                        (descending ? List.OrderByDescending(item => item.ulica) : List.OrderBy(item => item.ulica));
+                    break;
+                case "Miasto":
+                    List = new ObservableCollection<Adres>
+                        (descending ? List.OrderByDescending(item => item.miasto) : List.OrderBy(item => item.miasto));
+                    break;
+            }
+        }
+
+        protected override List<string> GetSearchComboBoxItems() => new List<string>() { "Miasto", "Ulica" };
+
+
+        protected override void Search()
+        {
+            switch (SearchField)
+            {
+                case "Miasto":
+                    List = new ObservableCollection<Adres>(ListCopy.Where(item => item.miasto == SearchText));
+                    break;
+                case "Ulica":
+                    List = new ObservableCollection<Adres>(ListCopy.Where(item => item.ulica == SearchText));
+                    break;
+            }
+
         }
         #endregion
     }

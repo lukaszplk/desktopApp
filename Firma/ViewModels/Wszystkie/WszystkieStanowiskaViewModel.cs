@@ -32,6 +32,41 @@ namespace Firma.ViewModels.Wszystkie
                     select item
 
                 );
+            ListCopy = new List<Stanowisko>(List);
+        }
+
+        protected override List<string> GetSortComboBoxItems() => new List<string>() { "Nazwa", "Doswiadczenie" };
+
+
+        protected override void Sort()
+        {
+            switch (SortField)
+            {
+                case "Nazwa":
+                    List = new ObservableCollection<Stanowisko>
+                        (descending ? List.OrderByDescending(item => item.nazwaStanowiska) : List.OrderBy(item => item.nazwaStanowiska));
+                    break;
+                case "Doswiadczenie":
+                    List = new ObservableCollection<Stanowisko>
+                        (descending ? List.OrderByDescending(item => item.wymaganeDoswiadczenieLata) : List.OrderBy(item => item.wymaganeDoswiadczenieLata));
+                    break;
+                
+            }
+        }
+
+        protected override List<string> GetSearchComboBoxItems() => new List<string>() { "Nazwa"};
+
+
+        protected override void Search()
+        {
+            switch (SearchField)
+            {
+                case "Nazwa":
+                    List = new ObservableCollection<Stanowisko>(ListCopy.Where(item => item.nazwaStanowiska == SearchText));
+                    break;
+                
+            }
+
         }
     }
 }

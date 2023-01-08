@@ -40,7 +40,54 @@ namespace Firma.ViewModels.Wszystkie
                         }
 
                     );
+            ListCopy = new List<ZlecenieForAllView>(List);
+        }
+
+        protected override List<string> GetSortComboBoxItems() => new List<string>() { "Usluga","Faktura","Data"};
+
+
+        protected override void Sort()
+        {
+            switch (SortField)
+            {
+                case "Usluga":
+                    List = new ObservableCollection<ZlecenieForAllView>
+                        (descending ? List.OrderByDescending(item => item.Usluga) : List.OrderBy(item => item.Usluga));
+                    break;
+                case "Faktura":
+                    List = new ObservableCollection<ZlecenieForAllView>
+                        (descending ? List.OrderByDescending(item => item.Faktura) : List.OrderBy(item => item.Faktura));
+                    break;
+                case "Data":
+                    List = new ObservableCollection<ZlecenieForAllView>
+                        (descending ? List.OrderByDescending(item => item.Data) : List.OrderBy(item => item.Data));
+                    break;
+                
             }
         }
+
+        protected override List<string> GetSearchComboBoxItems() => new List<string>() { "Id","Usluga","Pracownik","Adres" };
+
+
+        protected override void Search()
+        {
+            switch (SearchField)
+            {
+                case "Id":
+                    List = new ObservableCollection<ZlecenieForAllView>(ListCopy.Where(item => item.Id == Int32.Parse(SearchText)));
+                    break;
+                case "Usluga":
+                    List = new ObservableCollection<ZlecenieForAllView>(ListCopy.Where(item => item.Usluga == SearchText));
+                    break;
+                case "Pracownik":
+                    List = new ObservableCollection<ZlecenieForAllView>(ListCopy.Where(item => item.Pracownik == SearchText));
+                    break;
+                case "Adres":
+                    List = new ObservableCollection<ZlecenieForAllView>(ListCopy.Where(item => item.Adres == SearchText));
+                    break;
+            }
+
+        }
+    }
     
 }

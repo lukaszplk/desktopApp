@@ -41,6 +41,49 @@ namespace Firma.ViewModels.Wszystkie
                     }
 
                 );
+            ListCopy = new List<FakturaForAllView>(List);
+        }
+
+        protected override List<string> GetSortComboBoxItems() => new List<string>() { "Numer","Klient","Pracownik" };
+
+
+        protected override void Sort()
+        {
+            switch (SortField)
+            {
+                case "Numer":
+                    List = new ObservableCollection<FakturaForAllView>
+                        (descending ? List.OrderByDescending(item => item.Numer) : List.OrderBy(item => item.Numer));
+                    break;
+                case "Klient":
+                    List = new ObservableCollection<FakturaForAllView>
+                        (descending ? List.OrderByDescending(item => item.Klient) : List.OrderBy(item => item.Klient));
+                    break;
+                case "Pracownik":
+                    List = new ObservableCollection<FakturaForAllView>
+                        (descending ? List.OrderByDescending(item => item.Pracownik) : List.OrderBy(item => item.Pracownik));
+                    break;
+            }
+        }
+
+        protected override List<string> GetSearchComboBoxItems() => new List<string>() { "Numer", "Klient", "Pracownik" };
+
+
+        protected override void Search()
+        {
+            switch (SearchField)
+            {
+                case "Numer":
+                    List = new ObservableCollection<FakturaForAllView>(ListCopy.Where(item => item.Numer == Int32.Parse(SearchText)));
+                    break;
+                case "Klient":
+                    List = new ObservableCollection<FakturaForAllView>(ListCopy.Where(item => item.Klient == SearchText));
+                    break;
+                case "Pracownik":
+                    List = new ObservableCollection<FakturaForAllView>(ListCopy.Where(item => item.Pracownik == SearchText));
+                    break;
+            }
+
         }
         #endregion
     }

@@ -11,7 +11,7 @@
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="34" />
-                            <RowDefinition Height="60" />
+                            <RowDefinition Height="auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <ToolBar
@@ -26,11 +26,11 @@
                             <ToggleButton
                                 Width="auto"
                                 Height="30"
-                                Content="usun" />
+                                Content="modyfikuj" />
                             <ToggleButton
                                 Width="auto"
                                 Height="30"
-                                Content="filtruj" />
+                                Content="usun" />
                             <ToggleButton
                                 Width="auto"
                                 Height="30"
@@ -41,7 +41,25 @@
                                 Command="{Binding CloseCommand}"
                                 Content="zamknij" />
                         </ToolBar>
-                        <StackPanel Grid.Row="1" Background="azure" />
+                        <StackPanel
+                            Grid.Row="1"
+                            Background="azure"
+                            Orientation="Horizontal">
+                            <Label Content="Sortowanie" />
+                            <ComboBox
+                                Width="120"
+                                ItemsSource="{Binding SortComboBoxItems}"
+                                SelectedValue="{Binding SortField}" />
+                            <CheckBox Content="Malejaco" IsChecked="{Binding descending}" />
+                            <Button Command="{Binding SortCommand}" Content="Sortuj" />
+                            <Label Content="Wyszukiwanie" />
+                            <ComboBox
+                                Width="120"
+                                ItemsSource="{Binding SearchComboBoxItems}"
+                                SelectedValue="{Binding SearchField}" />
+                            <TextBox Width="120" Text="{Binding Path=SearchText}" />
+                            <Button Command="{Binding SearchCommand}" Content="Wyszukaj" />
+                        </StackPanel>
                         <ContentPresenter Grid.Row="2" Margin="0,2,0,2" />
                     </Grid>
                 </ControlTemplate>

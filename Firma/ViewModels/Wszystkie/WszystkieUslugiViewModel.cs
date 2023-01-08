@@ -33,5 +33,25 @@ namespace Firma.ViewModels.Wszystkie
 
                 );
         }
+
+        protected override List<string> GetSearchComboBoxItems()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override List<string> GetSortComboBoxItems()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void Search()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void Sort()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
