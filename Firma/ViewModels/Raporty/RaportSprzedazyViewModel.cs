@@ -13,7 +13,7 @@ namespace Firma.ViewModels.Raporty
             
         }
 
-        public override void RunRaport()
+        public override decimal RunRaport()
         {
             throw new NotImplementedException();
         }

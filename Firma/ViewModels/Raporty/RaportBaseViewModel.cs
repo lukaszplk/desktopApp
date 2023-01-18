@@ -11,10 +11,29 @@ namespace Firma.ViewModels.Raporty
     public abstract class RaportBaseViewModel : WorkspaceViewModel
     {
         public DateTime Od { get; set; } 
-        public DateTime Do { get; set; } 
+        public DateTime Do { get; set; }
+
+        private decimal _result;
+        public decimal Result {
+            get
+            {
+                return _result;
+            }
+            set
+            {
+                if (_result != value)
+                {
+                    _result = value;
+                    base.OnPropertyChanged(() => Result);
+                }
+            }
+        }
         public RaportBaseViewModel(string name)
         {
             this.DisplayName = name;
+            Od = DateTime.Now;
+            Do = DateTime.Now;
+            
         }
 
         private BaseCommand _RunRaportCommand;
@@ -36,7 +55,7 @@ namespace Firma.ViewModels.Raporty
                 }
             }
         }
-        public abstract void RunRaport();
+        public abstract decimal RunRaport();
 
     }
 }
