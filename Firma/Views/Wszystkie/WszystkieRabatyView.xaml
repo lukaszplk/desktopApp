@@ -8,7 +8,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}" SelectedValue="{Binding Id, UpdateSourceTrigger=PropertyChanged}"
+            SelectedValuePath="Id">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Path=Nazwa}" Header="Nazwa" />
                 <DataGridTextColumn Binding="{Binding Path=DataUtworzenia}" Header="Data utworzenia" />

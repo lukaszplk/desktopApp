@@ -71,7 +71,8 @@ namespace Firma.ViewModels.Wszystkie
 
         public override void Usun()
         {
-            throw new NotImplementedException();
+            fakturaEntities.Stanowisko.SingleOrDefault(item => item.idStanowiska == Id).czyAktywny = false;
+            fakturaEntities.SaveChanges();
         }
     }
 }

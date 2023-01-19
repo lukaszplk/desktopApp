@@ -31,6 +31,7 @@ namespace Firma.ViewModels.Wszystkie
                     where item.czyAktywny == true
                     select new RabatyForAllView
                     {
+                        Id = item.idRabatu,
                         Nazwa = item.nazwaRabatu,
                         DataUtworzenia = item.dataUtworzenia,
                         Kto = item.Pracownik.imie + " " + item.Pracownik.nazwisko,
@@ -86,7 +87,8 @@ namespace Firma.ViewModels.Wszystkie
 
         public override void Usun()
         {
-            throw new NotImplementedException();
+            fakturaEntities.Rabat.SingleOrDefault(item => item.idRabatu == Id).czyAktywny = false;
+            fakturaEntities.SaveChanges();
         }
     }
 }

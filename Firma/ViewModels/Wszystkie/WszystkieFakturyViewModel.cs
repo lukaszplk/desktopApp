@@ -32,6 +32,7 @@ namespace Firma.ViewModels.Wszystkie
                     where item.czyAktywna == true
                     select new FakturaForAllView
                     {
+                        Id = item.idFaktury,
                         Numer = item.numer,
                         TerminPlatnosci = item.terminPlatnosci,
                         Klient = item.Klient1.imie + " " + item.Klient1.nazwisko,
@@ -88,7 +89,8 @@ namespace Firma.ViewModels.Wszystkie
 
         public override void Usun()
         {
-            throw new NotImplementedException();
+            fakturaEntities.Faktura.SingleOrDefault(item => item.idFaktury == Id).czyAktywna = false;
+            fakturaEntities.SaveChanges();
         }
         #endregion
     }

@@ -72,7 +72,8 @@ namespace Firma.ViewModels.Wszystkie
 
         public override void Usun()
         {
-            throw new NotImplementedException();
+            fakturaEntities.Adres.SingleOrDefault(item => item.idAdresu == Id).czyAktywny = false;
+            fakturaEntities.SaveChanges();
         }
         #endregion
     }

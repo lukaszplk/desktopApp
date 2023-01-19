@@ -12,6 +12,7 @@ namespace Firma.ViewModels.Wszystkie
 {
     public class WszyscyPracownicyViewModel : collectionViewModel<PracownikForAllView>
     {
+        
         public WszyscyPracownicyViewModel()
             :base("Wszyscy pracownicy")
         {
@@ -31,6 +32,7 @@ namespace Firma.ViewModels.Wszystkie
                     where item.czyAktywny == true
                     select new PracownikForAllView
                     {
+                        Id = item.idPracownika,
                         Imie = item.imie,
                         Nazwisko = item.nazwisko,
                         Stanowisko = item.Stanowisko1.nazwaStanowiska,
@@ -80,7 +82,8 @@ namespace Firma.ViewModels.Wszystkie
 
         public override void Usun()
         {
-            throw new NotImplementedException();
+            fakturaEntities.Pracownik.SingleOrDefault(item => item.idPracownika == Id).czyAktywny = false;
+            fakturaEntities.SaveChanges();
         }
     }
 }

@@ -10,7 +10,8 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Grid Background="White">
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}" SelectedValue="{Binding Id, UpdateSourceTrigger=PropertyChanged}"
+            SelectedValuePath="Id">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Path=Towar}" Header="Towar" />
                 <DataGridTextColumn Binding="{Binding Path=Ilosc}" Header="Ilosc" />

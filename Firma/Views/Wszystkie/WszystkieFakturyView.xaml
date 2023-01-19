@@ -15,7 +15,8 @@
     </UserControl.Resources>
 
     <Grid Background="White">
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}" SelectedValue="{Binding Id, UpdateSourceTrigger=PropertyChanged}"
+            SelectedValuePath="Id">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Path=Numer}" Header="Numer faktury" />
                 <DataGridTextColumn Binding="{Binding Path=TerminPlatnosci}" Header="Termin platnosci" />

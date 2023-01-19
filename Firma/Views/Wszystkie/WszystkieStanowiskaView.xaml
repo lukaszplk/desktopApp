@@ -10,7 +10,11 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Grid Background="White">
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
+        <DataGrid
+            AutoGenerateColumns="False"
+            ItemsSource="{Binding List}"
+            SelectedValue="{Binding Id, UpdateSourceTrigger=PropertyChanged}"
+            SelectedValuePath="idStanowiska">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Path=idStanowiska}" Header="id" />
                 <DataGridTextColumn Binding="{Binding Path=nazwaStanowiska}" Header="nazwa" />

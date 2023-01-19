@@ -13,7 +13,7 @@
         <DataGrid
             AutoGenerateColumns="False"
             ItemsSource="{Binding List}"
-            SelectedValue="{Binding klient, UpdateSourceTrigger=PropertyChanged}"
+            SelectedValue="{Binding Id, UpdateSourceTrigger=PropertyChanged}"
             SelectedValuePath="Id"
             >
             <DataGrid.Columns>

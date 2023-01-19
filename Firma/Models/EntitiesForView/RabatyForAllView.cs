@@ -9,6 +9,7 @@ namespace Firma.Models.EntitiesForView
     public class RabatyForAllView
     {
         #region Properties
+        public int Id { get; set; }
         public string Nazwa { get; set; }
         public DateTime DataUtworzenia { get; set; }
         public string Kto { get; set; }

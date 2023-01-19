@@ -86,7 +86,8 @@ namespace Firma.ViewModels.Wszystkie
 
         public override void Usun()
         {
-            throw new NotImplementedException();
+            fakturaEntities.Pojazd.SingleOrDefault(item => item.idPojazdu == Id).czyAktywny = false;
+            fakturaEntities.SaveChanges();
         }
     }
 }

@@ -13,6 +13,22 @@ namespace Firma.ViewModels.Abstract
     public abstract class collectionViewModel<T> :WorkspaceViewModel
     {
         #region Fields
+        private int _Id;
+        public int Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    _Id = value;
+                    base.OnPropertyChanged(() => Id);
+                }
+            }
+        }
         protected readonly projektEntities fakturaEntities;
         private BaseCommand _LoadCommand;
         private ICommand LoadCommand

@@ -9,6 +9,7 @@ namespace Firma.Models.EntitiesForView
     public class PracownikForAllView
     {
         #region Properties
+        public int Id { get; set; }
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
         public string Adres { get; set; }

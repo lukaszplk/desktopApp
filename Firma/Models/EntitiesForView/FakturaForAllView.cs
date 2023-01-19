@@ -9,6 +9,7 @@ namespace Firma.Models.EntitiesForView
     public class FakturaForAllView
     {
         #region Properties
+        public int Id { get; set; }
         public int? Numer { get; set; }
         public DateTime TerminPlatnosci { get; set; }
         public string Klient { get; set; }

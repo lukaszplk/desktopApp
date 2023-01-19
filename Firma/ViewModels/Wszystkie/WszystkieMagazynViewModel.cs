@@ -31,6 +31,7 @@ namespace Firma.ViewModels.Wszystkie
                     where item.czyAktywne == true
                     select new MagazynForAllView
                     {
+                        Id = item.id,
                         Towar = item.Towar1.nazwa,
                         Ilosc = item.ilosc,
                         OstatnieZamowienie = item.Zamowienia.dataZamowienia,
@@ -85,7 +86,8 @@ namespace Firma.ViewModels.Wszystkie
 
         public override void Usun()
         {
-            throw new NotImplementedException();
+            fakturaEntities.Magazyn.SingleOrDefault(item => item.id == Id).czyAktywne= false;
+            fakturaEntities.SaveChanges();
         }
     }
 }

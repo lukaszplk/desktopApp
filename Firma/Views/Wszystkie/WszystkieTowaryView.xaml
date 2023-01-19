@@ -11,7 +11,8 @@
     mc:Ignorable="d">
 
     <Grid Background="White">
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}" SelectedValue="{Binding Id, UpdateSourceTrigger=PropertyChanged}"
+            SelectedValuePath="idTowaru">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Path=idTowaru}" Header="id" />
                 <DataGridTextColumn Binding="{Binding Path=kod}" Header="kod" />

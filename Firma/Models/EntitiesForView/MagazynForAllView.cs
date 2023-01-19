@@ -9,6 +9,7 @@ namespace Firma.Models.EntitiesForView
     public class MagazynForAllView
     {
         #region Properties
+        public int Id { get; set; }
         public string Towar { get; set; }
         public int? Ilosc { get; set; }
         public DateTime OstatnieZamowienie { get; set; }

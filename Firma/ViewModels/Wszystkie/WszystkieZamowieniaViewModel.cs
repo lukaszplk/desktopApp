@@ -94,7 +94,8 @@ namespace Firma.ViewModels.Wszystkie
 
         public override void Usun()
         {
-            throw new NotImplementedException();
+            fakturaEntities.Zamowienia.SingleOrDefault(item => item.idZamowienia == Id).czyAktywne = false;
+            fakturaEntities.SaveChanges();
         }
         #endregion
     }
