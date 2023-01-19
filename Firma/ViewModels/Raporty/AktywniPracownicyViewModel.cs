@@ -16,7 +16,7 @@ namespace Firma.ViewModels.Raporty
         {
             
             logic = new PracownikLogic(new projektEntities());
-            Result = 100;
+            
         }
 
         public override decimal RunRaport()

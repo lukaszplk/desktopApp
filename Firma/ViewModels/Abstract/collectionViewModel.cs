@@ -71,6 +71,30 @@ namespace Firma.ViewModels.Abstract
                 return _SearchCommand;
             }
         }
+        private ICommand _ReloadCommand;
+        public ICommand ReloadCommand
+        {
+            get
+            {
+                if (_ReloadCommand == null)
+                {
+                    _ReloadCommand = new BaseCommand(() => Load());
+                }
+                return _ReloadCommand;
+            }
+        }
+        private ICommand _UsunCommand;
+        public ICommand UsunCommand
+        {
+            get
+            {
+                if (_UsunCommand == null)
+                {
+                    _UsunCommand = new BaseCommand(() => Usun());
+                }
+                return _UsunCommand;
+            }
+        }
         public string SearchText { get; set; }
         #endregion
         #region Konstruktor
@@ -87,6 +111,7 @@ namespace Firma.ViewModels.Abstract
         #region Helpers
         public abstract void Load();
         public abstract void Dodaj();
+        public abstract void Usun();
         abstract protected List<string> GetSortComboBoxItems();
         abstract protected void Sort();
         abstract protected List<string> GetSearchComboBoxItems();

@@ -30,10 +30,12 @@
                             <ToggleButton
                                 Width="auto"
                                 Height="30"
+                                Command="{Binding UsunCommand}"
                                 Content="usun" />
                             <ToggleButton
                                 Width="auto"
                                 Height="30"
+                                Command="{Binding ReloadCommand}"
                                 Content="odswiez" />
                             <ToggleButton
                                 Width="auto"

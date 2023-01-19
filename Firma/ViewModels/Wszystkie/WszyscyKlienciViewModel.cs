@@ -13,6 +13,22 @@ namespace Firma.ViewModels.Wszystkie
 {
     public class WszyscyKlienciViewModel : collectionViewModel<KlientForAllView>
     {
+        private int _klient;
+        public int klient
+        {
+            get
+            {
+                return _klient;
+            }
+            set
+            {
+                if (_klient != value)
+                {
+                    _klient = value;
+                    base.OnPropertyChanged(() => klient);
+                }
+            }
+        }
         
         public WszyscyKlienciViewModel()
             :base("Wszyscy klienci")
@@ -27,6 +43,7 @@ namespace Firma.ViewModels.Wszystkie
                     where klient.czyAktywny == true
                     select new KlientForAllView
                     {
+                        Id = klient.idKlienta,
                         Imie = klient.imie,
                         Nazwisko = klient.nazwisko,
                         Miejscowosc = klient.Adres1.miasto + ", " + klient.Adres1.kodPocztowy,
@@ -74,6 +91,14 @@ namespace Firma.ViewModels.Wszystkie
                     break;
             }
             
+        }
+
+        public override void Usun()
+        {
+            
+            var result = this.fakturaEntities.Klient.SingleOrDefault(item => item.idKlienta == klient);
+            result.czyAktywny = false;
+            fakturaEntities.SaveChanges();
         }
     }
 }

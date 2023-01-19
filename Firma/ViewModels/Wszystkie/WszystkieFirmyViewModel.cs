@@ -75,5 +75,10 @@ namespace Firma.ViewModels.Wszystkie
             }
 
         }
+
+        public override void Usun()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
