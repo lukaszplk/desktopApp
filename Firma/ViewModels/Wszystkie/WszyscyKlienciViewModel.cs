@@ -43,6 +43,13 @@ namespace Firma.ViewModels.Wszystkie
             Messenger.Default.Send("Dodaj klienta");
         }
 
+        public override void Modify()
+        {
+            IDictionary<string, string> json = new Dictionary<string, string>();
+            json.Add("Operation", "Modyfikuj klienta");
+            json.Add("Id", Id.ToString());
+            Messenger.Default.Send(json);
+        }
         protected override List<string> GetSortComboBoxItems() => new List<string>() { "Imie", "Nazwisko" };
        
 

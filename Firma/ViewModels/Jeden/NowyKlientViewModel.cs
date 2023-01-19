@@ -10,14 +10,26 @@ namespace Firma.ViewModels.Jeden
 {
     public class NowyKlientViewModel : JedenViewModel
     {
-       public Klient Item;
+        public Klient Item;
+        public Klient newItem;
+        public bool isModified = false;
+        
         public List<Adres> listaAdresow { get; set; }
         public List<Firma_zew> listaFirm { get; set; }
         public List<Rabat> listaRabatow { get; set; }
         public List<Pracownik> listaPracownikow { get; set; }
-        public NowyKlientViewModel() : base("Nowe zlecenie")
+        public NowyKlientViewModel(int id = -1) : base("Nowe zlecenie")
         {
-            Item = new Klient();
+            if(id != -1){
+                Item = Db.Klient.SingleOrDefault(item => item.idKlienta == id);
+                isModified = true;
+                newItem = new Klient();
+            }
+            else
+            {
+                Item = new Klient();
+            }
+            
             listaPracownikow = (from pracownik in Db.Pracownik
                             where pracownik.czyAktywny == true
                             select pracownik).ToList();
@@ -125,9 +137,28 @@ namespace Firma.ViewModels.Jeden
 
         public override void Save()
         {
-            Item.czyAktywny = true;
-            Db.Klient.AddObject(Item);
-            Db.SaveChanges();
+            if (isModified)
+            {
+                
+                newItem.imie = Item.imie;
+                newItem.nazwisko = Item.nazwisko;
+                newItem.adres = Item.adres;
+                newItem.firma_zew = Item.firma_zew;
+                newItem.rabat = Item.rabat;
+                newItem.ktoUdzielilRabatu = Item.ktoUdzielilRabatu;
+                newItem.czyAktywny = true;
+                Db.Klient.AddObject(newItem);
+                Db.Klient.SingleOrDefault(item => item.idKlienta == Item.idKlienta).czyAktywny = false;
+                Db.SaveChanges();
+                
+            }
+            else
+            {
+                Item.czyAktywny = true;
+                Db.Klient.AddObject(Item);
+                Db.SaveChanges();
+            }
+            
         }
     }
 }

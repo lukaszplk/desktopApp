@@ -99,6 +99,18 @@ namespace Firma.ViewModels.Abstract
                 return _ReloadCommand;
             }
         }
+        private ICommand _ModyfikujCommand;
+        public ICommand ModyfikujCommand
+        {
+            get
+            {
+                if (_ModyfikujCommand == null)
+                {
+                    _ModyfikujCommand = new BaseCommand(() => Modify());
+                }
+                return _ModyfikujCommand;
+            }
+        }
         private ICommand _UsunCommand;
         public ICommand UsunCommand
         {
@@ -126,8 +138,13 @@ namespace Firma.ViewModels.Abstract
         #endregion
         #region Helpers
         public abstract void Load();
+        //public abstract void Modify();
         public abstract void Dodaj();
         public abstract void Usun();
+        public virtual void Modify()
+        {
+
+        }
         abstract protected List<string> GetSortComboBoxItems();
         abstract protected void Sort();
         abstract protected List<string> GetSearchComboBoxItems();

@@ -26,6 +26,7 @@
                             <ToggleButton
                                 Width="auto"
                                 Height="30"
+                                Command="{Binding ModyfikujCommand}"
                                 Content="modyfikuj" />
                             <ToggleButton
                                 Width="auto"

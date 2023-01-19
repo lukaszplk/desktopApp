@@ -115,6 +115,7 @@ namespace Firma.ViewModels
         private List<CommandViewModel> CreateCommands() 
         {
             Messenger.Default.Register<string>(this, open);
+            Messenger.Default.Register<IDictionary<string, string>>(this, modify);
             return new List<CommandViewModel>
             {
                 //new CommandViewModel("Towar", new BaseCommand(() => createView(new NowyTowarViewModel()))),
@@ -184,6 +185,13 @@ namespace Firma.ViewModels
         #endregion
 
         #region Funkcje pomocnicze
+        private void modify(IDictionary<string, string> json)
+        {
+            if(json["Operation"]== "Modyfikuj klienta")
+            {
+                createView(new NowyKlientViewModel(Int32.Parse(json["Id"])));
+            }
+        }
         private void open(string name)
         {
 
