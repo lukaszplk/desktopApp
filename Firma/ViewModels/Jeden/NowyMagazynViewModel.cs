@@ -19,7 +19,7 @@ namespace Firma.ViewModels.Jeden
         public List<Towar> listaTowarow { get; set; }
         public List<Zamowienia> listaZamowien { get; set; }
 
-        public NowyMagazynViewModel(int id = -1, string displayname = "Nowy magazyn") : base(displayname)
+        public NowyMagazynViewModel(int id = -1, string displayname = "Magazyn") : base(displayname)
         {
             if (id != -1)
             {

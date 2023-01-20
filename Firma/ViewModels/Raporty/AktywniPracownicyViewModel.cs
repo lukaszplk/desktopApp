@@ -10,7 +10,6 @@ namespace Firma.ViewModels.Raporty
 {
     public class AktywniPracownicyViewModel: RaportBaseViewModel
     {
-        public projektEntities Db { get; set; }
         private PracownikLogic logic;
         public AktywniPracownicyViewModel():base("Aktywni pracownicy")
         {
