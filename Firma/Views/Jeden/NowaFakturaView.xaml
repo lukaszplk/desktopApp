@@ -38,7 +38,7 @@
         <TextBox
             Grid.Row="0"
             Grid.Column="1"
-            Text="{Binding numer}" />
+            Text="{Binding numer, UpdateSourceTrigger=PropertyChanged}" />
 
         <Label
             Grid.Row="1"
@@ -50,7 +50,7 @@
             Grid.Column="1"
             DisplayMemberPath="nazwisko"
             ItemsSource="{Binding listaKlientow}"
-            SelectedValue="{Binding klient}"
+            SelectedValue="{Binding klient, UpdateSourceTrigger=PropertyChanged}"
             SelectedValuePath="idKlienta" />
 
         <Label
@@ -63,7 +63,7 @@
             Grid.Column="1"
             DisplayMemberPath="nazwisko"
             ItemsSource="{Binding listaPracownikow}"
-            SelectedValue="{Binding pracownik}"
+            SelectedValue="{Binding pracownik, UpdateSourceTrigger=PropertyChanged}"
             SelectedValuePath="idPracownika" />
 
         <Label
@@ -76,7 +76,7 @@
             Grid.Column="1"
             DisplayMemberPath="nazwa"
             ItemsSource="{Binding listaSposobowPlatnosci}"
-            SelectedValue="{Binding sposobPlatnosci}"
+            SelectedValue="{Binding sposobPlatnosci, UpdateSourceTrigger=PropertyChanged}"
             SelectedValuePath="idSposobuPlatnosci" />
         <Label
             Grid.Row="4"
@@ -96,7 +96,7 @@
         <TextBox
             Grid.Row="5"
             Grid.Column="1"
-            Text="{Binding kwotaFaktury}" />
+            Text="{Binding kwotaFaktury, UpdateSourceTrigger=PropertyChanged}" />
         <Label
             Grid.Row="6"
             Grid.Column="0"
@@ -105,6 +105,6 @@
         <CheckBox
             Grid.Row="6"
             Grid.Column="1"
-            IsChecked="{Binding czyZatwierdzona}" />
+            IsChecked="{Binding czyZatwierdzona, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </Abstract:JedenViewBase>

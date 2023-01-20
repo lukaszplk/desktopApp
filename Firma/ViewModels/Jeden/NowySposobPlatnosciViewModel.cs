@@ -11,10 +11,20 @@ namespace Firma.ViewModels.Jeden
     public class NowySposobPlatnosciViewModel : JedenViewModel
     {
         public SposobPlatnosci Item;
-        public NowySposobPlatnosciViewModel() 
-            : base("Sposob platnosci")
+        public SposobPlatnosci newItem;
+        public bool isModified = false;
+        public NowySposobPlatnosciViewModel(int id = -1, string displayname = "Nowy sposob platnosci") : base(displayname)
         {
-            Item = new SposobPlatnosci();
+            if (id != -1)
+            {
+                Item = Db.SposobPlatnosci.SingleOrDefault(item => item.idSposobuPlatnosci == id);
+                isModified = true;
+                newItem = new SposobPlatnosci();
+            }
+            else
+            {
+                Item = new SposobPlatnosci();
+            }
         }
 
         public string nazwa
@@ -51,9 +61,23 @@ namespace Firma.ViewModels.Jeden
 
         public override void Save()
         {
-            Item.czyAktywny = true;
-            Db.SposobPlatnosci.AddObject(Item);
-            Db.SaveChanges();
+            if (isModified)
+            {
+
+                newItem.nazwa = Item.nazwa;
+                newItem.opis = Item.opis;
+                newItem.czyAktywny = true;
+                Db.SposobPlatnosci.AddObject(newItem);
+                Db.SposobPlatnosci.SingleOrDefault(item => item.idSposobuPlatnosci == Item.idSposobuPlatnosci).czyAktywny = false;
+                Db.SaveChanges();
+
+            }
+            else
+            {
+                Item.czyAktywny = true;
+                Db.SposobPlatnosci.AddObject(Item);
+                Db.SaveChanges();
+            }
         }
         
     }

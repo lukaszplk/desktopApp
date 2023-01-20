@@ -11,11 +11,22 @@ namespace Firma.ViewModels.Jeden
     public class NoweZamowienieViewModel : JedenViewModel
     {
         public Zamowienia Item;
+        public Zamowienia newItem;
+        public bool isModified = false;
         public List<Pracownik> listaPracownikow { get; set; }
         public List<Towar> listaTowarow { get; set; }
-        public NoweZamowienieViewModel() : base("Nowe zamowienie")
+        public NoweZamowienieViewModel(int id = -1, string displayname = "Nowe zamowienie") : base(displayname)
         {
-            Item = new Zamowienia();
+            if (id != -1)
+            {
+                Item = Db.Zamowienia.SingleOrDefault(item => item.idZamowienia == id);
+                isModified = true;
+                newItem = new Zamowienia();
+            }
+            else
+            {
+                Item = new Zamowienia();
+            }
             listaPracownikow = (from pracownik in Db.Pracownik
                                 where pracownik.czyAktywny == true
                                 select pracownik).ToList();
@@ -71,10 +82,26 @@ namespace Firma.ViewModels.Jeden
 
         public override void Save()
         {
-            Item.czyAktywne = true;
-            Item.dataZamowienia = DateTime.Now;
-            Db.Zamowienia.AddObject(Item);
-            Db.SaveChanges();
+            if (isModified)
+            {
+
+                newItem.pracownik = Item.pracownik;
+                newItem.towar = Item.towar;
+                newItem.wartoscZamowienia = Item.wartoscZamowienia;
+                newItem.dataZamowienia = Item.dataZamowienia;
+                newItem.czyAktywne = true;
+                Db.Zamowienia.AddObject(newItem);
+                Db.Zamowienia.SingleOrDefault(item => item.idZamowienia == Item.idZamowienia).czyAktywne = false;
+                Db.SaveChanges();
+
+            }
+            else
+            {
+                Item.dataZamowienia = DateTime.Now;
+                Item.czyAktywne = true;
+                Db.Zamowienia.AddObject(Item);
+                Db.SaveChanges();
+            }
         }
     }
 }

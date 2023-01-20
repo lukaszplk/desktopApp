@@ -14,12 +14,23 @@ namespace Firma.ViewModels.Jeden
     public class NowyMagazynViewModel : JedenViewModel
     {
         public Magazyn Item;
+        public Magazyn newItem;
+        public bool isModified=false;
         public List<Towar> listaTowarow { get; set; }
         public List<Zamowienia> listaZamowien { get; set; }
 
-        public NowyMagazynViewModel() : base("Magazyn")
+        public NowyMagazynViewModel(int id = -1, string displayname = "Nowy magazyn") : base(displayname)
         {
-            Item = new Magazyn();
+            if (id != -1)
+            {
+                Item = Db.Magazyn.SingleOrDefault(item => item.id == id);
+                isModified = true;
+                newItem = new Magazyn();
+            }
+            else
+            {
+                Item = new Magazyn();
+            }
             listaTowarow = (from towar in Db.Towar
                                 where towar.czyAktywny == true
                                 select towar).ToList();
@@ -102,9 +113,25 @@ namespace Firma.ViewModels.Jeden
         }
         public override void Save()
         {
-            Item.czyAktywne = true;
-            Db.Magazyn.AddObject(Item);
-            Db.SaveChanges();
+            if (isModified)
+            {
+
+                newItem.towar = Item.towar;
+                newItem.ilosc = Item.ilosc;
+                newItem.ostatnieZamowienie = Item.ostatnieZamowienie;
+                newItem.wartoscTowaru = Item.wartoscTowaru;
+                newItem.czyAktywne = true;
+                Db.Magazyn.AddObject(newItem);
+                Db.Magazyn.SingleOrDefault(item => item.id == Item.id).czyAktywne = false;
+                Db.SaveChanges();
+
+            }
+            else
+            {
+                Item.czyAktywne = true;
+                Db.Magazyn.AddObject(Item);
+                Db.SaveChanges();
+            }
         }
     }
 }

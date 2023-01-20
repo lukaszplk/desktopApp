@@ -141,10 +141,8 @@ namespace Firma.ViewModels.Abstract
         //public abstract void Modify();
         public abstract void Dodaj();
         public abstract void Usun();
-        public virtual void Modify()
-        {
-
-        }
+        public abstract void Modify();
+        
         abstract protected List<string> GetSortComboBoxItems();
         abstract protected void Sort();
         abstract protected List<string> GetSearchComboBoxItems();

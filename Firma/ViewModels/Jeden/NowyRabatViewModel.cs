@@ -11,10 +11,21 @@ namespace Firma.ViewModels.Jeden
     public class NowyRabatViewModel : JedenViewModel
     {
         public Rabat Item;
+        public Rabat newItem;
+        public bool isModified = false;
         public List<Pracownik> listaPracownikow { get; set; }
-        public NowyRabatViewModel() : base("Nowy rabat")
+        public NowyRabatViewModel(int id = -1, string displayname = "Nowy rabat") : base(displayname)
         {
-            Item = new Rabat();
+            if (id != -1)
+            {
+                Item = Db.Rabat.SingleOrDefault(item => item.idRabatu == id);
+                isModified = true;
+                newItem = new Rabat();
+            }
+            else
+            {
+                Item = new Rabat();
+            }
             listaPracownikow = (from pracownik in Db.Pracownik
                                 where pracownik.czyAktywny == true
                                 select pracownik).ToList();
@@ -81,10 +92,27 @@ namespace Firma.ViewModels.Jeden
         }
         public override void Save()
         {
-            Item.czyAktywny = true;
-            Item.dataUtworzenia = DateTime.Now;
-            Db.Rabat.AddObject(Item);
-            Db.SaveChanges();
+            if (isModified)
+            {
+
+                newItem.nazwaRabatu = Item.nazwaRabatu;
+                newItem.ktoUtworzyl = Item.ktoUtworzyl;
+                newItem.zaCoNalezny = Item.zaCoNalezny;
+                newItem.poziomRabatu = Item.poziomRabatu;
+                newItem.dataUtworzenia = DateTime.Now;
+                newItem.czyAktywny = true;
+                Db.Rabat.AddObject(newItem);
+                Db.Rabat.SingleOrDefault(item => item.idRabatu == Item.idRabatu).czyAktywny = false;
+                Db.SaveChanges();
+
+            }
+            else
+            {
+                Item.czyAktywny = true;
+                Item.dataUtworzenia = DateTime.Now;
+                Db.Rabat.AddObject(Item);
+                Db.SaveChanges();
+            }
         }
     }
 }

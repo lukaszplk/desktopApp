@@ -11,13 +11,24 @@ namespace Firma.ViewModels.Jeden
     public class NowaFakturaViewModel : JedenViewModel 
     {
         public Faktura Item;
+        public Faktura newItem;
+        public bool isModified = false;
         public List<Klient> listaKlientow { get; set; }
         public List<Pracownik> listaPracownikow { get; set; }
         public List<SposobPlatnosci> listaSposobowPlatnosci { get; set; }
         #region Konstruktor
-        public NowaFakturaViewModel():base("Faktura")
+        public NowaFakturaViewModel(int id = -1, string displayname = "Nowa faktura") : base(displayname)
         {
-            Item = new Faktura();
+            if (id != -1)
+            {
+                Item = Db.Faktura.SingleOrDefault(item => item.idFaktury == id);
+                isModified = true;
+                newItem = new Faktura();
+            }
+            else
+            {
+                Item = new Faktura();
+            }
             listaKlientow = (from klient in Db.Klient
                             where klient.czyAktywny == true
                             select klient).ToList();
@@ -154,9 +165,28 @@ namespace Firma.ViewModels.Jeden
         }
         public override void Save()
         {
-            Item.czyAktywna = true;
-            Db.Faktura.AddObject(Item);
-            Db.SaveChanges();
+            if (isModified)
+            {
+
+                newItem.numer = Item.numer;
+                newItem.dataWystawienia = Item.dataWystawienia;
+                newItem.terminPlatnosci = Item.terminPlatnosci;
+                newItem.klient = Item.klient;
+                newItem.pracownik = Item.pracownik;
+                newItem.sposobPlatnosci = Item.sposobPlatnosci;
+                newItem.czyZatwierdzona = true;
+                newItem.czyAktywna = true;
+                Db.Faktura.AddObject(newItem);
+                Db.Faktura.SingleOrDefault(item => item.idFaktury == Item.idFaktury).czyAktywna = false;
+                Db.SaveChanges();
+
+            }
+            else
+            {
+                Item.czyAktywna = true;
+                Db.Faktura.AddObject(Item);
+                Db.SaveChanges();
+            }
         }
     }
 }

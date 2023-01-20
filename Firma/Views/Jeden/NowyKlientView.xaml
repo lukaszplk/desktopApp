@@ -59,7 +59,7 @@
             Grid.Column="1"
             DisplayMemberPath="miasto"
             ItemsSource="{Binding listaAdresow}"
-            SelectedValue="{Binding adres}"
+            SelectedValue="{Binding adres, UpdateSourceTrigger=PropertyChanged}"
             SelectedValuePath="idAdresu" />
 
         <Label
@@ -72,7 +72,7 @@
             Grid.Column="1"
             DisplayMemberPath="nazwa"
             ItemsSource="{Binding listaFirm}"
-            SelectedValue="{Binding firma_zew}"
+            SelectedValue="{Binding firma_zew, UpdateSourceTrigger=PropertyChanged}"
             SelectedValuePath="idFirmy" />
 
         <Label
@@ -85,7 +85,7 @@
             Grid.Column="1"
             DisplayMemberPath="nazwaRabatu"
             ItemsSource="{Binding listaRabatow}"
-            SelectedValue="{Binding rabat}"
+            SelectedValue="{Binding rabat, UpdateSourceTrigger=PropertyChanged}"
             SelectedValuePath="idRabatu" />
 
         <Label
@@ -98,7 +98,7 @@
             Grid.Column="1"
             DisplayMemberPath="nazwisko"
             ItemsSource="{Binding listaPracownikow}"
-            SelectedValue="{Binding pracownik}"
+            SelectedValue="{Binding pracownik, UpdateSourceTrigger=PropertyChanged}"
             SelectedValuePath="idPracownika" />
     </Grid>
 </Abstract:JedenViewBase>

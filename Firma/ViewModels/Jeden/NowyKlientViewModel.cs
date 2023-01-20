@@ -18,7 +18,7 @@ namespace Firma.ViewModels.Jeden
         public List<Firma_zew> listaFirm { get; set; }
         public List<Rabat> listaRabatow { get; set; }
         public List<Pracownik> listaPracownikow { get; set; }
-        public NowyKlientViewModel(int id = -1) : base("Nowe zlecenie")
+        public NowyKlientViewModel(int id = -1, string displayname = "Nowe zlecenie") : base(displayname)
         {
             if(id != -1){
                 Item = Db.Klient.SingleOrDefault(item => item.idKlienta == id);

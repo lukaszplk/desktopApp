@@ -17,6 +17,13 @@ namespace Firma.ViewModels.Wszystkie
             : base("Magazyn")
         {
         }
+        public override void Modify()
+        {
+            IDictionary<string, string> json = new Dictionary<string, string>();
+            json.Add("Operation", "Modyfikuj magazyn");
+            json.Add("Id", Id.ToString());
+            Messenger.Default.Send(json);
+        }
 
         public override void Dodaj()
         {

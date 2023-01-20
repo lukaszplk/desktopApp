@@ -11,10 +11,20 @@ namespace Firma.ViewModels.Jeden
     public class NowyAdresViewModel : JedenViewModel
     {
         public Adres Item;
-        public NowyAdresViewModel()
-            : base("Adres")
+        public Adres newItem;
+        public bool isModified = false;
+        public NowyAdresViewModel(int id = -1, string displayname = "Nowy adres") : base(displayname)
         {
-            Item = new Adres();
+            if (id != -1)
+            {
+                Item = Db.Adres.SingleOrDefault(item => item.idAdresu == id);
+                isModified = true;
+                newItem = new Adres();
+            }
+            else
+            {
+                Item = new Adres();
+            }
         }
 
         public string ulica
@@ -98,9 +108,26 @@ namespace Firma.ViewModels.Jeden
         }
         public override void Save()
         {
-            Item.czyAktywny = true;
-            Db.Adres.AddObject(Item);
-            Db.SaveChanges();
+            if (isModified)
+            {
+
+                newItem.ulica = Item.ulica;
+                newItem.dom = Item.dom;
+                newItem.mieszkanie = Item.mieszkanie;
+                newItem.kodPocztowy = Item.kodPocztowy;
+                newItem.miasto = Item.miasto;
+                newItem.czyAktywny = true;
+                Db.Adres.AddObject(newItem);
+                Db.Adres.SingleOrDefault(item => item.idAdresu == Item.idAdresu).czyAktywny = false;
+                Db.SaveChanges();
+
+            }
+            else
+            {
+                Item.czyAktywny = true;
+                Db.Adres.AddObject(Item);
+                Db.SaveChanges();
+            }
         }
     }
 }

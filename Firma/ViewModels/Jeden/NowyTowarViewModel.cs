@@ -15,27 +15,36 @@ namespace Firma.ViewModels.Jeden
     public class NowyTowarViewModel : JedenViewModel, IDataErrorInfo
     {
         #region Fields
-       
-        public Towar towar { get; set; }
+
+        public Towar oldItem;
+        public Towar newItem;
+        public bool isModified = false;
         #endregion
         #region Konstruktor
-        public NowyTowarViewModel():base("Towar")
+        public NowyTowarViewModel(int id = -1, string displayname = "Nowy towar") : base(displayname)
         {
-            
-            Db = new projektEntities();
-            towar = new Towar();
+            if (id != -1)
+            {
+                oldItem = Db.Towar.SingleOrDefault(item => item.idTowaru == id);
+                isModified = true;
+                newItem = new Towar();
+            }
+            else
+            {
+                oldItem = new Towar();
+            }
         }
         public string Kod
         {
             get
             {
-                return towar.kod;
+                return oldItem.kod;
             }
             set
             {
-                if(value!=towar.kod)
+                if(value != oldItem.kod)
                 {
-                    towar.kod = value;
+                    oldItem.kod = value;
                     base.OnPropertyChanged(() => Kod);                }
             }
         }
@@ -43,13 +52,13 @@ namespace Firma.ViewModels.Jeden
         {
             get
             {
-                return towar.nazwa;
+                return oldItem.nazwa;
             }
             set
             {
-                if (value != towar.nazwa)
+                if (value != oldItem.nazwa)
                 {
-                    towar.nazwa = value;
+                    oldItem.nazwa = value;
                     base.OnPropertyChanged(() => Nazwa);
                 }
             }
@@ -58,13 +67,13 @@ namespace Firma.ViewModels.Jeden
         {
             get
             {
-                return towar.VatSprzedazy;
+                return oldItem.VatSprzedazy;
             }
             set
             {
-                if (value != towar.VatSprzedazy)
+                if (value != oldItem.VatSprzedazy)
                 {
-                    towar.VatSprzedazy = value;
+                    oldItem.VatSprzedazy = value;
                     base.OnPropertyChanged(() => StawkaVatSprzedazy);
                 }
             }
@@ -73,13 +82,13 @@ namespace Firma.ViewModels.Jeden
         {
             get
             {
-                return towar.VatZakupu;
+                return oldItem.VatZakupu;
             }
             set
             {
-                if (value != towar.VatZakupu)
+                if (value != oldItem.VatZakupu)
                 {
-                    towar.VatZakupu = value;
+                    oldItem.VatZakupu = value;
                     base.OnPropertyChanged(() => StawkaVatZakupu);
                 }
             }
@@ -88,13 +97,13 @@ namespace Firma.ViewModels.Jeden
         {
             get
             {
-                return towar.marza;
+                return oldItem.marza;
             }
             set
             {
-                if (value != towar.marza)
+                if (value != oldItem.marza)
                 {
-                    towar.marza = value;
+                    oldItem.marza = value;
                     base.OnPropertyChanged(() => Marza);
                 }
             }
@@ -103,13 +112,13 @@ namespace Firma.ViewModels.Jeden
         {
             get
             {
-                return towar.cena;
+                return oldItem.cena;
             }
             set
             {
-                if (value != towar.cena)
+                if (value != oldItem.cena)
                 {
-                    towar.cena = value;
+                    oldItem.cena = value;
                     base.OnPropertyChanged(() => Cena);
                 }
             }
@@ -125,6 +134,10 @@ namespace Firma.ViewModels.Jeden
                 {
                     case nameof(Cena):
                         return DecimalValidator.CzyWiekszyOdZera(Cena);
+                    case nameof(StawkaVatSprzedazy):
+                        return DecimalValidator.CzyProcent(StawkaVatSprzedazy);
+                    case nameof(StawkaVatZakupu):
+                        return DecimalValidator.CzyProcent(StawkaVatZakupu);
                     default:
                         return string.Empty;
                 }
@@ -137,15 +150,33 @@ namespace Firma.ViewModels.Jeden
         #region Save
         public override void Save()
         {
-            towar.czyAktywny = true;
-            Db.Towar.AddObject(towar);
-            Db.SaveChanges();
+            if (isModified)
+            {
+
+                newItem.kod = oldItem.kod;
+                newItem.nazwa = oldItem.nazwa;
+                newItem.VatZakupu = oldItem.VatZakupu;
+                newItem.VatSprzedazy = oldItem.VatSprzedazy;
+                newItem.marza = oldItem.marza;
+                newItem.cena = oldItem.cena;
+                newItem.czyAktywny = true;
+                Db.Towar.AddObject(newItem);
+                Db.Towar.SingleOrDefault(item => item.idTowaru == oldItem.idTowaru).czyAktywny = false;
+                Db.SaveChanges();
+
+            }
+            else
+            {
+                oldItem.czyAktywny = true;
+                Db.Towar.AddObject(oldItem);
+                Db.SaveChanges();
+            }
         }
         protected override bool IsValid()
         {
-            return this[nameof(Cena)] != string.Empty
-                && this[nameof(StawkaVatSprzedazy)] != string.Empty
-                && this[nameof(StawkaVatZakupu)] != string.Empty;
+            return this[nameof(Cena)] != String.Empty
+                && this[nameof(StawkaVatSprzedazy)] != String.Empty
+                && this[nameof(StawkaVatZakupu)] != String.Empty;
         }
         #endregion
     }

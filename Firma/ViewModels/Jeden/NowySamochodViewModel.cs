@@ -11,10 +11,20 @@ namespace Firma.ViewModels.Jeden
     public class NowySamochodViewModel : JedenViewModel
     {
         public Pojazd Item;
-        public NowySamochodViewModel()
-            :base("Dodaj samochod")
+        public Pojazd newItem;
+        public bool isModified = false;
+        public NowySamochodViewModel(int id = -1, string displayname = "Nowy samochod") : base(displayname)
         {
-            Item = new Pojazd();
+            if (id != -1)
+            {
+                Item = Db.Pojazd.SingleOrDefault(item => item.idPojazdu == id);
+                isModified = true;
+                newItem = new Pojazd();
+            }
+            else
+            {
+                Item = new Pojazd();
+            }
             poprzedniPrzeglad = DateTime.Now;
         }
 
@@ -100,10 +110,29 @@ namespace Firma.ViewModels.Jeden
 
         public override void Save()
         {
-            Item.planowanyPrzeglad = poprzedniPrzeglad.AddYears(1);
-            Item.czyAktywny = true;
-            Db.Pojazd.AddObject(Item);
-            Db.SaveChanges();
+            if (isModified)
+            {
+
+                newItem.marka = Item.marka;
+                newItem.kolor = Item.kolor;
+                newItem.rok = Item.rok;
+                newItem.przebieg = Item.przebieg;
+                newItem.poprzedniPrzeglad = Item.poprzedniPrzeglad;
+                newItem.planowanyPrzeglad = newItem.poprzedniPrzeglad.AddYears(1);
+                newItem.czyAktywny = true;
+                Db.Pojazd.AddObject(newItem);
+                Db.Pojazd.SingleOrDefault(item => item.idPojazdu == Item.idPojazdu).czyAktywny = false;
+                Db.SaveChanges();
+
+            }
+            else
+            {
+
+                Item.planowanyPrzeglad = Item.poprzedniPrzeglad.AddYears(1);
+                Item.czyAktywny = true;
+                Db.Pojazd.AddObject(Item);
+                Db.SaveChanges();
+            }
         }
     }
 }

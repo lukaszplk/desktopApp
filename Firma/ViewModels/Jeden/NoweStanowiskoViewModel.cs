@@ -11,11 +11,21 @@ namespace Firma.ViewModels.Jeden
     public class NoweStanowiskoViewModel : JedenViewModel
     {
         public Stanowisko Item;
+        public Stanowisko newItem;
+        public bool isModified = false;
 
-        public NoweStanowiskoViewModel()
-            :base("Dodaj stanowisko")
+        public NoweStanowiskoViewModel(int id = -1, string displayname = "Nowe stanowisko") : base(displayname)
         {
-            Item = new Stanowisko();
+            if (id != -1)
+            {
+                Item = Db.Stanowisko.SingleOrDefault(item => item.idStanowiska == id);
+                isModified = true;
+                newItem = new Stanowisko();
+            }
+            else
+            {
+                Item = new Stanowisko();
+            }
         }
        
 
@@ -69,10 +79,24 @@ namespace Firma.ViewModels.Jeden
 
         public override void Save()
         {
-            Item.czyAktywny = true;
-            Item.dataUtworzenia = DateTime.Now;
-            Db.Stanowisko.AddObject(Item);
-            Db.SaveChanges();
+            if (isModified)
+            {
+
+                newItem.nazwaStanowiska = Item.nazwaStanowiska;
+                newItem.zakresObowiazkow = Item.zakresObowiazkow;
+                newItem.wymaganeDoswiadczenieLata = Item.wymaganeDoswiadczenieLata;
+                newItem.czyAktywny = true;
+                Db.Stanowisko.AddObject(newItem);
+                Db.Stanowisko.SingleOrDefault(item => item.idStanowiska == Item.idStanowiska).czyAktywny = false;
+                Db.SaveChanges();
+
+            }
+            else
+            {
+                Item.czyAktywny = true;
+                Db.Stanowisko.AddObject(Item);
+                Db.SaveChanges();
+            }
         }
     }
 }

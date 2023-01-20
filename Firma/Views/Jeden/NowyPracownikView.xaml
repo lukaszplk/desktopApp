@@ -61,7 +61,7 @@
             Grid.Column="1"
             DisplayMemberPath="idAdresu"
             ItemsSource="{Binding listaAdresow}"
-            SelectedValue="{Binding adres}"
+            SelectedValue="{Binding adres, UpdateSourceTrigger=PropertyChanged}"
             SelectedValuePath="idAdresu" />
 
         <Label
@@ -74,7 +74,7 @@
             Grid.Column="1"
             DisplayMemberPath="nazwaStanowiska"
             ItemsSource="{Binding listaStanowisk}"
-            SelectedValue="{Binding stanowisko}"
+            SelectedValue="{Binding stanowisko, UpdateSourceTrigger=PropertyChanged}"
             SelectedValuePath="idStanowiska" />
 
         <Label
@@ -97,7 +97,7 @@
             Grid.Column="1"
             DisplayMemberPath="marka"
             ItemsSource="{Binding listaPojazdow}"
-            SelectedValue="{Binding pojazd}"
+            SelectedValue="{Binding pojazd, UpdateSourceTrigger=PropertyChanged}"
             SelectedValuePath="idPojazdu" />
     </Grid>
 </Abstract:JedenViewBase>

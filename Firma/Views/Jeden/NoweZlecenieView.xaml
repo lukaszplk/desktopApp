@@ -40,7 +40,7 @@
             Grid.Column="1"
             DisplayMemberPath="nazwisko"
             ItemsSource="{Binding listaPracownikow}"
-            SelectedValue="{Binding pracownik}"
+            SelectedValue="{Binding pracownik, UpdateSourceTrigger=PropertyChanged}"
             SelectedValuePath="idPracownika" />
 
         <Label
@@ -53,7 +53,7 @@
             Grid.Column="1"
             DisplayMemberPath="nazwaUslugi"
             ItemsSource="{Binding listaUslug}"
-            SelectedValue="{Binding usluga}"
+            SelectedValue="{Binding usluga, UpdateSourceTrigger=PropertyChanged}"
             SelectedValuePath="idUslugi" />
 
         <Label
@@ -66,7 +66,7 @@
             Grid.Column="1"
             DisplayMemberPath="miasto"
             ItemsSource="{Binding listaAdresow}"
-            SelectedValue="{Binding adres}"
+            SelectedValue="{Binding adres, UpdateSourceTrigger=PropertyChanged}"
             SelectedValuePath="idAdresu" />
         <Label
             Grid.Row="3"
@@ -78,7 +78,7 @@
             Grid.Column="1"
             DisplayMemberPath="numer"
             ItemsSource="{Binding listaFaktur}"
-            SelectedValue="{Binding faktura}"
+            SelectedValue="{Binding faktura, UpdateSourceTrigger=PropertyChanged}"
             SelectedValuePath="idFaktury" />
         <Label
             Grid.Row="4"

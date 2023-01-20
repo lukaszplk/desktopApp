@@ -11,9 +11,20 @@ namespace Firma.ViewModels.Jeden
     public class NowaFirmaViewModel : JedenViewModel
     {
         public Firma_zew Item;
-        public NowaFirmaViewModel() : base("Nowa firma")
+        public Firma_zew newItem;
+        public bool isModified = false;
+        public NowaFirmaViewModel(int id = -1, string displayname = "Nowa firma") : base(displayname)
         {
-            Item = new Firma_zew();
+            if (id != -1)
+            {
+                Item = Db.Firma_zew.SingleOrDefault(item => item.idFirmy == id);
+                isModified = true;
+                newItem = new Firma_zew();
+            }
+            else
+            {
+                Item = new Firma_zew();
+            }
         }
 
         public string nazwa
@@ -83,9 +94,25 @@ namespace Firma.ViewModels.Jeden
 
         public override void Save()
         {
-            Item.czyAktywny = true;
-            Db.Firma_zew.AddObject(Item);
-            Db.SaveChanges();
+            if (isModified)
+            {
+
+                newItem.nazwa = Item.nazwa;
+                newItem.iloscPracownikow = Item.iloscPracownikow;
+                newItem.iloscNaszychUslug = Item.iloscNaszychUslug;
+                newItem.dlugoscWspolpracyMiesiace = Item.dlugoscWspolpracyMiesiace;
+                newItem.czyAktywny = true;
+                Db.Firma_zew.AddObject(newItem);
+                Db.Firma_zew.SingleOrDefault(item => item.idFirmy == Item.idFirmy).czyAktywny = false;
+                Db.SaveChanges();
+
+            }
+            else
+            {
+                Item.czyAktywny = true;
+                Db.Firma_zew.AddObject(Item);
+                Db.SaveChanges();
+            }
         }
     }
 }

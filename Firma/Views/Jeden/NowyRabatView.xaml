@@ -49,7 +49,7 @@
             Grid.Column="1"
             DisplayMemberPath="nazwisko"
             ItemsSource="{Binding listaPracownikow}"
-            SelectedValue="{Binding ktoUtworzyl}"
+            SelectedValue="{Binding ktoUtworzyl, UpdateSourceTrigger=PropertyChanged}"
             SelectedValuePath="idPracownika" />
 
         <Label
@@ -62,7 +62,7 @@
             Grid.Column="1"
             Name="tbMultiLine"
             AcceptsReturn="True"
-            Text="{Binding opis}"
+            Text="{Binding opis, UpdateSourceTrigger=PropertyChanged}"
             TextWrapping="Wrap"
             VerticalScrollBarVisibility="Visible" />
 

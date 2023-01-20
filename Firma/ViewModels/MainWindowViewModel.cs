@@ -189,7 +189,62 @@ namespace Firma.ViewModels
         {
             if(json["Operation"]== "Modyfikuj klienta")
             {
-                createView(new NowyKlientViewModel(Int32.Parse(json["Id"])));
+                createView(new NowyKlientViewModel(Int32.Parse(json["Id"]), "Modyfikuj klienta"));
+            }else if (json["Operation"] == "Modyfikuj pracownika")
+            {
+                createView(new NowyPracownikViewModel(Int32.Parse(json["Id"]), "Modyfikuj pracownika"));
+            }
+            else if (json["Operation"] == "Modyfikuj adres")
+            {
+                createView(new NowyAdresViewModel(Int32.Parse(json["Id"]), "Modyfikuj adres"));
+            }
+            else if (json["Operation"] == "Modyfikuj fakture")
+            {
+                createView(new NowaFakturaViewModel(Int32.Parse(json["Id"]), "Modyfikuj fakture"));
+            }
+            else if (json["Operation"] == "Modyfikuj firme")
+            {
+                createView(new NowaFirmaViewModel(Int32.Parse(json["Id"]), "Modyfikuj firme"));
+            }
+            else if (json["Operation"] == "Modyfikuj magazyn")
+            {
+                createView(new NowyMagazynViewModel(Int32.Parse(json["Id"]), "Modyfikuj magazyn"));
+            }
+            else if (json["Operation"] == "Modyfikuj rabat")
+            {
+                createView(new NowyRabatViewModel(Int32.Parse(json["Id"]), "Modyfikuj rabat"));
+            }
+            else if (json["Operation"] == "Modyfikuj samochod")
+            {
+                createView(new NowySamochodViewModel(Int32.Parse(json["Id"]), "Modyfikuj samochod"));
+            }
+            else if (json["Operation"] == "Modyfikuj sposob platnosci")
+            {
+                createView(new NowySposobPlatnosciViewModel(Int32.Parse(json["Id"]), "Modyfikuj sposob platnosci"));
+            }
+            else if (json["Operation"] == "Modyfikuj usluge")
+            {
+                createView(new NowaUslugaViewModel(Int32.Parse(json["Id"]), "Modyfikuj usluge"));
+            }
+            else if (json["Operation"] == "Modyfikuj stanowisko")
+            {
+                createView(new NoweStanowiskoViewModel(Int32.Parse(json["Id"]), "Modyfikuj stanowisko"));
+            }
+            else if (json["Operation"] == "Modyfikuj towar")
+            {
+                createView(new NowyTowarViewModel(Int32.Parse(json["Id"]), "Modyfikuj towar"));
+            }
+            else if (json["Operation"] == "Modyfikuj urlop")
+            {
+                createView(new NowyUrlopViewModel(Int32.Parse(json["Id"]), "Modyfikuj urlop"));
+            }
+            else if (json["Operation"] == "Modyfikuj zlecenie")
+            {
+                createView(new NoweZlecenieViewModel(Int32.Parse(json["Id"]), "Modyfikuj zlecenie"));
+            }
+            else if (json["Operation"] == "Modyfikuj zamowienie")
+            {
+                createView(new NoweZamowienieViewModel(Int32.Parse(json["Id"]), "Modyfikuj zamowienie"));
             }
         }
         private void open(string name)

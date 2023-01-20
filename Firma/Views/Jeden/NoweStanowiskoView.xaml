@@ -50,7 +50,7 @@
             Grid.Column="1"
             Name="tbMultiLine"
             AcceptsReturn="True"
-            Text="{Binding zakresObowiazkow}"
+            Text="{Binding zakresObowiazkow, UpdateSourceTrigger=PropertyChanged}"
             TextWrapping="Wrap"
             VerticalScrollBarVisibility="Visible" />
 

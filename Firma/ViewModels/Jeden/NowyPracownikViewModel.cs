@@ -11,14 +11,24 @@ namespace Firma.ViewModels.Jeden
     public class NowyPracownikViewModel : JedenViewModel
     {
         public Pracownik Item;
+        public Pracownik newItem;
+        public bool isModified = false;
         public List<Adres> listaAdresow { get; set; }
         public List<Stanowisko> listaStanowisk { get; set; }
         public List<Pojazd> listaPojazdow { get; set; }
         #region Konstruktor
-        public NowyPracownikViewModel() :
-            base("Nowy pracownik")
+        public NowyPracownikViewModel(int id = -1, string displayname = "Nowy pracownik") : base(displayname)
         {
-            Item = new Pracownik();
+            if (id != -1)
+            {
+                Item = Db.Pracownik.SingleOrDefault(item => item.idPracownika == id);
+                isModified = true;
+                newItem = new Pracownik();
+            }
+            else
+            {
+                Item = new Pracownik();
+            }
             listaAdresow = (from adres in Db.Adres
                             where adres.czyAktywny == true
                             select adres).ToList();
@@ -135,9 +145,27 @@ namespace Firma.ViewModels.Jeden
 
         public override void Save()
         {
-            Item.czyAktywny = true;
-            Db.Pracownik.AddObject(Item);
-            Db.SaveChanges();
+            if (isModified)
+            {
+
+                newItem.imie = Item.imie;
+                newItem.nazwisko = Item.nazwisko;
+                newItem.adres = Item.adres;
+                newItem.stanowisko = Item.stanowisko;
+                newItem.dataZatrudnienia = Item.dataZatrudnienia;
+                newItem.pojazd = Item.pojazd;
+                newItem.czyAktywny = true;
+                Db.Pracownik.AddObject(newItem);
+                Db.Pracownik.SingleOrDefault(item => item.idPracownika == Item.idPracownika).czyAktywny = false;
+                Db.SaveChanges();
+
+            }
+            else
+            {
+                Item.czyAktywny = true;
+                Db.Pracownik.AddObject(Item);
+                Db.SaveChanges();
+            }
         }
     }
 }

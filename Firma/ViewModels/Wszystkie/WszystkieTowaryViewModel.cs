@@ -20,6 +20,13 @@ namespace Firma.ViewModels.Wszystkie
             :base("Towary")
         {
         }
+        public override void Modify()
+        {
+            IDictionary<string, string> json = new Dictionary<string, string>();
+            json.Add("Operation", "Modyfikuj towar");
+            json.Add("Id", Id.ToString());
+            Messenger.Default.Send(json);
+        }
 
         public override void Dodaj()
         {

@@ -11,13 +11,24 @@ namespace Firma.ViewModels.Jeden
     public class NoweZlecenieViewModel : JedenViewModel
     {
         public Zlecenia Item;
+        public Zlecenia newItem;
+        public bool isModified = false;
         public List<Pracownik> listaPracownikow { get; set; }
         public List<Usluga> listaUslug { get; set; }
         public List<Adres> listaAdresow { get; set; }
         public List<Faktura> listaFaktur { get; set; }
-        public NoweZlecenieViewModel() : base("Nowe zlecenie")
+        public NoweZlecenieViewModel(int id = -1, string displayname = "Nowe zlecenie") : base(displayname)
         {
-            Item = new Zlecenia();
+            if (id != -1)
+            {
+                Item = Db.Zlecenia.SingleOrDefault(item => item.idZlecenia == id);
+                isModified = true;
+                newItem = new Zlecenia();
+            }
+            else
+            {
+                Item = new Zlecenia();
+            }
             listaPracownikow = (from pracownik in Db.Pracownik
                             where pracownik.czyAktywny == true
                             select pracownik).ToList();
@@ -110,9 +121,26 @@ namespace Firma.ViewModels.Jeden
 
         public override void Save()
         {
-            Item.czyAktywne = true;
-            Db.Zlecenia.AddObject(Item);
-            Db.SaveChanges();
+            if (isModified)
+            {
+
+                newItem.pracownik = Item.pracownik;
+                newItem.usluga = Item.usluga;
+                newItem.adres = Item.adres;
+                newItem.faktura = Item.faktura;
+                newItem.dataZlecenia = Item.dataZlecenia;
+                newItem.czyAktywne = true;
+                Db.Zlecenia.AddObject(newItem);
+                Db.Zlecenia.SingleOrDefault(item => item.idZlecenia == Item.idZlecenia).czyAktywne = false;
+                Db.SaveChanges();
+
+            }
+            else
+            {
+                Item.czyAktywne = true;
+                Db.Zlecenia.AddObject(Item);
+                Db.SaveChanges();
+            }
         }
     }
 }

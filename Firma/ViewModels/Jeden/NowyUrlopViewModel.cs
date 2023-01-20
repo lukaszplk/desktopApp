@@ -11,10 +11,21 @@ namespace Firma.ViewModels.Jeden
     public class NowyUrlopViewModel : JedenViewModel
     {
         public Urlop Item;
+        public Urlop newItem;
+        public bool isModified = false;
         public List<Pracownik> listaPracownikow { get; set; }
-        public NowyUrlopViewModel() : base("Nowy urlop")
+        public NowyUrlopViewModel(int id = -1, string displayname = "Nowy urlop") : base(displayname)
         {
-            Item = new Urlop();
+            if (id != -1)
+            {
+                Item = Db.Urlop.SingleOrDefault(item => item.idUrlopu == id);
+                isModified = true;
+                newItem = new Urlop();
+            }
+            else
+            {
+                Item = new Urlop();
+            }
             listaPracownikow = (from pracownik in Db.Pracownik
                                 where pracownik.czyAktywny == true
                                 select pracownik).ToList();
@@ -115,10 +126,29 @@ namespace Firma.ViewModels.Jeden
 
         public override void Save()
         {
-            Item.czyAktywny = true;
-            Item.czyZatwierdzony = true;
-            Db.Urlop.AddObject(Item);
-            Db.SaveChanges();
+            if (isModified)
+            {
+
+                newItem.pracownik = Item.pracownik;
+                newItem.zatwierdzajacy = Item.zatwierdzajacy;
+                newItem.dataRozpoczecia = Item.dataRozpoczecia;
+                newItem.dataZakonczenia = Item.dataZakonczenia;
+                newItem.uzasadnienie = Item.uzasadnienie;
+                newItem.czyPlatny = Item.czyPlatny;
+                newItem.czyAktywny = true;
+                Db.Urlop.AddObject(newItem);
+                Db.Urlop.SingleOrDefault(item => item.idUrlopu == Item.idUrlopu).czyAktywny = false;
+                Db.SaveChanges();
+
+            }
+            else
+            {
+
+                Item.czyAktywny = true;
+                Item.czyZatwierdzony = true;
+                Db.Urlop.AddObject(Item);
+                Db.SaveChanges();
+            }
         }
     }
 }

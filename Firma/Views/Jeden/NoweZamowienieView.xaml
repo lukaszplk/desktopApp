@@ -40,7 +40,7 @@
             Grid.Column="1"
             DisplayMemberPath="nazwa"
             ItemsSource="{Binding listaTowarow}"
-            SelectedValue="{Binding towar}"
+            SelectedValue="{Binding towar, UpdateSourceTrigger=PropertyChanged}"
             SelectedValuePath="idTowaru" />
 
         <Label
@@ -53,7 +53,7 @@
             Grid.Column="1"
             DisplayMemberPath="nazwisko"
             ItemsSource="{Binding listaPracownikow}"
-            SelectedValue="{Binding pracownik}"
+            SelectedValue="{Binding pracownik, UpdateSourceTrigger=PropertyChanged}"
             SelectedValuePath="idPracownika" />
 
         <Label

@@ -11,9 +11,20 @@ namespace Firma.ViewModels.Jeden
     public class NowaUslugaViewModel : JedenViewModel
     {
         public Usluga Item;
-        public NowaUslugaViewModel() : base("Nowa Usluga")
+        public Usluga newItem;
+        public bool isModified = false;
+        public NowaUslugaViewModel(int id = -1, string displayname = "Nowa usluga") : base(displayname)
         {
-            Item = new Usluga();
+            if (id != -1)
+            {
+                Item = Db.Usluga.SingleOrDefault(item => item.idUslugi == id);
+                isModified = true;
+                newItem = new Usluga();
+            }
+            else
+            {
+                Item = new Usluga();
+            }
         }
         public string nazwaUslugi
         {
@@ -66,9 +77,24 @@ namespace Firma.ViewModels.Jeden
 
         public override void Save()
         {
-            Item.czyAktywna = true;
-            Db.Usluga.AddObject(Item);
-            Db.SaveChanges();
+            if (isModified)
+            {
+
+                newItem.nazwaUslugi = Item.nazwaUslugi;
+                newItem.koszt = Item.koszt;
+                newItem.potrzebnyCzasDni = Item.potrzebnyCzasDni;
+                newItem.czyAktywna = true;
+                Db.Usluga.AddObject(newItem);
+                Db.Usluga.SingleOrDefault(item => item.idUslugi == Item.idUslugi).czyAktywna = false;
+                Db.SaveChanges();
+
+            }
+            else
+            {
+                Item.czyAktywna = true;
+                Db.Usluga.AddObject(Item);
+                Db.SaveChanges();
+            }
         }
     }
 }
