@@ -10,8 +10,38 @@ namespace Firma.ViewModels.Raporty
 {
     public abstract class RaportBaseViewModel : WorkspaceViewModel
     {
-        public DateTime Od { get; set; } 
-        public DateTime Do { get; set; }
+        private DateTime _od;
+        public DateTime Od
+        {
+            get
+            {
+                return _od;
+            }
+            set
+            {
+                if (value != _od)
+                {
+                    _od = value;
+                    base.OnPropertyChanged(() => Od);
+                }
+            }
+        }
+        private DateTime _do;
+        public DateTime Do
+        {
+            get
+            {
+                return _do;
+            }
+            set
+            {
+                if (value != _do)
+                {
+                    _do = value;
+                    base.OnPropertyChanged(() => Do);
+                }
+            }
+        }
 
         private decimal _result;
         public decimal Result {

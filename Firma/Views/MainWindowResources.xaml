@@ -115,6 +115,9 @@
     <DataTemplate DataType="{x:Type vmrap:RaportSprzedazyViewModel}">
         <vwrap:RaportSprzedazyView />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vmrap:RaportZamowienViewModel}">
+        <vwrap:RaportZamowienView />
+    </DataTemplate>
 
     <!--  tu jest koniec łączenia View z ViewModel zakładek  -->
 

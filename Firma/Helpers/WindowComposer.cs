@@ -44,6 +44,10 @@ namespace Firma.Helpers
             {
                 return new RaportSprzedazyView();
             }
+            else if (vm.GetType() == typeof(RaportZamowienViewModel))
+            {
+                return new RaportZamowienView();
+            }
             else
             {
                 return null;

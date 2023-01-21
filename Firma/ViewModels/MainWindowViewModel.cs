@@ -310,9 +310,9 @@ namespace Firma.ViewModels
             {
                 createView(new NoweZlecenieViewModel());
             }
-            else if (name == "Raport sprzedazy")
+            else if (name == "Raport zamowien")
             {
-                WindowComposer.OpenNewWindow(new RaportSprzedazyViewModel());
+                WindowComposer.OpenNewWindow(new RaportZamowienViewModel());
             }
             else if (name == "Stan magazynowy")
             {

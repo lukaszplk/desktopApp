@@ -16,16 +16,16 @@ namespace Firma.ViewModels.Raporty
             this.DisplayName = "Raporty";
         }
 
-        private BaseCommand _RaportSprzedazyCommand;
-        public ICommand RaportSprzedazyCommand
+        private BaseCommand _RaportZamowienCommand;
+        public ICommand RaportZamowienCommand
         {
             get
             {
-                if (_RaportSprzedazyCommand == null)
+                if (_RaportZamowienCommand == null)
                 {
-                    _RaportSprzedazyCommand = new BaseCommand(() => Messenger.Default.Send("Raport sprzedazy"));
+                    _RaportZamowienCommand = new BaseCommand(() => Messenger.Default.Send("Raport zamowien"));
                 }
-                return _RaportSprzedazyCommand;
+                return _RaportZamowienCommand;
             }
         }
         private BaseCommand _StanMagazynowyCommand;

@@ -20,8 +20,9 @@ namespace Firma.Models.BusinessLogic
 
         public int AktywniPracownicy()
         {
-            return Db.Pracownik.Where(item => item.czyAktywny == true && item.dataZatrudnienia >= Od
-                )
+            return Db.Pracownik.Where(item => item.czyAktywny == true 
+                && item.dataZatrudnienia >= Od
+                && item.dataZatrudnienia <= Do)
                 .Count();
                 //Sum(item => (item.wartoscTowaru ?? 0) + (item.wartoscTowaru ?? 0));
         }
